@@ -204,7 +204,7 @@ public class SlideMenu extends ViewGroup {
 			if (!mScroller.isFinished()) {
 				mScroller.abortAnimation();
 			}
-
+			
 			// Remember where the motion event started
 			mLastMotionX = x;
 			break;

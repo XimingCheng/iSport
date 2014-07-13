@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="45.0dip"
-    android:background="@drawable/bg_title_bar"
+    android:background="@drawable/ic_item_normal_bg"
     android:gravity="center_vertical" >
 
     <ImageView
@@ -32,7 +32,7 @@
         android:paddingLeft="75.0dip"
         android:paddingRight="75.0dip"
         android:singleLine="true"
-        android:text="Title"
+        android:text="@string/app_name"
         android:textColor="#ffffff"
         android:textSize="22sp" />
 

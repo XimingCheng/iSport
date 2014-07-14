@@ -46,9 +46,8 @@
         	android:layout_marginRight="5dp" 
         	android:layout_alignTop="@+id/title_bar_menu_btn" 
         	android:background="@drawable/shape"
-        	android:text="@string/next_step" 
         	android:textColor="@color/loginColor"
-			android:text="加入"/><!-- click to participate -->
+        	android:text="加入" />
 	</RelativeLayout>
     
     

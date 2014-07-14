@@ -90,8 +90,8 @@
     android:id="@+id/register"
     android:layout_width="70dp"
     android:layout_height="22dp"
-    android:layout_marginLeft="80dp"
-    android:layout_marginTop="15dp"
+    android:layout_marginLeft="70dp"
+    android:layout_marginTop="10dp"
     android:ems="10"
     android:text="@string/register" />
 
@@ -99,8 +99,8 @@
     android:id="@+id/editText1"
     android:layout_width="80dp"
     android:layout_height="22dp"
-    android:layout_marginLeft="200dp"
-    android:layout_marginTop="15dp"
+    android:layout_marginLeft="205dp"
+    android:layout_marginTop="10dp"
     android:ems="10"
     android:text="@string/findpassword" />
     

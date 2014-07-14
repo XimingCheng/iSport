@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <corners android:radius="8dip" />
     <solid android:color="#FFFFFF" />
 
     <stroke
         android:width="0.01dp"
-        android:color="#050505" />
+        android:color="@color/loginColor" />
 
     <padding
         android:bottom="1dp"

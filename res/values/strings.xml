@@ -6,6 +6,8 @@
     <string name="login">登  录</string>
     <string name="account">请输入帐号</string>
     <string name="password">密 码</string>
+    <string name="confirm_pass">确认密码</string>
     <string name="findpassword">找 回 密 码</string>
-
+    <string name="next_step">下一步</string>
+    
 </resources>

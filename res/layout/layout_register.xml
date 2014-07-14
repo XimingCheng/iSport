@@ -34,7 +34,7 @@
        
         android:singleLine="true" 
         android:layout_alignTop="@+id/title_bar_menu_btn" 
-        android:text="@string/app_name"
+        android:text="@string/registerPage"
         android:textColor="#ffffff"
         android:textSize="22sp" />
 

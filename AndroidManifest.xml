@@ -36,6 +36,13 @@
             android:name="com.netease.isport.MainActivity" >
             
         </activity>
+        <activity
+            android:name="com.netease.isport.RegisterActivity" >      
+        </activity>
+        <activity
+            android:name="com.netease.isport.LoginActivity" >
+            
+        </activity>
     </application>
 
 </manifest>

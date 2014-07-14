@@ -67,7 +67,7 @@
     android:hint="@string/account"
 
     android:background="@drawable/shape"
-    android:inputType="textPassword" />
+    android:inputType="text" />
 
 <AutoCompleteTextView
     android:id="@+id/editText2"

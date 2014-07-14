@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="45.0dip"
-    android:background="@drawable/ic_item_normal_bg"
+    android:background="@color/loginColor"
     android:gravity="center_vertical" >
 
     <ImageView

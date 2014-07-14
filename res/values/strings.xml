@@ -9,5 +9,6 @@
     <string name="confirm_pass">确认密码</string>
     <string name="findpassword">找 回 密 码</string>
     <string name="next_step">下一步</string>
+    <string name="register">没有帐号</string>
     
 </resources>

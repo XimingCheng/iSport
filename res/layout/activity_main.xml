@@ -9,23 +9,208 @@
 
         <include layout="@layout/layout_menu" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical" >
 
             <include layout="@layout/layout_title_bar" />
-
-            <GridView
-				android:id="@+id/GridView"
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:numColumns="auto_fit"
-				android:columnWidth="90dp"
-				android:stretchMode="columnWidth"
-				android:gravity="center">
-			</GridView>
-        </RelativeLayout>
-    </com.netease.isport.SlideMenu>
-
+            
+			<LinearLayout
+			    android:layout_width="fill_parent"  
+			    android:layout_height="wrap_content"  
+			    android:orientation="vertical" >
+				<LinearLayout
+				    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content" >
+					<RelativeLayout
+					    android:clickable="true"
+					    android:background="@drawable/layoutstyle"
+					    android:layout_width="wrap_content"  
+    					android:layout_height="wrap_content" 
+       					android:layout_weight="1" >
+						<ImageView
+						    android:layout_marginTop="10dip"
+						    android:id="@+id/buttonClick1"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="Click"
+						    android:layout_centerHorizontal="true"
+						    android:src="@drawable/ic_launcher" />
+						<TextView
+						    android:layout_marginBottom="5dip"
+						    android:layout_width="wrap_content"  
+						    android:layout_height="wrap_content"  
+						    android:layout_below="@+id/buttonClick1"  
+						    android:id="@+id/ItemText"  
+						    android:text=" 11111"
+						    android:layout_centerHorizontal="true" />
+  					</RelativeLayout>
+					<RelativeLayout
+					    android:clickable="true"
+					    android:background="@drawable/layoutstyle"
+					    android:layout_width="wrap_content"  
+    					android:layout_height="wrap_content" 
+       					android:layout_weight="1" >
+						<ImageView
+						    android:layout_marginTop="10dip"
+						    android:id="@+id/buttonClick2"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="Click"
+						    android:layout_centerHorizontal="true"
+						    android:src="@drawable/ic_launcher" />
+						<TextView
+						    android:layout_marginBottom="5dip"
+						    android:layout_width="wrap_content"  
+						    android:layout_height="wrap_content"  
+						    android:layout_below="@+id/buttonClick2"  
+						    android:id="@+id/ItemText"  
+						    android:text=" 11111"
+						    android:layout_centerHorizontal="true" />
+  					</RelativeLayout>
+					<RelativeLayout
+					    android:clickable="true"
+					    android:background="@drawable/layoutstyle"
+					    android:layout_width="wrap_content"  
+    					android:layout_height="wrap_content" 
+       					android:layout_weight="1" >
+						<ImageView
+						    android:layout_marginTop="10dip"
+						    android:id="@+id/buttonClick3"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="Click"
+						 	android:layout_centerHorizontal="true"
+						 	android:src="@drawable/ic_launcher" />
+						<TextView
+						    android:layout_marginBottom="5dip"
+						    android:layout_width="wrap_content"  
+						    android:layout_height="wrap_content"  
+						    android:layout_below="@+id/buttonClick3"  
+						    android:id="@+id/ItemText"  
+						    android:text=" 11111"
+						    android:layout_centerHorizontal="true" />
+					</RelativeLayout>
+					<RelativeLayout
+					    android:clickable="true"
+					    android:background="@drawable/layoutstyle"
+					    android:layout_width="wrap_content"  
+						android:layout_height="wrap_content" 
+						android:layout_weight="1" >
+						<ImageView
+						    android:layout_marginTop="10dip"
+							android:id="@+id/buttonClick4"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Click"
+							android:layout_centerHorizontal="true"
+							android:src="@drawable/ic_launcher" />
+						<TextView
+						    android:layout_marginBottom="5dip"
+							android:layout_width="wrap_content"  
+							android:layout_height="wrap_content"  
+							android:layout_below="@+id/buttonClick4"  
+							android:id="@+id/ItemText"  
+							android:text=" 11111"
+							android:layout_centerHorizontal="true" />
+					</RelativeLayout>
+				</LinearLayout>
+				<LinearLayout
+				    android:layout_width="fill_parent"
+					android:layout_height="wrap_content" >
+					<RelativeLayout
+					    android:clickable="true"
+					    android:background="@drawable/layoutstyle"
+					    android:layout_width="wrap_content"  
+						android:layout_height="wrap_content" 
+						android:layout_weight="1" >
+						<ImageView
+						    android:layout_marginTop="5dip"
+							android:id="@+id/buttonClick5"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Click"
+							android:layout_centerHorizontal="true"
+							android:src="@drawable/ic_launcher" />
+						<TextView 
+						    android:layout_marginBottom="5dip"
+							android:layout_width="wrap_content"  
+							android:layout_height="wrap_content"  
+							android:layout_below="@+id/buttonClick5"  
+							android:id="@+id/ItemText"  
+							android:text=" 11111"
+							android:layout_centerHorizontal="true" />  
+					</RelativeLayout>
+					<RelativeLayout
+					    android:clickable="true"
+					    android:background="@drawable/layoutstyle"
+					    android:layout_width="wrap_content"  
+	    				android:layout_height="wrap_content" 
+	       				android:layout_weight="1" >
+						<ImageView
+						    android:layout_marginTop="5dip"
+							android:id="@+id/buttonClick6"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Click"
+							android:layout_centerHorizontal="true"
+							android:src="@drawable/ic_launcher" />
+						<TextView  
+							android:layout_width="wrap_content"  
+							android:layout_height="wrap_content"  
+							android:layout_below="@+id/buttonClick6"  
+							android:id="@+id/ItemText"  
+							android:text=" 11111"
+							android:layout_centerHorizontal="true" />
+					</RelativeLayout>
+					<RelativeLayout
+					    android:clickable="true"
+					    android:background="@drawable/layoutstyle"
+					    android:layout_width="wrap_content"  
+						android:layout_height="wrap_content" 
+						android:layout_weight="1" >
+						<ImageView
+						    android:layout_marginTop="5dip"
+						    android:id="@+id/buttonClick7"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="Click"
+						  	android:layout_centerHorizontal="true"
+						  	android:src="@drawable/ic_launcher" />
+						<TextView  
+						    android:layout_width="wrap_content"  
+						    android:layout_height="wrap_content"  
+						    android:layout_below="@+id/buttonClick7"  
+						    android:id="@+id/ItemText"  
+						    android:text=" 11111"
+						    android:layout_centerHorizontal="true" />
+					</RelativeLayout>
+					<RelativeLayout
+					    android:clickable="true"
+					    android:background="@drawable/layoutstyle"
+					    android:layout_width="wrap_content"  
+						android:layout_height="wrap_content" 
+						android:layout_weight="1" >
+						<ImageView
+						    android:layout_marginTop="5dip"
+						    android:id="@+id/buttonClick8"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="Click"
+							android:layout_centerHorizontal="true"
+							android:src="@drawable/ic_launcher" />
+						<TextView  
+						    android:layout_width="wrap_content"  
+						    android:layout_height="wrap_content"  
+						    android:layout_below="@+id/buttonClick8"  
+						    android:id="@+id/ItemText"  
+						    android:text=" 11111"
+						    android:layout_centerHorizontal="true" />
+					</RelativeLayout>
+				</LinearLayout>　  
+			</LinearLayout> 
+		</LinearLayout>
+		
+	</com.netease.isport.SlideMenu>
 </RelativeLayout>

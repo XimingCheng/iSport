@@ -61,7 +61,16 @@
 	    android:layout_marginTop="15dp"
 	    android:background="@drawable/border"
 	    android:ems="10"
-	    android:hint="@string/account"
- >
+	    android:hint="@string/act_main_title" >
+	</AutoCompleteTextView>
+	<AutoCompleteTextView
+	    android:id="@+id/editText2"
+	    android:layout_width="300dp"
+	    android:layout_height="30dip"
+	    android:layout_gravity="center"
+	    android:layout_marginTop="15dp"
+	    android:background="@drawable/border"
+	    android:ems="10"
+	    android:hint="@string/act_main_title" >
 	</AutoCompleteTextView>
 </LinearLayout>

@@ -43,11 +43,11 @@
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:layout_marginRight="5dp" 
         android:layout_alignTop="@+id/title_bar_menu_btn" 
         android:background="@drawable/shape"
-        android:text="@string/next_step" 
+        android:text="@string/next_step"
         android:textColor="@color/loginColor"
         />
  

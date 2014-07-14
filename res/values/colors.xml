@@ -6,4 +6,6 @@
     <color name="color_2">#2a4253</color>
     <color name="color_3">#f26d7e</color>
     <color name="color_4">#a286c0</color>
+    <color name="green">#008000</color>
+    <color name="loginColor">#08CE96</color>
 </resources>

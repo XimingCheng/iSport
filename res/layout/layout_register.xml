@@ -39,7 +39,7 @@
         android:textSize="22sp" />
 
     <Button
-        android:id="@+id/login" 
+        android:id="@+id/complete" 
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"

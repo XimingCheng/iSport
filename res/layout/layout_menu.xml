@@ -62,6 +62,7 @@
         android:textSize="16.0sp"
         android:id="@+id/option_submit_act" />
 
+
     <View
         android:layout_width="240dip"
         android:layout_height="2.0dip"

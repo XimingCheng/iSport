@@ -43,7 +43,7 @@
         android:layout_width="50dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:layout_marginRight="5dp" 
         android:layout_alignTop="@+id/title_bar_menu_btn" 
         android:background="@drawable/shape"
@@ -88,9 +88,9 @@
     >
 <TextView
     android:id="@+id/register"
-    android:layout_width="80dp"
+    android:layout_width="70dp"
     android:layout_height="22dp"
-    android:layout_marginLeft="50dp"
+    android:layout_marginLeft="80dp"
     android:layout_marginTop="15dp"
     android:ems="10"
     android:text="@string/register" />

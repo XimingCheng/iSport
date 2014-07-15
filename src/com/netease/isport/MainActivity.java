@@ -69,28 +69,36 @@ public class MainActivity extends Activity  implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		 if(sp.getAll().isEmpty()||(!SharedPreferenceUtil.getAccount())){
+		   if(sp.getAll().isEmpty()||(!SharedPreferenceUtil.getAccount())){
 		    	Intent intent=new Intent();
 		    	intent.setClass(MainActivity.this, LoginActivity.class);
 		    	startActivity(intent);
 		    }
-	        else if (v.getId()==R.id.slide_menu) {
-	        	if(mSlideMenu.isMainScreenShowing()){
-			    	mSlideMenu.openMenu();
-			   } else {
-				   mSlideMenu.closeMenu();
-			  }
-	       }
-	        else if(v.getId()==R.id.option_submit_act){
-	        	if (!mSlideMenu.isMainScreenShowing()) {
-					mSlideMenu.closeMenu();
-				}
-	        }
-	        else if(v.getId()==R.id.user_image_layout){
-	        	if (!mSlideMenu.isMainScreenShowing()) {
-					mSlideMenu.closeMenu();
-				}
-	        }
+		   else{
+			   switch(v.getId()){
+			     case R.id.slide_menu:{
+			    	 if(mSlideMenu.isMainScreenShowing()){
+					    	mSlideMenu.openMenu();
+					   } else {
+						   mSlideMenu.closeMenu();
+					  }
+			     }
+			     case R.id.option_submit_act :{
+			    	 if (!mSlideMenu.isMainScreenShowing()) {
+							mSlideMenu.closeMenu();
+						}
+			     }
+			     
+			     case R.id.user_image_layout:{
+			    	 if (!mSlideMenu.isMainScreenShowing()) {
+							mSlideMenu.closeMenu();
+						}
+			     }
+			   }
+			   
+		   }
+		   
+		
 	}
 
 	

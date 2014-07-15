@@ -47,7 +47,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	    sp=getSharedPreferences("setting", 0);
+	    sp = getSharedPreferences("setting", 0);
 		mSlideMenu = (SlideMenu) findViewById(R.id.slide_menu);
 		mUserProfileLayout = (LinearLayout) findViewById(R.id.user_image_layout);
 		mUserImage = (ImageView) findViewById(R.id.user_image);
@@ -70,37 +70,29 @@ public class MainActivity extends Activity  implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		   if(sp.getAll().isEmpty()||(!SharedPreferenceUtil.getAccount())){
-		    	Intent intent=new Intent();
+		    	Intent intent = new Intent();
 		    	intent.setClass(MainActivity.this, LoginActivity.class);
 		    	startActivity(intent);
-		    }
-		   else{
-			   switch(v.getId()){
-			     case R.id.slide_menu:{
-			    	 if(mSlideMenu.isMainScreenShowing()){
-					    	mSlideMenu.openMenu();
+		   } else {
+			   switch(v.getId()) {
+				   case R.id.slide_menu:{
+					   if(mSlideMenu.isMainScreenShowing()){
+						   mSlideMenu.openMenu();
 					   } else {
 						   mSlideMenu.closeMenu();
-					  }
-			     }
-			     case R.id.option_submit_act :{
-			    	 if (!mSlideMenu.isMainScreenShowing()) {
-							mSlideMenu.closeMenu();
-						}
-			     }
-			     
-			     case R.id.user_image_layout:{
-			    	 if (!mSlideMenu.isMainScreenShowing()) {
-							mSlideMenu.closeMenu();
-						}
-			     }
-			   }
-			   
+					   }
+				   }
+				   case R.id.option_submit_act :{
+					   if (!mSlideMenu.isMainScreenShowing()) {
+						   mSlideMenu.closeMenu();
+					   }
+				   }
+				   case R.id.user_image_layout:{
+					   if (!mSlideMenu.isMainScreenShowing()) {
+						   mSlideMenu.closeMenu();
+					   }
+				   }
+			   } 
 		   }
-		   
-		
 	}
-
-	
-
 }

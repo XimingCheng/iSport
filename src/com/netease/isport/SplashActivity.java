@@ -3,13 +3,17 @@ package com.netease.isport;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.ImageView;
 
 public class SplashActivity extends Activity {
     boolean isFirstIn = false;
-
+    private ImageView donghua;
+    // Frame动画
+    private AnimationDrawable animation;
     private static final int GO_HOME = 1000;
     private static final int GO_GUIDE = 1001;
     // 延迟3秒
@@ -41,7 +45,13 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
+        this.donghua = (ImageView) super.findViewById(R.id.donghua);
+        
+        // 获得背景（6个图片形成的动画）
+        this.animation = (AnimationDrawable) this.donghua.getBackground();
+        this.animation.start();
         init();
+        
     }
 
     private void init() {

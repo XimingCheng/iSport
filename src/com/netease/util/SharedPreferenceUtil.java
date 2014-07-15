@@ -19,7 +19,7 @@ public class SharedPreferenceUtil {
 		editor.putBoolean(flag, true);
 	}
 	
-	public static boolean getAccount(String username){
+	public static boolean getAccount(){
 		 return sp.getBoolean(flag, false);
 	}
    

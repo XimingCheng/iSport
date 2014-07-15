@@ -1,6 +1,8 @@
 package com.netease.isport;
 
 import com.netease.isport.R;
+import com.netease.util.SharedPreferenceUtil;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -67,7 +69,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		 if(sp.getAll().isEmpty()){
+		 if(sp.getAll().isEmpty()||(!SharedPreferenceUtil.getAccount())){
 		    	Intent intent=new Intent();
 		    	intent.setClass(MainActivity.this, LoginActivity.class);
 		    	startActivity(intent);

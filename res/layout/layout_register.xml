@@ -23,20 +23,24 @@
         android:gravity="center"
         android:src="@drawable/fanhui" />
 
+   
+    
     <TextView
         android:id="@+id/title_bar_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:ellipsize="end"
         android:gravity="center"
-       
-        android:singleLine="true" 
-        android:layout_alignTop="@+id/title_bar_menu_btn" 
+        android:paddingLeft="75.0dip"
+        android:paddingRight="75.0dip"
+        android:singleLine="true"
         android:text="@string/registerPage"
         android:textColor="#ffffff"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
+        
+     
 
     <Button
         android:id="@+id/complete" 
@@ -65,7 +69,7 @@
     android:layout_height="wrap_content"
     android:ems="10"
     android:hint="@string/account"
-
+    android:drawableLeft="@drawable/yonghu"
     android:background="@drawable/shape"
     android:inputType="text" />
 
@@ -78,6 +82,7 @@
     android:ems="10"
     android:hint="@string/password"
     android:background="@drawable/shape"
+    android:drawableLeft="@drawable/suo"
     android:inputType="textPassword" />
 
 <AutoCompleteTextView
@@ -89,6 +94,7 @@
     android:ems="10"
     android:hint="@string/confirm_pass"
     android:background="@drawable/shape"
+    android:drawableLeft="@drawable/suo"
     android:inputType="textPassword" />
 
 

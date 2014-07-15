@@ -65,8 +65,8 @@
     android:layout_height="wrap_content"
     android:ems="10"
     android:hint="@string/account"
-
     android:background="@drawable/shape"
+    android:drawableLeft="@drawable/yonghu"
     android:inputType="text" />
 
 <AutoCompleteTextView
@@ -78,6 +78,7 @@
     android:ems="10"
     android:hint="@string/password"
     android:background="@drawable/shape"
+    android:drawableLeft="@drawable/suo"
     android:inputType="textPassword" />
 
 <RelativeLayout 

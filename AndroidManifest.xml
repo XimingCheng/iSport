@@ -43,6 +43,11 @@
             android:name="com.netease.isport.LoginActivity" >
             
         </activity>
+        
+        <activity
+            android:name="com.netease.isport.SpinnerActivity" >
+            
+        </activity>
     </application>
 
 </manifest>

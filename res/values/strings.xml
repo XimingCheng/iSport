@@ -13,4 +13,5 @@
     <string name="registerPage">注册</string>
     <string name="submit_act">发  布</string>
     <string name="act_main_title">活动主题</string>
+     <string name="searchWord">搜索</string>
 </resources>

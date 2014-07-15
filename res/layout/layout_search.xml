@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="45.0dip"
+    android:background="@color/loginColor"
+    android:gravity="center_vertical"
+    >
+
+    <EditText
+	        android:id="@+id/editText2"
+	        android:layout_width="190dp"
+	        android:layout_height="30dp"
+	        android:layout_centerHorizontal="true"
+	        android:layout_centerVertical="true"
+	        android:gravity="center"
+	        android:background="@drawable/shape"
+	       
+	        android:drawableLeft="@drawable/sousuo"
+	        android:ems="10"   
+	        android:inputType="text" />
+	
+	      <Button
+		    android:id="@+id/button1"
+		    style="android:attr/buttonStyleSmall"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignTop="@+id/editText2"
+		    android:layout_toRightOf="@+id/editText2"
+		    android:background="@drawable/shape"
+		    android:layout_marginLeft="10dp"
+		    android:textColor="@color/loginColor"
+		    android:text="@string/searchWord" />
+    
+</RelativeLayout>
+
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="45.0dip"
+    android:gravity="center_vertical" >
+    
+     <Spinner android:id="@+id/Spinner01"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@drawable/border" />
+              
+ 	      
+</RelativeLayout>	      
+
+
+
+</LinearLayout>

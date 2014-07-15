@@ -10,6 +10,6 @@
         android:adjustViewBounds="false"
         android:focusable="true"
         android:scaleType="centerCrop"
-        android:background="@drawable/test" />
+        android:background="@drawable/pic1" />
 
 </RelativeLayout>

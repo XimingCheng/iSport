@@ -56,7 +56,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 		
 		ImageView menuImg = (ImageView) findViewById(R.id.title_bar_menu_btn);
 		
-		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.test);
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.test1);
 		Bitmap output = toRoundCorner(bitmap);
 		mUserImage.setImageBitmap(output);
 		menuImg.setOnClickListener(this);

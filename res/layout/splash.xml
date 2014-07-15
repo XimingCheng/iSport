@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout apk:layout_height="fill_parent" apk:layout_width="fill_parent" apk:orientation="vertical" xmlns:apk="http://schemas.android.com/apk/res/android">
 
@@ -7,3 +8,20 @@
 <ImageView apk:layout_height="fill_parent" apk:layout_width="fill_parent" apk:background="@anim/startanimation" apk:id="@+id/donghua"/>
 
 </LinearLayout>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="@drawable/pic1"
+        android:scaleType="centerCrop" />
+
+</RelativeLayout>
+>>>>>>> 31e222a836be40374a776abc5b7c305db89b2d4e

@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'iSport_server.iSport',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,20 +59,20 @@ WSGI_APPLICATION = 'iSport_server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'iSport'),
-		'USER': 'root',
-		'PASSWORD': '123',
-		'HOST': 'efly.freeshell.ustc.edu.cn',
-		'PORT': '54323'
+        'NAME': 'iSport',
+        'USER': 'root',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-cn'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -84,3 +85,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DEFAULT_CHARSET = 'utf-8'

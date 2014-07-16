@@ -23,7 +23,7 @@ def register_new_user(request):
                 out_data['ret'] = 'ok'
                 reg_data = User(name = user_name, password = password_md5)
                 reg_data.save()
-                request.SESSION['user'] = user_name
+                request.session['user'] = user_name
             else:
                 out_data['ret'] = 'user_exist'
     return HttpResponse(json.dumps(out_data), content_type="application/json")
@@ -46,7 +46,7 @@ def login(request):
         else:
             login_usr_obj = login_usr[0]
             if login_usr_obj.password == password_md5:
-                request.SESSION['user'] = user_name
+                request.session['user'] = user_name
                 out_data['ret'] = 'ok'
             else:
                 out_data['ret'] = 'password_error'
@@ -65,7 +65,7 @@ def edit_sex(request):
         if not user_sex:
             errors.append('edit_sex_error');
         if 'user' in request.SESSION:
-            user_name = request.SESSION['User']
+            user_name = request.session['User']
             data = User.objects.get(name = user_name)
             data.sex = user_sex
             out_data['ret'] = 'ok'
@@ -82,8 +82,8 @@ def edit_user_label(request):
         user_label = request.POST.get('label', '')
         if not user_label:
             errors.append('edit_label_error');
-        if 'user' in request.SESSION:
-            user_name = request.SESSION['User']
+        if 'user' in request.session:
+            user_name = request.session['user']
             data = User.objects.get(name = user_name)
             data.label = user_label
             out_data['ret'] = 'ok'

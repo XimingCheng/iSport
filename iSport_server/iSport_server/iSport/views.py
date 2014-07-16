@@ -47,5 +47,5 @@ def login(request):
             out_data['ret'] = 'ok'
         else:
             out_data['ret'] = 'password_error'
-    return HttpResponse()
+    return HttpResponse(json(out_data), content_type="application/json")
 

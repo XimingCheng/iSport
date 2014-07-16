@@ -38,7 +38,7 @@
 	
 	    <Button
 	        android:id="@+id/submit_act" 
-	        android:layout_width="60dp"
+	        android:layout_width="50dp"
 	        android:layout_height="30dp"
 	        android:layout_alignParentRight="true"
 	        android:gravity="center"

@@ -36,18 +36,26 @@
             android:name="com.netease.isport.MainActivity" >
             
         </activity>
-        <activity
+        <!-- <activity
             android:name="com.netease.isport.RegisterActivity" >      
-        </activity>
+        </activity> -->
         <activity
             android:name="com.netease.isport.LoginActivity" >
             
         </activity>
-      <!--   
+        
         <activity
             android:name="com.netease.isport.SpinnerActivity" >
-            
-        </activity> -->
-    </application>
+        </activity>
+
+        <activity
+            android:name="com.netease.isport.PublicActivity" >
+        </activity>
+        
+        
+        <activity
+            android:name="com.netease.isport.SearchActivity" >
+        </activity>
+        </application>
 
 </manifest>

@@ -14,4 +14,18 @@
     <string name="submit_act">发  布</string>
     <string name="act_main_title">活动主题</string>
      <string name="searchWord">搜索</string>
+       <string name="address">地址</string>
+       <string name="date">日期</string>
+       <string name="time">时间</string>
+       <string name="classs">分类</string>
+      <string-array name="planets_arry"> 
+        <item>篮球</item> 
+        <item>足球</item> 
+        <item>自行车</item> 
+        <item>游泳</item> 
+        <item>瑜伽</item> 
+        <item>跑步</item> 
+        <item>健身</item> 
+        <item>羽毛球</item> 
+    </string-array> 
 </resources>

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/white"
     android:orientation="vertical" >
 
 <RelativeLayout 
@@ -11,46 +12,170 @@
     android:gravity="center_vertical"
     >
 
-    <EditText
-	        android:id="@+id/editText2"
-	        android:layout_width="190dp"
-	        android:layout_height="30dp"
-	        android:layout_centerHorizontal="true"
-	        android:layout_centerVertical="true"
-	        android:gravity="center"
-	        android:background="@drawable/shape"
-	       
-	        android:drawableLeft="@drawable/sousuo"
-	        android:ems="10"   
-	        android:inputType="text" />
-	
-	      <Button
-		    android:id="@+id/button1"
-		    style="android:attr/buttonStyleSmall"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignTop="@+id/editText2"
-		    android:layout_toRightOf="@+id/editText2"
-		    android:background="@drawable/shape"
-		    android:layout_marginLeft="10dp"
-		    android:textColor="@color/loginColor"
-		    android:text="@string/searchWord" />
-    
+    <ImageView
+        android:id="@+id/title_bar_menu_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="3dp"
+        
+        android:gravity="center"
+        android:src="@drawable/fanhui" />
+
+    <TextView
+        android:id="@+id/title_bar_name"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:gravity="center"
+       
+        android:singleLine="true" 
+        android:layout_alignTop="@+id/title_bar_menu_btn" 
+        android:text="@string/app_name"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/search" 
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:layout_marginRight="5dp" 
+        android:layout_alignTop="@+id/title_bar_menu_btn" 
+        android:background="@drawable/shape"
+        android:text="@string/searchWord" 
+        android:textColor="@color/loginColor"
+        />
+ 
+</RelativeLayout>
+
+<RelativeLayout 
+    android:layout_marginTop="20dp"
+    android:layout_width="fill_parent"
+    android:layout_height="45.0dip"
+    android:gravity="center_vertical" >
+      <TextView
+  
+            android:id="@+id/texeView"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:gravity="center"
+            android:text="@string/classs"
+            android:textSize="20dp"
+            android:drawableLeft="@drawable/xifen"
+          >
+          </TextView>
+      <Spinner
+        android:id="@+id/spinner1"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_marginRight="70dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="110dp"
+        android:layout_centerVertical="true"
+        android:dropDownWidth="10dp"
+        android:background="@drawable/border"
+      />
+              
+ 	      
 </RelativeLayout>
 
 <RelativeLayout 
     android:layout_width="fill_parent"
     android:layout_height="45.0dip"
     android:gravity="center_vertical" >
-    
-     <Spinner android:id="@+id/Spinner01"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:background="@drawable/border" />
+      <TextView
+             android:layout_marginTop="5dp"
+            android:id="@+id/texeView"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:gravity="center"
+            android:text="@string/date"
+            android:textSize="20dp"
+            android:drawableLeft="@drawable/rili"
+          >
+          </TextView>
+      <Spinner
+        android:id="@+id/spinner1"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_marginRight="70dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="110dp"
+        android:layout_centerVertical="true"
+        android:dropDownWidth="10dp"
+        android:background="@drawable/border"
+      />
               
  	      
 </RelativeLayout>	      
 
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="45.0dip"
+    android:gravity="center_vertical" >
+      <TextView
+             android:layout_marginTop="5dp"
+            android:id="@+id/texeView"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:gravity="center"
+            android:text="@string/time"
+            android:textSize="20dp"
+            android:drawableLeft="@drawable/shijian"
+          >
+          </TextView>
+      <Spinner
+        android:id="@+id/spinner1"
+        android:layout_marginTop="10dp"
+         android:layout_width="fill_parent"
+        android:layout_marginRight="70dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="110dp"
+        android:layout_centerVertical="true"
+        android:dropDownWidth="10dp"
+        android:background="@drawable/border"
+      />
+              
+ 	      
+</RelativeLayout>
 
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="45.0dip"
+    android:gravity="center_vertical" >
+      <TextView
+             android:layout_marginTop="5dp"
+            android:id="@+id/texeView"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:gravity="center"
+            android:text="@string/address"
+            android:textSize="20dp"
+            android:drawableLeft="@drawable/weizhi"
+          >
+          </TextView>
+      <Spinner
+        android:id="@+id/spinner1"
+        android:layout_marginTop="10dp"
+         android:layout_width="fill_parent"
+        android:layout_marginRight="70dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="110dp"
+        android:layout_centerVertical="true"
+        android:dropDownWidth="10dp"
+        android:background="@drawable/border"
+      />
+              
+ 	      
+</RelativeLayout>
 
 </LinearLayout>

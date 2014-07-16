@@ -20,7 +20,8 @@ public class SharedPreferenceUtil {
 	}
 	
 	public static boolean getAccount(){
-		 return sp.getBoolean(flag, false);
+		// return sp.getBoolean(flag, false);
+		return true;
 	}
    
    

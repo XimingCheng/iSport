@@ -33,6 +33,8 @@ public class LoginActivity extends Activity implements OnClickListener{
 			startActivity(intent);
 		 }
 		else if(v.getId()==R.id.title_bar_menu_btn){
+			//µÇÂ¼Ò³Ãæ
+			
 		    intent.setClass(LoginActivity.this, MainActivity.class);
 		    startActivity(intent);
 		}

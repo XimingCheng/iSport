@@ -27,7 +27,8 @@ public class MainActivity extends Activity  implements OnClickListener {
 	private SlideMenu mSlideMenu;
 	private LinearLayout mUserProfileLayout;
 	private ImageView mUserImage;
-	private TextView  option1;
+	private TextView  option_submit_act;
+	private TextView  option_search_act;
 	SharedPreferences sp;
 
 	public static Bitmap toRoundCorner(Bitmap bitmap) {
@@ -52,7 +53,8 @@ public class MainActivity extends Activity  implements OnClickListener {
 		mUserProfileLayout = (LinearLayout) findViewById(R.id.user_image_layout);
 		mUserImage = (ImageView) findViewById(R.id.user_image);
 		
-		option1   = (TextView) findViewById(R.id.option_submit_act);
+		option_submit_act=(TextView)findViewById(R.id.option_submit_act);
+		option_search_act   = (TextView) findViewById(R.id.option_search_act);
 		
 		ImageView menuImg = (ImageView) findViewById(R.id.title_bar_menu_btn);
 		
@@ -61,35 +63,47 @@ public class MainActivity extends Activity  implements OnClickListener {
 		mUserImage.setImageBitmap(output);
 		menuImg.setOnClickListener(this);
 		
-		option1.setOnClickListener(this);
-		
+		option_submit_act.setOnClickListener(this);
+		option_search_act.setOnClickListener(this);
 		mUserProfileLayout.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		   if(sp.getAll().isEmpty()||(!SharedPreferenceUtil.getAccount())){
-		    	Intent intent = new Intent();
+		   Intent intent = new Intent();
+		   if(!sp.getAll().isEmpty()||(!SharedPreferenceUtil.getAccount())){
+		    	
 		    	intent.setClass(MainActivity.this, LoginActivity.class);
 		    	startActivity(intent);
 		   } else {
 			   switch(v.getId()) {
 				   case R.id.slide_menu:{
 					   if(mSlideMenu.isMainScreenShowing()){
-						   mSlideMenu.openMenu();
+						   mSlideMenu.openMenu(); break;
 					   } else {
-						   mSlideMenu.closeMenu();
+						   mSlideMenu.closeMenu(); break;
 					   }
 				   }
 				   case R.id.option_submit_act :{
 					   if (!mSlideMenu.isMainScreenShowing()) {
-						   mSlideMenu.closeMenu();
+						   mSlideMenu.closeMenu(); 
+						   intent.setClass(MainActivity.this,PublicActivity.class);
+						   startActivity(intent);
+						   break;
+					   }
+				   }
+				   case R.id.option_search_act :{
+					   if (!mSlideMenu.isMainScreenShowing()) {
+						   mSlideMenu.closeMenu(); 
+						   intent.setClass(MainActivity.this,SearchActivity.class);
+						   startActivity(intent);
+						   break;
 					   }
 				   }
 				   case R.id.user_image_layout:{
 					   if (!mSlideMenu.isMainScreenShowing()) {
-						   mSlideMenu.closeMenu();
+						   mSlideMenu.closeMenu();break;
 					   }
 				   }
 			   } 

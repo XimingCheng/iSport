@@ -17,7 +17,7 @@ public class SplashActivity extends Activity {
     private static final int GO_HOME = 1000;
     private static final int GO_GUIDE = 1001;
     // —”≥Ÿ3√Î
-    private static final long SPLASH_DELAY_MILLIS = 2000;
+    private static final long SPLASH_DELAY_MILLIS = 1600;
 
     private static final String SHAREDPREFERENCES_NAME = "first_pref";
 

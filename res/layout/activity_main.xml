@@ -210,7 +210,12 @@
 					</RelativeLayout>
 				</LinearLayout>　  
 			</LinearLayout> 
+			<ListView android:id="@+id/listView" android:layout_height="fill_parent"
+	     android:layout_width="fill_parent" android:cacheColorHint="#FFFFFF"
+	    android:layout_below="@id/slide_menu"
+	    />
 		</LinearLayout>
 		
 	</com.netease.isport.SlideMenu>
+	
 </RelativeLayout>

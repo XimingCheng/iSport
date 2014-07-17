@@ -87,7 +87,6 @@ public class MainActivity extends Activity  implements OnClickListener {
 				   }
 				   case R.id.option_submit_act :{
 					   if (!mSlideMenu.isMainScreenShowing()) {
-						   mSlideMenu.closeMenu(); 
 						   intent.setClass(MainActivity.this,PublicActivity.class);
 						   startActivity(intent);
 						   break;
@@ -95,7 +94,6 @@ public class MainActivity extends Activity  implements OnClickListener {
 				   }
 				   case R.id.option_search_act :{
 					   if (!mSlideMenu.isMainScreenShowing()) {
-						   mSlideMenu.closeMenu(); 
 						   intent.setClass(MainActivity.this,SearchActivity.class);
 						   startActivity(intent);
 						   break;
@@ -109,4 +107,11 @@ public class MainActivity extends Activity  implements OnClickListener {
 			   } 
 		   }
 	}
+	
+	    @Override  
+	    protected void onStop() {  
+	        super.onStop();  
+	        mSlideMenu.closeMenu();
+	    } 
+	
 }

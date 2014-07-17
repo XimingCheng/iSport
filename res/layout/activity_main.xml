@@ -24,6 +24,7 @@
 				<LinearLayout
 				    android:layout_marginLeft="5dip"
 				    android:layout_marginRight="5dip"
+				    android:layout_marginTop="5dip"
 				    android:layout_width="fill_parent"
 				    android:layout_height="100dip" >
 					<RelativeLayout
@@ -134,7 +135,7 @@
 						    android:layout_width="wrap_content"  
 						    android:layout_height="wrap_content"  
 						    android:layout_below="@id/cat_running" 
-						    android:text="足球"
+						    android:text="跑步"
 						    android:layout_centerHorizontal="true" />
   					</RelativeLayout>
 					<RelativeLayout

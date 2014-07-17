@@ -24,36 +24,41 @@ import com.netease.util.MD5util;
 import com.netease.util.PostConnectionUtil;
 
 public class LoginActivity extends Activity implements OnClickListener{
-	TextView textView=null;
+	TextView textView,register=null;
 	ImageView preStep=null;
+	
 	Intent intent=GetIntentInstance.getIntent();
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_login);
 		textView=(TextView)findViewById(R.id.login);
-		preStep=(ImageView)findViewById(R.id.title_bar_menu_btn);	
+		preStep=(ImageView)findViewById(R.id.title_bar_menu_btn);
+		register=(TextView)findViewById(R.id.register);
+		
 		preStep.setOnClickListener(this);
 		textView.setOnClickListener(this);
+		register.setOnClickListener(this);
 		SharedPreferences sp=getSharedPreferences("test", 0);
 		
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		//Intent intent=new Intent();
-		Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
-		if(v.getId()==R.id.login){
-			Toast.makeText(getApplicationContext(), "hello1", Toast.LENGTH_LONG).show();
-			login();
-		    
-		 }
-		else if(v.getId()==R.id.title_bar_menu_btn){
-			//µÇÂ¼Ò³Ãæ
-			intent.setClass(LoginActivity.this, RegisterActivity.class);
-			startActivity(intent);
-		}
 		
+		switch(v.getId()){
+		  case R.id.login :{ 
+				login();  break;
+		  }
+		  case R.id.title_bar_menu_btn :{  //return
+			  intent.setClass(LoginActivity.this, MainActivity.class);
+			  startActivity(intent);  break;
+		  }
+		  
+		  case R.id.register :{
+			  intent.setClass(LoginActivity.this, RegisterActivity.class);
+			  startActivity(intent);  break;
+		  }
+		}
 	}
 	
 	public void login(){

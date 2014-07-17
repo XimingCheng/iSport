@@ -17,7 +17,7 @@ public class SplashActivity extends Activity {
     private static final int GO_HOME = 1000;
     private static final int GO_GUIDE = 1001;
     // 延迟3秒
-    private static final long SPLASH_DELAY_MILLIS = 3000;
+    private static final long SPLASH_DELAY_MILLIS = 1600;
 
     private static final String SHAREDPREFERENCES_NAME = "first_pref";
 
@@ -61,7 +61,7 @@ public class SplashActivity extends Activity {
                 SHAREDPREFERENCES_NAME, MODE_PRIVATE);
 
         // 取得相应的值，如果没有该值，说明还未写入，用true作为默认值
-         isFirstIn = preferences.getBoolean("isFirstIn", true);
+        isFirstIn = preferences.getBoolean("isFirstIn", true);
         //isFirstIn=true;
         // 判断程序与第几次运行，如果是第一次运行则跳转到引导界面，否则跳转到主界面
         if (!isFirstIn) {

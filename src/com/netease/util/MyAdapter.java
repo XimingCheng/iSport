@@ -10,8 +10,7 @@ import android.widget.TextView;
 import com.netease.isport.R;
 
 public class MyAdapter extends BaseAdapter {
-   Context mContext=null;
-	
+    Context mContext=null;
 	String[] name=new String[12];
 	public MyAdapter(Context pContext,String[] args){
 		this.mContext=pContext;

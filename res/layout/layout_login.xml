@@ -51,10 +51,7 @@
         />
  
 </RelativeLayout>
-<View
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:background="@drawable/ic_shelf_category_divider" />
+
 
 <AutoCompleteTextView
     android:id="@+id/username"
@@ -62,9 +59,8 @@
     android:layout_gravity="center"
     android:layout_marginTop="25dp"
     android:layout_height="35dp"
-    
     android:ems="10"
-      android:textSize="16sp"
+    android:textSize="16sp"
     android:hint="@string/account"
     android:textColorHint="@color/fontColor"
     android:drawablePadding="5dp"

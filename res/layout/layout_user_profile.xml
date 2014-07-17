@@ -34,6 +34,16 @@
 	        android:text="@string/app_name"
 	        android:textColor="#ffffff"
 	        android:textSize="22sp" />
+	    
+        <ImageView
+	        android:id="@+id/title_bar_menu_btn"
+	        android:layout_width="25dp"
+	        android:layout_height="25dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignParentBottom="true"
+	        android:layout_marginRight="5dp"
+	        android:gravity="center"
+	        android:src="@drawable/edit" />
 	</RelativeLayout>
 	<View
         android:layout_width="fill_parent"

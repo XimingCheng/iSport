@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="240dip"
     android:layout_height="fill_parent"
-    android:background="@drawable/bitmap_book_read_chapterlist_repeat"
+    android:background="@color/menuColor"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -10,7 +10,7 @@
 	    android:layout_height="130dip"
 	    android:orientation="vertical"
 	    android:clickable="true"
-	    android:background="@drawable/selector_category_item"
+	    android:background="@color/menuColor"
 	    android:id="@+id/user_image_layout" >
 		
 		<LinearLayout
@@ -43,30 +43,25 @@
 			</TextView>
 		</LinearLayout>
 	</LinearLayout>
-	<View
+	 <!-- <View   
         android:layout_width="240dip"
         android:layout_height="2.0dip"
-        android:background="@drawable/ic_shelf_category_divider" />
+        android:background="@drawable/ic_shelf_category_divider" /> --> -->
     <TextView
         android:layout_width="240dip"
         android:layout_height="50.0dip"
         android:background="@drawable/selector_category_item"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_category_mark"
-        android:drawablePadding="5.0dip"
+        android:drawablePadding="15dp"
         android:gravity="center_vertical"
         android:paddingLeft="20.0dip"
         android:paddingRight="10.0dip"
         android:text="发起活动"
-        android:textColor="#ff959595"
         android:textSize="16.0sp"
         android:id="@+id/option_submit_act" />
 
 
-    <View
-        android:layout_width="240dip"
-        android:layout_height="2.0dip"
-        android:background="@drawable/ic_shelf_category_divider" />
 
     <TextView
         android:layout_width="240dip"
@@ -74,39 +69,30 @@
         android:background="@drawable/selector_category_item"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_category_mark"
-        android:drawablePadding="5.0dip"
+        android:drawablePadding="15.0dip"
         android:gravity="center_vertical"
         android:paddingLeft="20.0dip"
         android:paddingRight="10.0dip"
         android:text="修改信息"
-        android:textColor="#ff959595"
         android:textSize="16.0sp"
         android:id="@+id/option_edit_profile" />
 
-    <View
-        android:layout_width="240dip"
-        android:layout_height="2.0dip"
-        android:background="@drawable/ic_shelf_category_divider" />
+   
 
     <TextView
         android:layout_width="240dip"
         android:layout_height="50.0dip"
-        android:background="@drawable/selector_category_item"
+        android:background="@@drawable/selector_category_item"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_category_mark"
-        android:drawablePadding="5.0dip"
+        android:drawablePadding="15.0dip"
         android:gravity="center_vertical"
         android:paddingLeft="20.0dip"
         android:paddingRight="10.0dip"
         android:text="活动搜索"
-        android:textColor="#ff959595"
         android:textSize="16.0sp"
         android:id="@+id/option_search_act" />
 
-    <View
-        android:layout_width="240dip"
-        android:layout_height="2.0dip"
-        android:background="@drawable/ic_shelf_category_divider" />
     
     <TextView
         android:layout_width="240dip"
@@ -114,18 +100,14 @@
         android:background="@drawable/selector_category_item"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_category_mark"
-        android:drawablePadding="5.0dip"
+        android:drawablePadding="15.0dip"
         android:gravity="center_vertical"
         android:paddingLeft="20.0dip"
         android:paddingRight="10.0dip"
         android:text="程序设置"
-        android:textColor="#ff959595"
         android:textSize="16.0sp"
         android:id="@+id/option_settings" />
 
-    <View
-        android:layout_width="240dip"
-        android:layout_height="2.0dip"
-        android:background="@drawable/ic_shelf_category_divider" />
+    
 
 </LinearLayout>

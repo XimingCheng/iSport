@@ -118,6 +118,28 @@
     android:drawablePadding="5dp"
     android:background="@drawable/shape" />
 
+<RelativeLayout 
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:layout_gravity="center"
+    >
+
+
+<TextView
+    android:id="@+id/hasAccount"
+    android:layout_width="wrap_content"
+    android:layout_height="22dp"
+    android:gravity="right"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="15dp"
+    android:ems="10"
+    android:textSize="14sp"
+    android:layout_marginRight="10dp"
+    android:textColor="@color/findPassword"
+    android:text="@string/hasAccount" />
+    
+ </RelativeLayout>   
 
 
 </LinearLayout>

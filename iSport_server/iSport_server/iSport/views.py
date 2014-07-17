@@ -68,6 +68,7 @@ def edit_sex(request):
             user_name = request.session['User']
             data = User.objects.get(name = user_name)
             data.sex = user_sex
+            data.save()
             out_data['ret'] = 'ok'
         else:
             out_data['ret'] = 'session_error'
@@ -86,6 +87,7 @@ def edit_user_label(request):
             user_name = request.session['user']
             data = User.objects.get(name = user_name)
             data.label = user_label
+            data.save()
             out_data['ret'] = 'ok'
         else:
             out_data['ret'] = 'session_error'

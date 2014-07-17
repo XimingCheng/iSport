@@ -101,15 +101,16 @@
             android:drawableLeft="@drawable/rili"
           >
           </TextView>
-      <Spinner
-        android:id="@+id/spinner1"
+      <TextView
+        android:id="@+id/date"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_marginRight="70dp"
         android:layout_height="40dp"
         android:layout_marginLeft="110dp"
         android:layout_centerVertical="true"
-        android:dropDownWidth="10dp"
+        android:gravity="center"
+       android:textSize="18sp"
         android:background="@drawable/border"
       />
               
@@ -132,16 +133,18 @@
             android:drawableLeft="@drawable/shijian"
           >
           </TextView>
-      <Spinner
-        android:id="@+id/spinner1"
+      <TextView
+        android:id="@+id/time"
         android:layout_marginTop="10dp"
-         android:layout_width="fill_parent"
+        android:layout_width="fill_parent"
         android:layout_marginRight="70dp"
         android:layout_height="40dp"
         android:layout_marginLeft="110dp"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:dropDownWidth="10dp"
         android:background="@drawable/border"
+        android:textSize="18sp"
       />
               
  	      
@@ -163,7 +166,7 @@
             android:drawableLeft="@drawable/weizhi"
           >
           </TextView>
-      <Spinner
+      <TextView
         android:id="@+id/spinner1"
         android:layout_marginTop="10dp"
          android:layout_width="fill_parent"

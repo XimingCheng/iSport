@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	    android:padding="4dp"
+    tools:context=".MainActivity" >
+	 
+    
+ 	   
+	 
+
+	 
+    <Button
+	        android:id="@+id/button1"
+        android:layout_width="80dip"
+	        android:layout_height="40dip"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/btnEdit"
+	        android:layout_marginTop="3dp"
+	        android:background="#99CC"
+	        android:focusable="false"
+	        android:focusableInTouchMode="false"
+	        android:text="头像"
+	        android:textColor="#FFFFFF" />
+ 
+	    <TextView
+	        android:id="@+id/text1"
+	        android:layout_width="240dip"
+	        android:layout_height="23dip"
+	        android:layout_toRightOf="@id/button1"
+	  android:textAppearance="?android:attr/textAppearanceLarge" 
+	        android:text="Address:" />
+	    <TextView
+	        android:id="@+id/textName"
+        android:layout_width="160dip"
+	        android:layout_height="23dip"
+        android:layout_below="@id/text1"
+	android:layout_toRightOf="@id/button1"
+	        android:text="Name:"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	     <TextView
+        android:id="@+id/textAge"
+        android:layout_width="240dip"
+	        android:layout_height="23dip"
+	  android:layout_toRightOf="@id/textName"
+	        android:layout_below="@id/text1"
+	        android:text="Age:"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        />
+	 
+	</RelativeLayout>

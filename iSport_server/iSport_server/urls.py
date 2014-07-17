@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'iSport_server.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^reg/', register_new_user),
-    url(r'^login', login),
+    url(r'^admin/', include(admin.site.urls)),   # database admin
+    url(r'^reg/', register_new_user),            # user register
+    url(r'^login', login),                       # user login
+#    url(r'^push', push),                         # user push data
 )

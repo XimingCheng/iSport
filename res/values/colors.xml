@@ -10,4 +10,9 @@
     <color name="green">#008000</color>
     <color name="loginColor">#669ACC</color>
     <color name="message">#FCF4F4</color>
+    <color name="bgColor">#ECECEC</color>
+    <color name="fontColor">#94B8DB</color>
+    <color name="findPassword">#4F4F51</color>
+
+    
 </resources>

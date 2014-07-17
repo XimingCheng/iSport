@@ -162,12 +162,28 @@
 					</RelativeLayout>
 				</LinearLayout>　  
 			</LinearLayout> 
+			<TextView
+			    android:id="@+id/recommend"
+			    android:layout_width="fill_parent"  
+			    android:layout_height="30dip"
+			    android:gravity="left"
+			    android:text="推荐类别"
+			    android:layout_centerVertical="true"
+			    android:textColor="@color/recommendColor"
+			    android:layout_below="@id/slide_menu"
+			    android:layout_marginLeft="10dp"
+			    android:layout_marginRight="10dp"
+			    android:layout_marginTop="15dp"
+			    android:background="@color/white"  >
+			    			    
+			</TextView>
 			<ListView
 			    android:id="@+id/pushed_list"
 			    android:layout_height="fill_parent"
 				android:layout_width="fill_parent"
 				android:cacheColorHint="#FFFFFF"
-	    		android:layout_below="@id/slide_menu"
+	    		android:layout_below="@id/recommend"
+
 	    	/>
 		</LinearLayout>
 	</com.netease.isport.SlideMenu>

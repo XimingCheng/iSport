@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="fill_parent"
+	android:background="@drawable/cat_back"
 	android:layout_height="95dip"
 	android:layout_margin="5dip"
 	tools:context=".MainActivity" >

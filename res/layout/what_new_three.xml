@@ -14,12 +14,13 @@
         android:scaleType="centerCrop" />
 
     <ImageView
+        android:clickable="true"
         android:id="@+id/iv_start_iSport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="108dip"
-        android:background="@drawable/start_normal"
+        android:background="@drawable/start_btn"
         android:focusable="true" />
 </RelativeLayout>

@@ -10,6 +10,7 @@
         <include layout="@layout/layout_menu" />
 
         <LinearLayout
+            android:id="@+id/main_layout"
             android:background="@drawable/background"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -134,7 +135,7 @@
 						    android:layout_width="wrap_content"  
 						    android:layout_height="wrap_content"  
 						    android:layout_below="@id/cat_running" 
-						    android:text="足球"
+						    android:text="跑步"
 						    android:layout_centerHorizontal="true" />
   					</RelativeLayout>
 					<RelativeLayout

@@ -82,7 +82,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener {
 
 	@Override
 	public void onPageSelected(int arg0) {
-		
+		setCurrentDot(arg0);
 	}
 
 }

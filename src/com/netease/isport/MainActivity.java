@@ -52,6 +52,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 		mSlideMenu = (SlideMenu) findViewById(R.id.slide_menu);
 		mUserProfileLayout = (LinearLayout) findViewById(R.id.user_image_layout);
 		mUserImage = (ImageView) findViewById(R.id.user_image);
+		//userimg = (ImageView) findViewById(R.id.user_image);
 		
 		option_submit_act=(TextView)findViewById(R.id.option_submit_act);
 		option_search_act   = (TextView) findViewById(R.id.option_search_act);
@@ -66,6 +67,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 		option_submit_act.setOnClickListener(this);
 		option_search_act.setOnClickListener(this);
 		mUserProfileLayout.setOnClickListener(this);
+		mUserImage.setOnClickListener(this);
 	}
 
 	@Override
@@ -103,6 +105,15 @@ public class MainActivity extends Activity  implements OnClickListener {
 					   if (!mSlideMenu.isMainScreenShowing()) {
 						   mSlideMenu.closeMenu();break;
 					   }
+				   }
+				   case R.id.title_bar_menu_btn:{
+					   intent.setClass(MainActivity.this,LoginActivity.class);
+					   startActivity(intent); 
+					   break;
+				   }
+				   case R.id.user_image:{
+					   intent.setClass(MainActivity.this,UserProfileActivity.class);
+					   startActivity(intent); 
 				   }
 			   } 
 		   }

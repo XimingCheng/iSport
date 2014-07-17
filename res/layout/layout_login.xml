@@ -59,9 +59,8 @@
     android:layout_gravity="center"
     android:layout_marginTop="25dp"
     android:layout_height="35dp"
-    
     android:ems="10"
-      android:textSize="16sp"
+    android:textSize="16sp"
     android:hint="@string/account"
     android:textColorHint="@color/fontColor"
     android:drawablePadding="5dp"

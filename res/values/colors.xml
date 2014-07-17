@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+#669acc#669acc#669acc#777a7e#181a1d<?xml version="1.0" encoding="utf-8"?>
 <resources>
     
     <color name="color_0">#dedede</color>
@@ -10,4 +10,9 @@
     <color name="green">#008000</color>
     <color name="loginColor">#669ACC</color>
     <color name="message">#FCF4F4</color>
+    <color name="background_green">#669acc</color>
+    <color name="backgroud_gray">#ececec</color>
+    <color name="font_green">#669acc</color>
+    <color name="font_light">#777a7e</color>
+    <color name="font_heave">#181a1d</color>
 </resources>

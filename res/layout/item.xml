@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:height="35dp"
-        android:textSize="20sp" />
+        android:height="30dp"
+        android:textSize="15sp" />
 
 </RelativeLayout>

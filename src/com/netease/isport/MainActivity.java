@@ -32,7 +32,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 	private LinearLayout mUserProfileLayout;
 	private ImageView mUserImage;
 	private TextView  option_submit_act;
-	private TextView  option_search_act;
+	private TextView  option_search_act,option_edit_profile;
 	private SharedPreferences sp;
 	private ListView mListview;
 	private ListItemArrayAdapter mListItemArrayAdapter;
@@ -63,13 +63,17 @@ public class MainActivity extends Activity  implements OnClickListener {
 		
 		option_submit_act=(TextView)findViewById(R.id.option_submit_act);
 		option_search_act   = (TextView) findViewById(R.id.option_search_act);
-		
+		option_edit_profile=(TextView) findViewById(R.id.option_edit_profile);
 		ImageView menuImg = (ImageView) findViewById(R.id.title_bar_menu_btn);
 		
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
 				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串"));
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
 				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串"));
+		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串"));
+		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串"));
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
 				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串"));
 
@@ -83,7 +87,6 @@ public class MainActivity extends Activity  implements OnClickListener {
 			 @Override
 			 public void onItemClick(AdapterView<?> parent, View v,
 			     final int position, long id) {
-			 
 				 Toast.makeText(MainActivity.this, 
 						 "List Item Clicked:" + position, Toast.LENGTH_LONG).show();
 			 }
@@ -94,7 +97,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 		Bitmap output = toRoundCorner(bitmap);
 		mUserImage.setImageBitmap(output);
 		menuImg.setOnClickListener(this);
-		
+		option_edit_profile.setOnClickListener(this);
 		option_submit_act.setOnClickListener(this);
 		option_search_act.setOnClickListener(this);
 		mUserProfileLayout.setOnClickListener(this);
@@ -145,6 +148,12 @@ public class MainActivity extends Activity  implements OnClickListener {
 				   case R.id.user_image:{
 					   intent.setClass(MainActivity.this,UserProfileActivity.class);
 					   startActivity(intent); 
+					   break;
+				   }
+				   case R.id.option_edit_profile:{
+					   intent.setClass(MainActivity.this,UserProfileActivity.class);
+					   startActivity(intent); 
+					   break;
 				   }
 			   } 
 		   }

@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="fill_parent"
-	android:background="@drawable/cat_back"
-	android:layout_height="95dip"
+	android:background="@drawable/cat_back_list"
+	android:layout_height="110dip"
 	android:layout_margin="5dip"
 	tools:context=".MainActivity" >
 	
@@ -13,7 +13,8 @@
         android:layout_marginLeft="5dip"
         android:id="@+id/use_profile_image_text"
         android:layout_width="80dip"
-        android:layout_height="90dip"
+        android:layout_height="95dip"
+         android:paddingTop="5dp"
         android:orientation="vertical" >
 	    <ImageView
 			android:id="@+id/user_list_image"
@@ -37,6 +38,7 @@
 	    android:layout_marginRight="20dip"
 	    android:id="@+id/list_info"
 	    android:layout_marginTop="5dip"
+	    android:paddingTop="3dp"
 	    android:layout_width="fill_parent"
         android:layout_height="90dip"
         android:orientation="vertical" >
@@ -45,16 +47,33 @@
 	        android:layout_width="fill_parent"
 			android:layout_height="20dip"
 			android:text="主题：打篮球" />
+		<View
+		    android:layout_width="fill_parent"
+			android:layout_height="3dip"
+		    >
+		</View>    
 		<TextView
 	        android:id="@+id/list_act_main_page"
 	        android:layout_width="fill_parent"
 			android:layout_height="20dip"
 			android:text="正文：今天晚上有木有..." />
+		
+		<View
+		    android:layout_width="fill_parent"
+			android:layout_height="3dip"
+		    >
+		</View>
 		<TextView
 	        android:id="@+id/list_act_time"
 	        android:layout_width="fill_parent"
 			android:layout_height="20dip"
 			android:text="时间：2014/07/20 08:30 - 11：30" />
+		
+		<View
+		    android:layout_width="fill_parent"
+			android:layout_height="3dip"
+		    >
+		</View>
 		<TextView
 	        android:id="@+id/list_act_people_number"
 	        android:layout_width="fill_parent"

@@ -25,6 +25,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.netease.util.RoundImageUtil;
 import com.netease.util.SharedPreferenceUtil;
 
 public class MainActivity extends Activity  implements OnClickListener {
@@ -32,24 +33,15 @@ public class MainActivity extends Activity  implements OnClickListener {
 	private LinearLayout mUserProfileLayout;
 	private ImageView mUserImage;
 	private TextView  option_submit_act;
-	private TextView  option_search_act;
+
+	private TextView  option_search_act,option_edit_profile;
+	private TextView  option_setting;
+
+
 	private SharedPreferences sp;
 	private ListView mListview;
 	private ListItemArrayAdapter mListItemArrayAdapter;
 	ArrayList<ListItem> mItemArray = new ArrayList<ListItem>();
-	
-	public static Bitmap toRoundCorner(Bitmap bitmap) {
-		Bitmap output = Bitmap.createBitmap(bitmap.getHeight(),bitmap.getWidth(),Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-        Paint paint = new Paint();
-        Rect rect = new Rect(0,0,bitmap.getWidth(),bitmap.getHeight());
-        RectF rectF = new RectF(rect);
-        
-        canvas.drawOval(rectF, paint);
-        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect,rectF, paint);
-        return output;
-    }
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,15 +55,21 @@ public class MainActivity extends Activity  implements OnClickListener {
 		
 		option_submit_act=(TextView)findViewById(R.id.option_submit_act);
 		option_search_act   = (TextView) findViewById(R.id.option_search_act);
-		
+		option_edit_profile=(TextView) findViewById(R.id.option_edit_profile);
 		ImageView menuImg = (ImageView) findViewById(R.id.title_bar_menu_btn);
 		
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gaoyuanyuan);
+		
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串"));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串"));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串"));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串",bitmap));
+		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串",bitmap));
+		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串",bitmap));
 
 		// set the array adapter to use the above array list and tell the listview to set as the adapter
 	    // our custom adapter
@@ -83,18 +81,15 @@ public class MainActivity extends Activity  implements OnClickListener {
 			 @Override
 			 public void onItemClick(AdapterView<?> parent, View v,
 			     final int position, long id) {
-			 
 				 Toast.makeText(MainActivity.this, 
 						 "List Item Clicked:" + position, Toast.LENGTH_LONG).show();
 			 }
 		});
-	
-		
-		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.test1);
-		Bitmap output = toRoundCorner(bitmap);
+
+		Bitmap output = RoundImageUtil.toRoundCorner(bitmap);
 		mUserImage.setImageBitmap(output);
 		menuImg.setOnClickListener(this);
-		
+		option_edit_profile.setOnClickListener(this);
 		option_submit_act.setOnClickListener(this);
 		option_search_act.setOnClickListener(this);
 		mUserProfileLayout.setOnClickListener(this);
@@ -134,17 +129,26 @@ public class MainActivity extends Activity  implements OnClickListener {
 				   }
 				   case R.id.user_image_layout:{
 					   if (!mSlideMenu.isMainScreenShowing()) {
-						   mSlideMenu.closeMenu();break;
+						   intent.setClass(MainActivity.this, UserProfileActivity.class);
+						   startActivity(intent);
+						   mSlideMenu.closeMenu();
+						   break;
 					   }
 				   }
 				   case R.id.title_bar_menu_btn:{
 					   intent.setClass(MainActivity.this,LoginActivity.class);
-					   startActivity(intent); 
+					   startActivity(intent);
 					   break;
 				   }
 				   case R.id.user_image:{
 					   intent.setClass(MainActivity.this,UserProfileActivity.class);
 					   startActivity(intent); 
+					   break;
+				   }
+				   case R.id.option_edit_profile:{
+					   intent.setClass(MainActivity.this,UserProfileActivity.class);
+					   startActivity(intent); 
+					   break;
 				   }
 			   } 
 		   }

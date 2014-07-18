@@ -136,8 +136,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 			}
 		else if(v.getId()==R.id.title_bar_menu_btn){
 			//×¢²áÒ³Ãæ
-		    intent.setClass(RegisterActivity.this, LoginActivity.class);
-		    startActivity(intent);
+			RegisterActivity.this.finish();
 		}
 	}
 	

@@ -1,20 +1,24 @@
 package com.netease.isport;
 
+import android.graphics.Bitmap;
+
 	public class ListItem {
 		private String mUserName;
 		private String mActivityTitile;
 		private String mTime;
 		private String mPeopleCount;
 		private String mActivityContent;
+		private Bitmap mUserImage;
 
 		public ListItem(String userName, String activityTitile, String time, 
-				String peopleCount, String activityContent) {
+				String peopleCount, String activityContent, Bitmap userImage) {
 			super();
 	        this.mUserName        = userName;
 	        this.mActivityTitile  = activityTitile;
 	        this.mTime            = time;
 	        this.mPeopleCount     = peopleCount;
 	        this.mActivityContent = activityContent;
+	        this.setmUserImage(userImage);
 	    }
 		
 		public String getmUserName() {
@@ -55,6 +59,14 @@ package com.netease.isport;
 
 		public void setmActivityContent(String mActivityContent) {
 			this.mActivityContent = mActivityContent;
+		}
+
+		public Bitmap getmUserImage() {
+			return mUserImage;
+		}
+
+		public void setmUserImage(Bitmap mUserImage) {
+			this.mUserImage = mUserImage;
 		}
 
 }

@@ -50,8 +50,8 @@ public class LoginActivity extends Activity implements OnClickListener{
 				login();  break;
 		  }
 		  case R.id.title_bar_menu_btn :{  //return
-			  intent.setClass(LoginActivity.this, MainActivity.class);
-			  startActivity(intent);  break;
+			  LoginActivity.this.finish();
+			  break;
 		  }
 		  
 		  case R.id.register :{

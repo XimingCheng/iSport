@@ -1,8 +1,12 @@
 package com.netease.isport;
 
 import java.util.ArrayList;
+
+import com.netease.util.RoundImageUtil;
+
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -54,7 +58,8 @@ import android.widget.Toast;
 	        listItemWrapper.mActivityContent.setText(item.getmActivityContent());
 	        listItemWrapper.mTime.setText(item.getmTime());
 	        listItemWrapper.mPeopleCount.setText(item.getmPeopleCount());
-	 
+	        listItemWrapper.mUserImage.setImageBitmap(RoundImageUtil.
+	        		toRoundCorner(item.getmUserImage()));
 	        listItemWrapper.mUserImage.setOnClickListener(new OnClickListener() {
 	 
 	            @Override

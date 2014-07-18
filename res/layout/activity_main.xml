@@ -42,7 +42,7 @@
 						    android:layout_centerHorizontal="true"
 						    android:src="@drawable/basketball" />
 						<TextView
-						    android:layout_marginTop="5dip"
+						    android:layout_marginTop="1dip"
 						    android:layout_width="wrap_content"  
 						    android:layout_height="wrap_content"  
 						    android:layout_below="@+id/cat_basketball" 
@@ -63,7 +63,7 @@
 						    android:layout_centerHorizontal="true"
 						    android:src="@drawable/football" />
 						<TextView
-						    android:layout_marginTop="5dip"
+						    android:layout_marginTop="1dip"
 						    android:layout_width="wrap_content"  
 						    android:layout_height="wrap_content"  
 						    android:layout_below="@+id/cat_football" 
@@ -84,7 +84,7 @@
 						 	android:layout_centerHorizontal="true"
 						 	android:src="@drawable/pingpang" />
 						<TextView
-						    android:layout_marginTop="5dip"
+						    android:layout_marginTop="1dip"
 						    android:layout_width="wrap_content"  
 						    android:layout_height="wrap_content"  
 						    android:layout_below="@id/cat_pingpang"   
@@ -111,7 +111,7 @@
 						    android:layout_centerHorizontal="true"
 						    android:src="@drawable/badminton" />
 						<TextView
-						    android:layout_marginTop="5dip"
+						    android:layout_marginTop="1dip"
 						    android:layout_width="wrap_content"  
 						    android:layout_height="wrap_content"  
 						    android:layout_below="@+id/cat_badminton" 
@@ -132,7 +132,7 @@
 						    android:layout_centerHorizontal="true"
 						    android:src="@drawable/running" />
 						<TextView
-						    android:layout_marginTop="5dip"
+						    android:layout_marginTop="1dip"
 						    android:layout_width="wrap_content"  
 						    android:layout_height="wrap_content"  
 						    android:layout_below="@id/cat_running" 
@@ -153,7 +153,7 @@
 						 	android:layout_centerHorizontal="true"
 						 	android:src="@drawable/more" />
 						<TextView
-						    android:layout_marginTop="5dip"
+						    android:layout_marginTop="1dip"
 						    android:layout_width="wrap_content"  
 						    android:layout_height="wrap_content"  
 						    android:layout_below="@id/cat_more"   
@@ -167,23 +167,28 @@
 			    android:layout_width="fill_parent"  
 			    android:layout_height="30dip"
 			    android:gravity="left"
-			    android:text="推荐类别"
+			    android:text="推荐列表"
+			    android:paddingTop="5dp"
 			    android:layout_centerVertical="true"
 			    android:textColor="@color/recommendColor"
 			    android:layout_below="@id/slide_menu"
 			    android:layout_marginLeft="10dp"
 			    android:layout_marginRight="10dp"
-			    android:layout_marginTop="15dp"
-			    android:background="@color/white"  >
-			    			    
+			    android:layout_marginTop="5dp"
+			     >
+
 			</TextView>
 			<ListView
 			    android:id="@+id/pushed_list"
+			    
 			    android:layout_height="fill_parent"
 				android:layout_width="fill_parent"
 				android:cacheColorHint="#FFFFFF"
+				android:dividerHeight="5dp"
+				android:divider="@color/bgColor"
+				android:layout_marginLeft="10dip"
+				android:layout_marginRight="10dip"
 	    		android:layout_below="@id/recommend"
-
 	    	/>
 		</LinearLayout>
 	</com.netease.isport.SlideMenu>

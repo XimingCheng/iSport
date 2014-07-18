@@ -63,9 +63,9 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:layout_marginRight="5dp" 
+        android:text="@string/next_step"
         android:layout_alignTop="@+id/title_bar_menu_btn" 
-        android:background="@drawable/complete"
-        
+        android:background="@drawable/shape"
         android:textColor="@color/loginColor"
         />
  

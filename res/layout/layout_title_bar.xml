@@ -24,15 +24,16 @@
 
     <TextView
         android:id="@+id/title_bar_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="97dp"
+        android:layout_height="20dp"
         android:layout_centerInParent="true"
         android:ellipsize="end"
         android:gravity="center"
         android:paddingLeft="75.0dip"
         android:paddingRight="75.0dip"
         android:singleLine="true"
-        android:text="ISPORT"
+       
+        android:background="@drawable/isports"
         android:textColor="#ffffff"
         android:textSize="20sp" />
 

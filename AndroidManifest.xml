@@ -30,11 +30,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         
         <activity
@@ -43,10 +39,14 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name="com.netease.isport.MainActivity" >
-            
+            android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-         <activity
+        <activity
             android:name="com.netease.isport.RegisterActivity" >      
         </activity> 
          <activity
@@ -66,7 +66,7 @@
         <activity
             android:name="com.netease.isport.SearchActivity" >
         </activity>
-        
+
         <activity
             android:name="com.netease.isport.UserProfileActivity" >
         </activity>

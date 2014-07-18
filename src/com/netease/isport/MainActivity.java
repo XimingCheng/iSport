@@ -58,7 +58,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 		option_edit_profile=(TextView) findViewById(R.id.option_edit_profile);
 		ImageView menuImg = (ImageView) findViewById(R.id.title_bar_menu_btn);
 		
-		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.test1);
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gaoyuanyuan);
 		
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
 				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));

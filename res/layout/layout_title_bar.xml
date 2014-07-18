@@ -32,7 +32,7 @@
         android:paddingLeft="75.0dip"
         android:paddingRight="75.0dip"
         android:singleLine="true"
-        android:text="乐动同盟"
+        android:text="ISPORT"
         android:textColor="#ffffff"
         android:textSize="20sp" />
 

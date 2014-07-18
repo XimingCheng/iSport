@@ -175,7 +175,7 @@
 			    android:layout_marginLeft="10dp"
 			    android:layout_marginRight="10dp"
 			    android:layout_marginTop="5dp"
-			    android:background="@color/white"  >
+			     >
 
 			</TextView>
 			<ListView
@@ -188,7 +188,6 @@
 				android:layout_marginLeft="10dip"
 				android:layout_marginRight="10dip"
 	    		android:layout_below="@id/recommend"
-
 	    	/>
 		</LinearLayout>
 	</com.netease.isport.SlideMenu>

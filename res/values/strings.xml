@@ -19,6 +19,8 @@
        <string name="date">日期</string>
        <string name="time">时间</string>
        <string name="classs">分类</string>
+       <string name="open_file_error_format">不支持此类文件格式</string>
+       <string name="sdcard_unmonted_hint">木有发现SD卡</string>
       <string-array name="planets_arry"> 
         <item>篮球</item> 
         <item>足球</item> 

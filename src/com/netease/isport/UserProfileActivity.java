@@ -1,14 +1,17 @@
 package com.netease.isport;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import com.netease.util.GetIntentInstance;
 import com.netease.util.RoundImageUtil;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -21,8 +24,7 @@ import android.widget.Toast;
 
 public class UserProfileActivity extends Activity 
 	implements OnViewChangeListener, OnClickListener{
-	ImageView photoCh;
-	
+	private ImageView photoCh;
 	private static final int REQUEST_CODE = 1;//选择文件的返回码
 	private Intent fileChooserIntent;
 	
@@ -59,7 +61,15 @@ public class UserProfileActivity extends Activity
     	for(int i = 0; i < mViewCount; i++)    	{
     		mImageViews[i] = (LinearLayout) linearLayout.getChildAt(i);
     		mImageViews[i].setEnabled(true);
-    		mImageViews[i].setOnClickListener(this);
+    		mImageViews[i].setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					int pos = (Integer)(v.getTag());
+					setCurPoint(pos);
+					mScrollLayout.snapToScreen(pos);
+				}
+    		});
     		mImageViews[i].setTag(i);
     	}
     	mCurSel = 0;
@@ -104,6 +114,28 @@ public class UserProfileActivity extends Activity
 		mUnCompletedListView.setAdapter(mUnCompletedListAdapter);
 	}
 	
+	@Override 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		 switch(requestCode) {
+		 case REQUEST_CODE:
+			 Uri uri = data.getData();
+			 Bitmap bmp = null;
+			 ContentResolver cr = this.getContentResolver();   
+		     try {
+	            bmp = BitmapFactory.decodeStream(cr.openInputStream(uri));
+		     } catch (FileNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+		     }
+		     if(bmp != null) {
+			     Bitmap output = RoundImageUtil.toRoundCorner(RoundImageUtil.
+			    		 resizeImage(bmp, 100, 100));
+			     photoCh.setImageBitmap(output);
+		     }
+	         break;
+		 }
+	}
+	
 	private void setCurPoint(int index)
     {
     	if (index < 0 || index > mViewCount - 1 || mCurSel == index){
@@ -130,10 +162,16 @@ public class UserProfileActivity extends Activity
 				break;
 			}
 			case R.id.change_photo:
-				if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-				    startActivityForResult(fileChooserIntent , REQUEST_CODE);
-		    	else
-		    		toast(getText(R.string.sdcard_unmonted_hint));
+//				if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+//				    startActivityForResult(fileChooserIntent , REQUEST_CODE);
+//		    	else
+//		    		toast(getText(R.string.sdcard_unmonted_hint));
+				Intent intent = new Intent();
+			    intent.setType("image/*");
+			    intent.setAction(Intent.ACTION_GET_CONTENT);
+			    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+			    startActivityForResult(Intent.createChooser(intent,
+			            "选择一张图片作为头像"), REQUEST_CODE);
 				break;
 		}
 		

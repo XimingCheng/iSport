@@ -28,7 +28,7 @@ import android.widget.Toast;
 import com.netease.util.RoundImageUtil;
 import com.netease.util.SharedPreferenceUtil;
 
-public class MainActivity extends Activity  implements OnClickListener {
+public class MainActivity extends Activity implements OnClickListener {
 	private SlideMenu mSlideMenu;
 	private LinearLayout mUserProfileLayout;
 	private ImageView mUserImage;
@@ -51,7 +51,6 @@ public class MainActivity extends Activity  implements OnClickListener {
 		mSlideMenu = (SlideMenu) findViewById(R.id.slide_menu);
 		mUserProfileLayout = (LinearLayout) findViewById(R.id.user_image_layout);
 		mUserImage = (ImageView) findViewById(R.id.user_image);
-		//userimg = (ImageView) findViewById(R.id.user_image);
 		
 		option_submit_act=(TextView)findViewById(R.id.option_submit_act);
 		option_search_act   = (TextView) findViewById(R.id.option_search_act);
@@ -82,7 +81,10 @@ public class MainActivity extends Activity  implements OnClickListener {
 			 public void onItemClick(AdapterView<?> parent, View v,
 			     final int position, long id) {
 				 Toast.makeText(MainActivity.this, 
-						 "List Item Clicked:" + position, Toast.LENGTH_LONG).show();
+						 "List Item Clicked:" + position + " id " + id, Toast.LENGTH_LONG).show();
+				 Intent intent = new Intent();
+				 intent.setClass(MainActivity.this, InfoActivity.class);
+				 startActivity(intent);
 			 }
 		});
 
@@ -154,10 +156,10 @@ public class MainActivity extends Activity  implements OnClickListener {
 		   }
 	}
 	
-	    @Override  
-	    protected void onStop() {  
-	        super.onStop();  
-	        mSlideMenu.closeMenu();
-	    } 
+    @Override  
+    protected void onStop() {  
+        super.onStop();  
+        mSlideMenu.closeMenu();
+    } 
 	
 }

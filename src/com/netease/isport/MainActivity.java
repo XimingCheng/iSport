@@ -130,6 +130,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 				   case R.id.user_image_layout:{
 					   if (!mSlideMenu.isMainScreenShowing()) {
 						   intent.setClass(MainActivity.this, UserProfileActivity.class);
+						   startActivity(intent);
 						   mSlideMenu.closeMenu();
 						   break;
 					   }
@@ -147,7 +148,6 @@ public class MainActivity extends Activity  implements OnClickListener {
 				   case R.id.option_edit_profile:{
 					   intent.setClass(MainActivity.this,UserProfileActivity.class);
 					   startActivity(intent); 
-					   startActivity(intent);
 					   break;
 				   }
 			   } 

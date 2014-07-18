@@ -118,6 +118,8 @@ public class UserProfileActivity extends Activity
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		 switch(requestCode) {
 		 case REQUEST_CODE:
+			 if (resultCode == 0)  
+				 return; 
 			 Uri uri = data.getData();
 			 Bitmap bmp = null;
 			 ContentResolver cr = this.getContentResolver();   

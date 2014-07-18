@@ -24,7 +24,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SplashActivity"
+            android:name=".GuideActivity"
             android:configChanges="keyboardHidden"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -38,7 +38,7 @@
         </activity>
         
         <activity
-            android:name=".GuideActivity"
+            android:name=".SplashActivity"
             android:configChanges="keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
@@ -49,10 +49,10 @@
          <activity
             android:name="com.netease.isport.RegisterActivity" >      
         </activity> 
-        <activity
+         <activity
             android:name="com.netease.isport.LoginActivity" >
             
-        </activity>
+        </activity> 
         
         <activity
             android:name="com.netease.isport.SpinnerActivity" >
@@ -65,6 +65,10 @@
         
         <activity
             android:name="com.netease.isport.SearchActivity" >
+        </activity>
+        
+        <activity
+            android:name="com.netease.isport.UserProfileActivity" >
         </activity>
         </application>
 

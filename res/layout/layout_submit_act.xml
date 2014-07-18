@@ -55,42 +55,42 @@
         android:layout_height="1dip"
         android:background="@drawable/ic_shelf_category_divider" />
 	<LinearLayout
-	    android:layout_marginTop="15dip" 
+	    android:layout_marginTop="10dip" 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal" >
-	    <TextView 
-	        android:layout_marginLeft="10dip"
-	        android:layout_width="70dip"
-		    android:layout_height="30dip"
-		    android:text="活动主题"
-		    android:gravity="center" />
-	    <TextView
+	    
+	    <AutoCompleteTextView
 		    android:id="@+id/act_main_actvity"
 		    android:layout_width="fill_parent"
-		    android:layout_height="30dip"
+		    android:layout_height="35dip"
 		    android:layout_gravity="center"
 		    android:background="@drawable/shape"
 		    android:ems="10"
+		    android:layout_marginLeft="10dip"
+		    android:hint="活动主题"
+		    android:textSize="16sp"
+            android:textColorHint="@color/fontColor"
 		    android:layout_marginRight="10dip"  >
-		</TextView>
+		</AutoCompleteTextView>
 	</LinearLayout>
 	<LinearLayout
-	    android:layout_marginTop="5dip" 
+	    android:layout_marginTop="10dip" 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal" >
-	    <TextView 
+	    <!-- <TextView 
 	        android:layout_marginLeft="10dip"
 	        android:layout_width="70dip"
 		    android:layout_height="30dip"
 		    android:text="活动分类"
-		    android:gravity="center" />
+		    android:gravity="center" /> -->
 		<Spinner
 		    android:id="@+id/type_option"
 		    android:layout_width="fill_parent"
-		    android:layout_height="30dip"
+		    android:layout_height="35dip"
 		    android:textSize="10sp"
+		    android:layout_marginLeft="10dp"
 	        android:layout_gravity="center"
 	        android:background="@drawable/shape"
 	        android:layout_marginRight="10dip"  >
@@ -99,146 +99,84 @@
 	<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dip" 
 	    android:orientation="horizontal">
-	    <TextView 
-	        android:layout_marginLeft="60dip"
-	        android:layout_width="60dip"
-		    android:layout_height="30dip"
-		    android:text="开始时间"
-		    android:gravity="center"/>
-	    <TextView 
-	        android:layout_marginLeft="120dip"
-	        android:layout_width="60dip"
-		    android:layout_height="30dip"
-		    android:text="结束时间"
-		    android:gravity="center"/>
+	    <AutoCompleteTextView
+		    android:id="@+id/act_startTime_actvity"
+		    android:layout_width="fill_parent"
+		    android:layout_height="35dip"
+		    android:layout_gravity="center"
+		    android:background="@drawable/shape"
+		    android:ems="10"
+		    android:layout_marginLeft="10dip"
+		    android:hint="开始时间"
+		    android:textSize="16sp"
+            android:textColorHint="@color/fontColor"
+		    android:layout_marginRight="10dip"  >
+		</AutoCompleteTextView>
+		
 	</LinearLayout>
+	
 	<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal"
-	    android:layout_gravity="center"
-	    >
-		<TextView
-		    android:id="@+id/start_date"
-		    android:layout_marginLeft="20dip"
-		    android:background="@drawable/shape"
-		    android:text="2014-07-19"
-		    android:textSize="12sp"
-		    android:gravity="center"
-		    android:layout_width="80dp"
-		    android:layout_height="30dip" >
-		</TextView>
-		<TextView
-		    android:id="@+id/start_time"
-		    android:layout_marginLeft="10dip"
-		    android:background="@drawable/shape"
-		    android:text="08:30"
-		    android:textSize="12sp"
-		    android:gravity="center"
-		    android:layout_width="50dp"
-		    android:layout_height="30dip" >
-		</TextView>
-		<ImageView
-		    android:layout_width="40dip"
-		    android:layout_height="20dip"
-		    android:layout_marginLeft="5dip"
-		    android:layout_marginRight="5dip"
-		    android:layout_marginTop="5dip"
-		    android:gravity="center" >
-		</ImageView>
-		<TextView
-		    android:id="@+id/end_date"
-		    android:background="@drawable/shape"
-		    android:text="2014-07-19"
-		    android:textSize="12sp"
-		    android:gravity="center"
-		    android:layout_width="80dp"
-		    android:layout_height="30dip" >
-		</TextView>
-		<TextView
-		    android:id="@+id/end_time"
-		    android:layout_marginLeft="10dip"
-		    android:background="@drawable/shape"
-		    android:text="11:00"
-		    android:textSize="12sp"
-		    android:gravity="center"
-		    android:layout_width="50dp"
-		    android:layout_height="30dip" >
-		</TextView>
-	</LinearLayout>
-	<LinearLayout
-	    android:layout_width="300dip"
-	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dip" 
 	    android:orientation="horizontal">
-	    <TextView 
-	        android:layout_marginLeft="60dip"
-	        android:layout_width="60dip"
-		    android:layout_height="30dip"
-		    android:text="参与人数"
-		    android:gravity="center"/>
-	    <TextView 
-	        android:layout_marginLeft="120dip"
-	        android:layout_width="60dip"
-		    android:layout_height="30dip"
-		    android:text="活动位置"
-		    android:gravity="center"/>
-	</LinearLayout>
-	<LinearLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal"
-	    android:layout_marginLeft="10dip" >
-		<TextView
+	    <AutoCompleteTextView
 		    android:id="@+id/user_count"
-		    android:layout_width="140dip"
-		    android:layout_height="30dip"
+		    android:layout_width="fill_parent"
+		    android:layout_height="35dip"
 		    android:layout_gravity="center"
+		    android:background="@drawable/shape"
+		    android:ems="10"
 		    android:layout_marginLeft="10dip"
-		    android:background="@drawable/shape"
-		    android:ems="10">
-		</TextView>
-		<ImageView
-		    android:layout_width="40dip"
-		    android:layout_height="20dip"
-		    android:layout_marginLeft="5dip"
-		    android:layout_marginRight="5dip"
-		    android:layout_marginTop="10dip"
-		    android:gravity="center" >
-		</ImageView>
-		<TextView
+		    android:hint="参与人数"
+		    android:textSize="16sp"
+            android:textColorHint="@color/fontColor"
+		    android:layout_marginRight="10dip"  >
+		</AutoCompleteTextView>
+		
+	</LinearLayout>
+	
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dip" 
+	    android:orientation="horizontal">
+	    <AutoCompleteTextView
 		    android:id="@+id/act_location"
-		    android:layout_width="140dip"
-		    android:layout_height="30dip"
+		    android:layout_width="fill_parent"
+		    android:layout_height="35dip"
 		    android:layout_gravity="center"
 		    android:background="@drawable/shape"
-		    android:ems="10" >
-		</TextView>
+		    android:ems="10"
+		    android:layout_marginLeft="10dip"
+		    android:hint="活动地点"
+		    android:textSize="16sp"
+            android:textColorHint="@color/fontColor"
+		    android:layout_marginRight="10dip"  >
+		</AutoCompleteTextView>
+		
 	</LinearLayout>
-	<LinearLayout
+		<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
-	    android:orientation="vertical" >
-		<TextView
-		    android:layout_marginLeft="10dip"
-		    android:layout_marginRight="10dip"
-		    android:layout_width="fill_parent"
-		    android:layout_height="30dip"
-		    android:layout_gravity="center"
-		    android:text="活动详情"
-		    android:ems="10"
-		    android:gravity="center" >
-		</TextView>
-		<TextView
-		    android:layout_marginRight="10dip"
+	    android:layout_marginTop="10dip" 
+	    android:orientation="horizontal">
+	    <AutoCompleteTextView
 		    android:id="@+id/act_content"
-		    android:layout_marginLeft="10dip"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:layout_gravity="center"
 		    android:background="@drawable/shape"
 		    android:ems="10"
-		    android:gravity="top" >
-		</TextView>
+		    android:gravity="top"
+		    android:layout_marginLeft="10dip"
+		    android:hint="活动详情"
+		    android:layout_marginBottom="20dip"
+		    android:textSize="16sp"
+            android:textColorHint="@color/fontColor"
+		    android:layout_marginRight="10dip"  >
+		</AutoCompleteTextView>
+		
 	</LinearLayout>
 </LinearLayout>

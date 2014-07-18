@@ -41,12 +41,13 @@
     <Button
         android:id="@+id/login" 
         android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:gravity="center"
         android:layout_marginRight="5dp" 
         android:layout_alignTop="@+id/title_bar_menu_btn" 
-        android:background="@drawable/login1"
+        android:text="登录"
+        android:background="@drawable/shape"
         android:textColor="@color/loginColor"
         />
  

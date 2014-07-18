@@ -138,8 +138,7 @@ public class MainActivity extends Activity  implements OnClickListener {
 					   }
 				   }
 				   case R.id.title_bar_menu_btn:{
-					   intent.setClass(MainActivity.this,LoginActivity.class);
-					   startActivity(intent); 
+					   MainActivity.this.finish();
 					   break;
 				   }
 				   case R.id.user_image:{

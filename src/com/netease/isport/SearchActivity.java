@@ -116,8 +116,7 @@ public class SearchActivity extends Activity implements OnClickListener{
 				break;
 			}
 			case R.id.title_bar_menu_btn : {
-				intent.setClass(SearchActivity.this,MainActivity.class);
-				startActivity(intent); 
+				SearchActivity.this.finish();
 				break;
 			}
 			case R.id.date:{

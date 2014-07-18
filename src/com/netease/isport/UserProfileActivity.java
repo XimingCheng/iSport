@@ -25,9 +25,8 @@ public class UserProfileActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch(v.getId()){
 			case R.id.title_bar_menu_btn :{
-				intent.setClass(UserProfileActivity.this, MainActivity.class);
-				  startActivity(intent); 
-				  break;
+				UserProfileActivity.this.finish();
+				break;
 			}
 		}
 		

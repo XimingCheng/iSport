@@ -61,7 +61,7 @@
 	    	android:orientation="horizontal"
 	    	android:background="@drawable/back_user_profile" >
     	    <ImageView
-    	        android:id="@+id/profile_user_image"
+    	        android:id="@+id/change_photo"
 	           	android:layout_width="80dip"
 	            android:layout_height="80dip"
 	            android:layout_marginTop="10dip"

@@ -49,8 +49,7 @@ public class PublicActivity extends Activity implements OnClickListener{
 				break;
 			}
 			case R.id.title_bar_menu_btn : {
-				intent.setClass(PublicActivity.this,MainActivity.class);
-				startActivity(intent);
+				PublicActivity.this.finish();
 				break;
 			}
 			

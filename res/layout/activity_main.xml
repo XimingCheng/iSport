@@ -180,7 +180,6 @@
 			</TextView>
 			<ListView
 			    android:id="@+id/pushed_list"
-			    
 			    android:layout_height="fill_parent"
 				android:layout_width="fill_parent"
 				android:cacheColorHint="#FFFFFF"

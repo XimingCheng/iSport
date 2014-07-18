@@ -140,8 +140,9 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-	    android:layout_below="@id/user_msg" >
-	    <LinearLayout 
+	    android:layout_below="@id/user_msg"
+	    android:id="@+id/msg_toolbar" >"
+	    <LinearLayout
 		    	android:orientation="horizontal" 
 		    	android:background="#F5F5F5"
 		    	android:layout_width="match_parent" 
@@ -158,7 +159,7 @@
 		            >
 		            <TextView 
 		                android:padding="10dip"
-		                android:id="@+id/liaotian"
+		                android:id="@+id/uncompeleted_text"
 		                android:text="未完成"
 		                android:gravity="center"
 		                android:textSize="15dip"
@@ -179,7 +180,7 @@
 			            >
 			            <TextView 
 			                android:padding="10dip"
-			                android:id="@+id/faxian"
+			                android:id="@+id/compeleted_text"
 			                android:text="已完成"
 			                android:gravity="center"
 			                android:textSize="15dip"
@@ -189,4 +190,40 @@
 	        		</LinearLayout>
 			</LinearLayout>
 		</RelativeLayout>
+		<com.netease.isport.ListScrollLayout
+		    xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:id="@+id/listScrollLayout" 
+        	android:layout_width="fill_parent"    
+		    android:layout_below="@id/msg_toolbar"
+		    android:layout_alignParentBottom="true" 
+		    android:layout_height="fill_parent" >
+		    <com.netease.isport.ListFrame 
+		        android:background="@color/white"
+			  	android:layout_width="fill_parent"    
+			  	android:layout_height="wrap_content" >
+		        <ListView
+				    android:id="@+id/uncompleted_list"
+				    android:layout_height="fill_parent"
+					android:layout_width="fill_parent"
+					android:cacheColorHint="#FFFFFF"
+					android:dividerHeight="5dp"
+					android:divider="@color/bgColor"
+				/>
+		    </com.netease.isport.ListFrame>
+		
+			<FrameLayout
+			    android:layout_below="@id/msg_toolbar"
+			    android:background="@color/white"
+			  	android:layout_width="fill_parent"    
+			  	android:layout_height="wrap_content" >
+	 	    	<ListView
+				    android:id="@+id/completed_list"
+				    android:layout_height="fill_parent"
+					android:layout_width="fill_parent"
+					android:cacheColorHint="#FFFFFF"
+					android:dividerHeight="5dp"
+					android:divider="@color/bgColor"
+				/>
+			</FrameLayout>
+		</com.netease.isport.ListScrollLayout>
 </RelativeLayout>

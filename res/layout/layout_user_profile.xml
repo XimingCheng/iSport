@@ -36,7 +36,7 @@
 	        android:textSize="22sp" />
 	    
         <ImageView
-	        android:id="@+id/title_bar_menu_btn"
+	        android:id="@+id/edit_user_profle"
 	        android:layout_width="25dp"
 	        android:layout_height="25dp"
 	        android:layout_alignParentRight="true"

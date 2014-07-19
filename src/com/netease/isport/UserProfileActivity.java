@@ -39,6 +39,7 @@ public class UserProfileActivity extends Activity
 	private ListScrollLayout mScrollLayout;
 	private ListView  mCompletedListView;
 	private ListView  mUnCompletedListView;
+	private ImageView mEditUserProfile;
 	private ListItemArrayAdapter mCompletedListAdapter;
 	private ListItemArrayAdapter mUnCompletedListAdapter;
 	ArrayList<ListItem> mCompletedItemArray   = new ArrayList<ListItem>();
@@ -49,6 +50,8 @@ public class UserProfileActivity extends Activity
 		setContentView(R.layout.layout_user_profile);
 		preStep=(ImageView)findViewById(R.id.title_bar_menu_btn);
 		photoCh=(ImageView)findViewById(R.id.change_photo);
+		mEditUserProfile = (ImageView) findViewById(R.id.edit_user_profle);
+		mEditUserProfile.setOnClickListener(this);
 		preStep.setOnClickListener(this);
 		photoCh.setOnClickListener(this);
 		fileChooserIntent = new Intent(this,fileChooserActivity.class);
@@ -81,26 +84,26 @@ public class UserProfileActivity extends Activity
 		photoCh.setImageBitmap(output);
 		
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
 		
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", output));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
 		
 		mCompletedListAdapter = new ListItemArrayAdapter(UserProfileActivity.this,
 				R.layout.list_item, mCompletedItemArray);
@@ -174,6 +177,11 @@ public class UserProfileActivity extends Activity
 			    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
 			    startActivityForResult(Intent.createChooser(intent,
 			            "选择一张图片作为头像"), REQUEST_CODE);
+				break;
+			case R.id.edit_user_profle:
+				Intent intent2 = new Intent();
+				intent2.setClass(UserProfileActivity.this, EditProfileActivity.class);
+				startActivity(intent2); 
 				break;
 		}
 		

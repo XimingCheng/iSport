@@ -77,7 +77,7 @@
             android:name="com.netease.isport.SettingActivity" >
         </activity>
         <activity
-            android:name="com.netease.isport.EditProlfileActivity" >
+            android:name="com.netease.isport.EditProfileActivity" >
         </activity>
         
         </application>

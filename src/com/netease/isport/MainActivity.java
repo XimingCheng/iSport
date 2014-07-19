@@ -149,7 +149,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					   break;
 				   }
 				   case R.id.option_edit_profile:{
-					   intent.setClass(MainActivity.this,EditProlfileActivity.class);
+					   intent.setClass(MainActivity.this,EditProfileActivity.class);
 					   startActivity(intent); 
 					   break;
 				   }

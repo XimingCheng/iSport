@@ -68,7 +68,8 @@
 	        android:id="@+id/list_act_time"
 	        android:layout_width="fill_parent"
 			android:layout_height="20dip"
-			android:text="时间：2014/07/20 08:30 - 11：30" />
+			android:drawableRight="@drawable/clock_small"
+			android:text="时间：2014/07/20 08:30" />
 		
 		<View
 		    android:layout_width="fill_parent"

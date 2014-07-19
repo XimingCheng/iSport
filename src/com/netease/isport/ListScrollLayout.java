@@ -146,7 +146,7 @@ public class ListScrollLayout extends ViewGroup {
 	        	   {
 	        		 if (mVelocityTracker != null)
 	  		         {
-	  		            	mVelocityTracker.addMovement(event); 
+	        			 mVelocityTracker.addMovement(event); 
 	  		         }   
 	  	            mLastMotionX = x;     
 	  	            scrollBy(deltaX, 0);	

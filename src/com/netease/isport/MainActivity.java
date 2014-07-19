@@ -37,7 +37,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	private TextView  option_search_act,option_edit_profile;
 	private TextView  option_setting;
 
-
 	private SharedPreferences sp;
 	private ListView mListview;
 	private ListItemArrayAdapter mListItemArrayAdapter;
@@ -55,6 +54,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		option_submit_act=(TextView)findViewById(R.id.option_submit_act);
 		option_search_act   = (TextView) findViewById(R.id.option_search_act);
 		option_edit_profile=(TextView) findViewById(R.id.option_edit_profile);
+		option_setting = (TextView) findViewById(R.id.option_settings);
 		ImageView menuImg = (ImageView) findViewById(R.id.title_bar_menu_btn);
 		
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gaoyuanyuan);
@@ -94,6 +94,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		option_edit_profile.setOnClickListener(this);
 		option_submit_act.setOnClickListener(this);
 		option_search_act.setOnClickListener(this);
+		option_setting.setOnClickListener(this);
 		mUserProfileLayout.setOnClickListener(this);
 		mUserImage.setOnClickListener(this);
 	}
@@ -148,7 +149,12 @@ public class MainActivity extends Activity implements OnClickListener {
 					   break;
 				   }
 				   case R.id.option_edit_profile:{
-					   intent.setClass(MainActivity.this,UserProfileActivity.class);
+					   intent.setClass(MainActivity.this,EditProlfileActivity.class);
+					   startActivity(intent); 
+					   break;
+				   }
+				   case R.id.option_settings: {
+					   intent.setClass(MainActivity.this,SettingActivity.class);
 					   startActivity(intent); 
 					   break;
 				   }

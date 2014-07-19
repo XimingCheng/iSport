@@ -70,6 +70,16 @@
         <activity
             android:name="com.netease.isport.UserProfileActivity" >
         </activity>
+        <activity
+            android:name="com.netease.isport.InfoActivity" >
+        </activity>
+        <activity
+            android:name="com.netease.isport.SettingActivity" >
+        </activity>
+        <activity
+            android:name="com.netease.isport.EditProlfileActivity" >
+        </activity>
+        
         </application>
 
 </manifest>

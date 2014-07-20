@@ -50,7 +50,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		mSlideMenu = (SlideMenu) findViewById(R.id.slide_menu);
 		mUserProfileLayout = (LinearLayout) findViewById(R.id.user_image_layout);
 		mUserImage = (ImageView) findViewById(R.id.user_image);
-		
 		option_submit_act=(TextView)findViewById(R.id.option_submit_act);
 		option_search_act   = (TextView) findViewById(R.id.option_search_act);
 		option_edit_profile=(TextView) findViewById(R.id.option_edit_profile);

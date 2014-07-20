@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/loginColor"
+    android:background="@color/bgColor"
     android:orientation="vertical" >
 
 <RelativeLayout 
@@ -63,9 +63,9 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:layout_marginRight="5dp" 
+        android:text="@string/next_step"
         android:layout_alignTop="@+id/title_bar_menu_btn" 
         android:background="@drawable/shape"
-        android:text="@string/next_step"
         android:textColor="@color/loginColor"
         />
  
@@ -77,43 +77,69 @@
 
 <AutoCompleteTextView
     android:id="@+id/account"
-    android:layout_width="220dp"
+     android:layout_width="310dp"
     android:layout_gravity="center"
-    android:layout_marginTop="35dp"
-    android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
+    android:layout_height="35dp"
+    
     android:ems="10"
+      android:textSize="16sp"
     android:hint="@string/account"
-    android:drawableLeft="@drawable/yonghu"
+    android:textColorHint="@color/fontColor"
     android:drawablePadding="5dp"
     android:background="@drawable/shape"
-    android:inputType="text" />
+    android:drawableLeft="@drawable/account"/>
 
 <AutoCompleteTextView
     android:id="@+id/password"
-    android:layout_width="220dp"
+    android:layout_width="310dp"
     android:layout_gravity="center"
     android:layout_marginTop="15dp"
-    android:layout_height="wrap_content"
+    android:layout_height="35dp"
     android:ems="10"
+    android:textSize="16sp"
+    android:drawableLeft="@drawable/lock"
     android:hint="@string/password"
-    android:background="@drawable/shape"
-    android:drawableLeft="@drawable/suo"
+    android:textColorHint="@color/fontColor"
     android:drawablePadding="5dp"
-    android:inputType="textPassword" />
+    android:background="@drawable/shape" />
 
 <AutoCompleteTextView
     android:id="@+id/confirm_pass"
-    android:layout_width="220dp"
+    android:layout_width="310dp"
     android:layout_gravity="center"
     android:layout_marginTop="15dp"
-    android:layout_height="wrap_content"
+    android:layout_height="35dp"
     android:ems="10"
+    android:textSize="16sp"
+    android:drawableLeft="@drawable/lock"
     android:hint="@string/confirm_pass"
-    android:background="@drawable/shape"
+    android:textColorHint="@color/fontColor"
     android:drawablePadding="5dp"
-    android:drawableLeft="@drawable/suo"
-    android:inputType="textPassword" />
+    android:background="@drawable/shape" />
 
+<RelativeLayout 
+    android:layout_width="310dp"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:layout_gravity="center"
+    >
+
+
+<TextView
+    android:id="@+id/hasAccount"
+    android:layout_width="wrap_content"
+    android:layout_height="22dp"
+    android:gravity="right"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="15dp"
+    android:ems="10"
+    android:textSize="14sp"
+    android:layout_marginRight="10dp"
+    android:textColor="@color/findPassword"
+    android:text="@string/hasAccount" />
+    
+ </RelativeLayout>   
 
 
 </LinearLayout>

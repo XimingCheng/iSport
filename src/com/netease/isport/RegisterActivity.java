@@ -92,7 +92,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 		});
         
         
-        autoTextcomfirm.setOnFocusChangeListener(new OnFocusChangeListener() {  //确认密码确认
+        /*autoTextcomfirm.setOnFocusChangeListener(new OnFocusChangeListener() {  //确认密码确认
 			@Override
 			public void onFocusChange(View arg0, boolean hasFocus) {
 				// TODO Auto-generated method stub
@@ -106,7 +106,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
                     }
                 }
 			}
-		});
+		});*/
 	}
 
 	@Override
@@ -117,7 +117,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 				confirm=autoTextcomfirm.getText().toString().trim();
 			}
 			else if(!confirm.equals(password)){
-				//Toast.makeText(getApplicationContext(), confirm, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "密码不一致", Toast.LENGTH_SHORT).show();
 				autoTextpassword.setText("");
 				autoTextcomfirm.setText(""); 
 				//Toast.makeText(getApplicationContext(), "Tst", Toast.LENGTH_SHORT).show();
@@ -136,8 +136,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 			}
 		else if(v.getId()==R.id.title_bar_menu_btn){
 			//注册页面
-		    intent.setClass(RegisterActivity.this, LoginActivity.class);
-		    startActivity(intent);
+			RegisterActivity.this.finish();
 		}
 	}
 	

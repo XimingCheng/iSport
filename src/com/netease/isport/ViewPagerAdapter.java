@@ -51,7 +51,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         ((ViewPager) arg0).addView(views.get(arg1), 0);
         if (arg1 == views.size() - 1) {
             ImageView mStartImageButton = (ImageView) arg0
-                    .findViewById(R.id.iv_start);
+                    .findViewById(R.id.iv_start_iSport);
             mStartImageButton.setOnClickListener(new OnClickListener() {
 
                 @Override

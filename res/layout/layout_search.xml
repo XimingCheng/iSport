@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
+    android:background="@color/bgColor"
     android:orientation="vertical" >
 
 <RelativeLayout 
@@ -53,64 +53,71 @@
  
 </RelativeLayout>
 
+
+
+
 <RelativeLayout 
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="15dp"
     android:layout_width="fill_parent"
-    android:layout_height="45.0dip"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="50.0dip"
+    android:layout_gravity="center"
     android:gravity="center_vertical" >
       <TextView
-  
-            android:id="@+id/texeView"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="40dp"
-            android:gravity="center"
-            android:text="@string/classs"
-            android:textSize="20dp"
-            android:drawableLeft="@drawable/xifen"
-          >
-          </TextView>
+	     android:id="@+id/texeView"
+	     android:layout_width="60dp"
+	     android:layout_height="35dp"
+	     android:gravity="center"
+	     android:text="@string/classs"
+	     android:textSize="16dp"
+	     android:layout_centerVertical="true"
+	     android:drawableLeft="@drawable/classes"
+	     android:textColor="@color/loginColor">
+       </TextView>
       <Spinner
         android:id="@+id/spinner1"
-        android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
-        android:layout_marginRight="70dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="110dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="60dp"
         android:layout_centerVertical="true"
         android:dropDownWidth="10dp"
-        android:background="@drawable/border"
+        android:background="@drawable/shape"
       />
               
  	      
 </RelativeLayout>
 
 <RelativeLayout 
+    android:layout_height="50.0dip"
+    android:layout_gravity="center"
     android:layout_width="fill_parent"
-    android:layout_height="45.0dip"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center_vertical" >
       <TextView
-             android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/texeView"
             android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="40dp"
+            android:layout_height="35dp"
             android:gravity="center"
             android:text="@string/date"
-            android:textSize="20dp"
-            android:drawableLeft="@drawable/rili"
+            android:textSize="16dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/loginColor"
+            android:drawableLeft="@drawable/date"
           >
           </TextView>
-      <Spinner
-        android:id="@+id/spinner1"
+      <TextView
+        android:id="@+id/date"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
-        android:layout_marginRight="70dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="110dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="60dp"
         android:layout_centerVertical="true"
-        android:dropDownWidth="10dp"
-        android:background="@drawable/border"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:background="@drawable/shape"
       />
               
  	      
@@ -118,61 +125,69 @@
 
 <RelativeLayout 
     android:layout_width="fill_parent"
-    android:layout_height="45.0dip"
+    android:layout_height="50.0dip"
+    android:layout_gravity="center"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center_vertical" >
       <TextView
-             android:layout_marginTop="5dp"
+          android:layout_marginTop="10dp"
             android:id="@+id/texeView"
             android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="40dp"
+            android:layout_height="35dp"
             android:gravity="center"
             android:text="@string/time"
-            android:textSize="20dp"
-            android:drawableLeft="@drawable/shijian"
+            android:textSize="16dp"
+             android:textColor="@color/loginColor"
+            android:drawableLeft="@drawable/time"
           >
           </TextView>
-      <Spinner
-        android:id="@+id/spinner1"
+      <TextView
+        android:id="@+id/time"
         android:layout_marginTop="10dp"
-         android:layout_width="fill_parent"
-        android:layout_marginRight="70dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="110dp"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="60dp"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:dropDownWidth="10dp"
-        android:background="@drawable/border"
+        android:background="@drawable/shape"
+        android:textSize="15sp"
       />
-              
  	      
 </RelativeLayout>
 
 <RelativeLayout 
+    android:layout_height="50.0dip"
+    android:layout_gravity="center"
     android:layout_width="fill_parent"
-    android:layout_height="45.0dip"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center_vertical" >
       <TextView
-             android:layout_marginTop="5dp"
-            android:id="@+id/texeView"
+            android:layout_marginTop="10dp"
+            android:id="@+id/adress"
             android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="40dp"
+            android:layout_height="30dp"
             android:gravity="center"
             android:text="@string/address"
-            android:textSize="20dp"
-            android:drawableLeft="@drawable/weizhi"
+            android:textSize="16dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/loginColor"
+            android:drawableLeft="@drawable/location"
           >
           </TextView>
-      <Spinner
-        android:id="@+id/spinner1"
+      <TextView
+        android:id="@+id/time"
         android:layout_marginTop="10dp"
-         android:layout_width="fill_parent"
-        android:layout_marginRight="70dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="110dp"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="60dp"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:dropDownWidth="10dp"
-        android:background="@drawable/border"
+        android:background="@drawable/shape"
+        android:textSize="15sp"
       />
               
  	      

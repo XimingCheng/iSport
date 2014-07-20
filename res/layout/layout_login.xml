@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/loginColor"
+    android:background="@color/bgColor"
     android:orientation="vertical" >
 
 <RelativeLayout 
@@ -41,73 +41,78 @@
     <Button
         android:id="@+id/login" 
         android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:gravity="center"
         android:layout_marginRight="5dp" 
         android:layout_alignTop="@+id/title_bar_menu_btn" 
+        android:text="登录"
         android:background="@drawable/shape"
-        android:text="@string/login" 
         android:textColor="@color/loginColor"
         />
  
 </RelativeLayout>
-<View
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:background="@drawable/ic_shelf_category_divider" />
+
 
 <AutoCompleteTextView
     android:id="@+id/username"
-    android:layout_width="220dp"
+    android:layout_width="310dp"
     android:layout_gravity="center"
-    android:layout_marginTop="35dp"
-    android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
+    android:layout_height="35dp"
     android:ems="10"
+    android:textSize="16sp"
     android:hint="@string/account"
+    android:textColorHint="@color/fontColor"
     android:drawablePadding="5dp"
     android:background="@drawable/shape"
-    android:drawableLeft="@drawable/yonghu"
+    android:drawableLeft="@drawable/account"
     android:inputType="text" />
 
 <AutoCompleteTextView
     android:id="@+id/password"
-    android:layout_width="220dp"
+    android:layout_width="310dp"
     android:layout_gravity="center"
     android:layout_marginTop="15dp"
-    android:layout_height="wrap_content"
+    android:layout_height="35dp"
     android:ems="10"
     android:hint="@string/password"
     android:drawablePadding="5dp"
     android:background="@drawable/shape"
-    android:drawableLeft="@drawable/suo"
+    android:drawableLeft="@drawable/lock"
+    android:textColorHint="@color/fontColor"
+    android:textSize="15sp"
     android:inputType="textPassword" />
 
 <RelativeLayout 
-    android:layout_width="210dp"
+    android:layout_width="310dp"
     android:layout_height="wrap_content"
-    android:background="@color/loginColor"
+   
     android:gravity="center_vertical"
     android:layout_gravity="center"
     >
 <TextView
     android:id="@+id/register"
     android:layout_width="fill_parent"
-   
     android:layout_height="22dp"
     android:layout_marginTop="10dp"
-    
+    android:layout_marginLeft="10dp"
     android:ems="10"
+    android:textSize="14sp"
+    android:textColor="@color/findPassword"
     android:text="@string/register" />
 
 <TextView
-    android:id="@+id/editText1"
+    android:id="@+id/findPassword"
     android:layout_width="wrap_content"
     android:layout_height="22dp"
     android:gravity="right"
-    android:layout_marginLeft="80dp"
+    android:layout_alignParentRight="true"
     android:layout_marginTop="10dp"
     android:ems="10"
+    android:textSize="14sp"
+    android:layout_marginRight="10dp"
+    android:textColor="@color/findPassword"
     android:text="@string/findpassword" />
     
  </RelativeLayout>   

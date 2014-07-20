@@ -24,35 +24,35 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SplashActivity"
+            android:name=".GuideActivity"
             android:configChanges="keyboardHidden"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            
+        </activity>
+        
+        <activity
+            android:name=".SplashActivity"
+            android:configChanges="keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
-            android:name=".GuideActivity"
-            android:configChanges="keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.netease.isport.MainActivity" >
-            
-        </activity>
-         <activity
             android:name="com.netease.isport.RegisterActivity" >      
         </activity> 
-        <activity
+         <activity
             android:name="com.netease.isport.LoginActivity" >
             
-        </activity>
+        </activity> 
         
         <activity
             android:name="com.netease.isport.SpinnerActivity" >
@@ -66,6 +66,20 @@
         <activity
             android:name="com.netease.isport.SearchActivity" >
         </activity>
+
+        <activity
+            android:name="com.netease.isport.UserProfileActivity" >
+        </activity>
+        <activity
+            android:name="com.netease.isport.InfoActivity" >
+        </activity>
+        <activity
+            android:name="com.netease.isport.SettingActivity" >
+        </activity>
+        <activity
+            android:name="com.netease.isport.EditProfileActivity" >
+        </activity>
+        
         </application>
 
 </manifest>

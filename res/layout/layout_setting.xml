@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:orientation="vertical"
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent">	
+
+    <RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="45.0dip"
+	    android:background="@color/loginColor"
+	    android:gravity="center_vertical"
+	    >
+	
+	    <ImageView
+	        android:id="@+id/title_bar_menu_btn"
+	        android:layout_width="30dp"
+	        android:layout_height="30dp"
+	        android:layout_alignParentBottom="true"
+	        android:layout_marginLeft="1dp"
+	        android:layout_marginRight="3dp"
+	        
+	        android:gravity="center"
+	        android:src="@drawable/fanhui" />
+	
+	    <TextView
+	        android:id="@+id/title_bar_name"
+	        android:layout_width="100dp"
+	        android:layout_height="30dp"
+	        android:layout_centerHorizontal="true"
+	        android:layout_centerVertical="true"
+	        android:ellipsize="end"
+	        android:gravity="center"
+	       
+	        android:singleLine="true" 
+	        android:layout_alignTop="@+id/title_bar_menu_btn" 
+	        android:text="@string/app_name"
+	        android:textColor="#ffffff"
+	        android:textSize="20sp" />
+	 
+	</RelativeLayout>
+	<ScrollView
+		android:id="@+id/scrollView" 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"		
+		android:background="#ffd3d3d3">
+		
+		<br.com.dina.ui.widget.UITableView android:id="@+id/tableView" style="@style/UITableView" />
+	
+	</ScrollView>
+
+</LinearLayout> 

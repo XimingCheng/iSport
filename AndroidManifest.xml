@@ -85,6 +85,10 @@
             android:name="com.netease.isport.PoiKeywordSearchActivity" >
         </activity>
         
+        <activity
+            android:name="com.netease.isport.ResultListActivity" >
+        </activity>
+        
         </application>
 
 </manifest>

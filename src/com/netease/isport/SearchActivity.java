@@ -98,6 +98,7 @@ public class SearchActivity extends Activity implements OnClickListener{
 	    			// TODO Auto-generated method stub
 	    	    	}
 	  });
+		
 		button.setOnClickListener(this);
 		imageView.setOnClickListener(this);
 		

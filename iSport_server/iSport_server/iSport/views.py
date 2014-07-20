@@ -1,9 +1,11 @@
 #from django.shortcuts import render
 from django.http import HttpResponse
 from models import User
+from forms import PhotoForm
 import json
 
 # Create your views here.
+
 
 def register_new_user(request):
     out_data = {}
@@ -93,4 +95,28 @@ def edit_user_label(request):
             out_data['ret'] = 'session_error'
         if len(errors) > 0:
             out_data['ret'] = 'post_error'
+    return HttpResponse(json.dumps(out_data), content_type="application/json")
+
+def upload_user_photo(request):
+    out_data = {}
+    if request.method=='POST':
+        pf = PhotoForm(request.POST, request.FILES)
+        if pf.is_valid():
+#            image = pf.photo
+            image = request.FILES["photo"]
+            user_name = 'testtest'
+            data = User.objects.get(name = user_name)
+            data.img = image
+            data.save()
+            out_data['ret'] = 'ok'
+#            if 'user' in request.session['user']:
+#                user_name = request.session['user']
+#                data = User.objects.get(name = user_name)
+#                data.img = pf.photo
+#                data.save()
+#                out_data['ret'] = 'ok'
+#            else:
+#                out_data['ret'] = 'session_error'
+#        else:
+#            out_data['ret'] = 'forms error'
     return HttpResponse(json.dumps(out_data), content_type="application/json")

@@ -12,7 +12,8 @@ class User(models.Model):
     sex = models.CharField(max_length = 2, default = 'F')
     user_image = models.CharField(max_length = 1024, default = 'test.png')
     label = models.CharField(max_length = 1000, blank = True)
-
+    img = models.ImageField(upload_to='photo',null=True,blank=True)
+    title = models.CharField(max_length = 1000, blank = True )
 
 class Activity(models.Model):
     category = models.CharField(max_length = 20)

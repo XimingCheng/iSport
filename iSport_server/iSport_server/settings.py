@@ -87,3 +87,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 DEFAULT_CHARSET = 'utf-8'
+
+# Dictionary that save pictures
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+MEDIA_ROOT = os.path.join(HERE,'media').replace('\\','/')+'/'
+MEDIA_URL  = '/media/'

@@ -26,7 +26,7 @@ public class UserProfileActivity extends Activity
 	implements OnViewChangeListener, OnClickListener{
 	private ImageView photoCh;
 	private static final int REQUEST_CODE = 1;//选择文件的返回码
-	private Intent fileChooserIntent;
+	//private Intent fileChooserIntent;
 	
 	Intent intent        = GetIntentInstance.getIntent();
 	ImageView preStep    = null;
@@ -54,7 +54,7 @@ public class UserProfileActivity extends Activity
 		mEditUserProfile.setOnClickListener(this);
 		preStep.setOnClickListener(this);
 		photoCh.setOnClickListener(this);
-		fileChooserIntent = new Intent(this,fileChooserActivity.class);
+		//fileChooserIntent = new Intent(this,fileChooserActivity.class);
 		mCompletedTextView   = (TextView) findViewById(R.id.compeleted_text);
 		mUnCompletedTextView = (TextView) findViewById(R.id.uncompeleted_text);
 		mScrollLayout = (ListScrollLayout) findViewById(R.id.listScrollLayout);

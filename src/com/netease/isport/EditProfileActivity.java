@@ -1,10 +1,15 @@
 package com.netease.isport;
 
+import java.io.FileNotFoundException;
+
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,13 +27,15 @@ import com.netease.util.RoundImageUtil;
 
 public class EditProfileActivity extends UITableViewActivity {
 	
-	private String mGenderMsg[] = new String[] {"男", "女"};
+	private String mGenderMsg[] = new String[] {"鐢�", "濂�"};
 	private int which_gender = 0;
 	RelativeLayout mView;
 	private EditText mEditLabel;
 	String gender;
-	String label  = "一枝红杏出墙来 不如自挂东南枝";
+	String label  = "涓�鏋濈孩鏉忓嚭澧欐潵 涓嶅鑷寕涓滃崡鏋�";
 	private ImageView title_bar_menu_btn;
+	private static final int REQUEST_CODE = 1;//选择文件的返回码
+	ImageView mUserImage = (ImageView) mView.findViewById(R.id.user_image);
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,35 +60,41 @@ public class EditProfileActivity extends UITableViewActivity {
 			switch(index)
 			{
 			case 0:
+				Intent intent = new Intent();
+			    intent.setType("image/*");
+			    intent.setAction(Intent.ACTION_GET_CONTENT);
+			    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+			    startActivityForResult(Intent.createChooser(intent,
+			            "选择一张图片作为头像"), REQUEST_CODE);
 				break;
 			case 1:
 				new AlertDialog.Builder(EditProfileActivity.this)  
-				.setTitle("请选择")  
+				.setTitle("璇烽�夋嫨")  
 				.setIcon(android.R.drawable.ic_dialog_info)                  
 				.setSingleChoiceItems(mGenderMsg, which_gender, new DialogInterface.OnClickListener() {  
 				                              
 				     public void onClick(DialogInterface dialog, int which) { 
 				    	gender = mGenderMsg[which];
 				    	which_gender = which;
-				 		//getUITableView().addBasicItem("修改性别", gender);
+				 		//getUITableView().addBasicItem("淇敼鎬у埆", gender);
 				    	getUITableView().setSubTitle(index, gender);
 				    	
 				    	dialog.dismiss();
 				     }  
 				  }  
-				).setNegativeButton("取消", null).show();
+				).setNegativeButton("鍙栨秷", null).show();
 				break;
 			case 2:
 				mEditLabel = new EditText(EditProfileActivity.this);
 				mEditLabel.setText(label);
-				new AlertDialog.Builder(EditProfileActivity.this).setTitle("修改签名档").setView(
-					mEditLabel).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+				new AlertDialog.Builder(EditProfileActivity.this).setTitle("淇敼绛惧悕妗�").setView(
+					mEditLabel).setPositiveButton("纭畾", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
-		         	    	// 点击确定按钮后得到输入的值，保存
+		         	    	// 鐐瑰嚮纭畾鎸夐挳鍚庡緱鍒拌緭鍏ョ殑鍊硷紝淇濆瓨
 							label = mEditLabel.getText().toString();
 							getUITableView().setSubTitle(index, label);
 		         	     }})
-		            .setNegativeButton("取消", null).show();
+		            .setNegativeButton("鍙栨秷", null).show();
 				break;
 		
 			}
@@ -89,6 +102,29 @@ public class EditProfileActivity extends UITableViewActivity {
 		}
     	
     }
+    @Override 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		 switch(requestCode) {
+		 case REQUEST_CODE:
+			 if (resultCode == 0)  
+				 return; 
+			 Uri uri = data.getData();
+			 Bitmap bmp = null;
+			 ContentResolver cr = this.getContentResolver();   
+		     try {
+	            bmp = BitmapFactory.decodeStream(cr.openInputStream(uri));
+		     } catch (FileNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+		     }
+		     if(bmp != null) {
+			     Bitmap output = RoundImageUtil.toRoundCorner(RoundImageUtil.
+			    		 resizeImage(bmp, 100, 100));
+			     mUserImage.setImageBitmap(output);
+		     }
+	         break;
+		 }
+	}
 
 	@Override
 	protected void populateList() {
@@ -96,12 +132,12 @@ public class EditProfileActivity extends UITableViewActivity {
 		LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mView = (RelativeLayout) mInflater.inflate(R.layout.cust_edit_photo, null);
 		ViewItem viewItem = new ViewItem(mView);
-		ImageView mUserImage = (ImageView) mView.findViewById(R.id.user_image);
+		mUserImage = (ImageView) mView.findViewById(R.id.user_image);
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gaoyuanyuan);
 		mUserImage.setImageBitmap(RoundImageUtil.toRoundCorner(bitmap));
 		getUITableView().addViewItem(viewItem);
 		gender = mGenderMsg[which_gender];
-		getUITableView().addBasicItem("修改性别", gender);
-		getUITableView().addBasicItem("修改签名档", label);
+		getUITableView().addBasicItem("淇敼鎬у埆", gender);
+		getUITableView().addBasicItem("淇敼绛惧悕妗�", label);
 	}
 }

@@ -123,7 +123,6 @@ public class EditProfileActivity extends UITableViewActivity {
 				                              
 				     public void onClick(DialogInterface dialog, int which) { 
 				    	gender = mGenderMsg[which];
-				    	which_gender = which;
 				    	HttpResponse httpResponse=null;
 				    	List<NameValuePair> list=new ArrayList<NameValuePair>();
 				    	String sexMsg[] = new String[] {"M", "F"};
@@ -142,6 +141,7 @@ public class EditProfileActivity extends UITableViewActivity {
 				            JsonRet o = new DecodeJson().jsonRet(message);
 				            if(o.getRet().equals("ok")) {
 				            	getUITableView().setSubTitle(index, gender);
+				            	which_gender = which;
 				            	ToastUtil.show(getApplicationContext(), "修改性别成功！");
 				            } else {
 				            	ToastUtil.show(getApplicationContext(), "修改性别失败了啊啊啊啊啊！");

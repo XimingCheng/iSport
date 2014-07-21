@@ -106,7 +106,10 @@ public class SettingActivity extends Activity {
 		            	setResult(RESULT_OK, GetIntentInstance.getIntent());
 		            	SettingActivity.this.finish();
 		            } else {
-		            	ToastUtil.show(getApplicationContext(), "退出登录失败了啊啊啊啊啊！");
+		            	SharedPreferenceUtil.setLogin(false);
+		            	setResult(RESULT_OK, GetIntentInstance.getIntent());
+		            	SettingActivity.this.finish();
+		            	//ToastUtil.show(getApplicationContext(), "退出登录失败了啊啊啊啊啊！");
 		            }
 				} else {
 					ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");

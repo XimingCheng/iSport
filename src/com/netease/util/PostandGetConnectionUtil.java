@@ -38,7 +38,7 @@ public class PostandGetConnectionUtil {
 	static List<NameValuePair> list=null;
 	
 	public static void setParm(List<NameValuePair> parm){
-		list=parm;
+		list = parm;
 	}
 	
 	public static HttpResponse getConnect(String url) throws URISyntaxException {
@@ -58,7 +58,7 @@ public class PostandGetConnectionUtil {
 	
 	public static HttpResponse postConnect(String url) throws URISyntaxException {
 		HttpPost httpRequest = new HttpPost(new URI(url));
-		if(list != null) {
+		if(list != null && list.size() > 0) {
 			HttpEntity httpentity = null;
 	        try {
 	            httpentity = new UrlEncodedFormEntity(list,"utf8");

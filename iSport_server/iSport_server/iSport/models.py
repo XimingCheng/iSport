@@ -18,10 +18,10 @@ class User(models.Model):
 class Activity(models.Model):
     category = models.CharField(max_length = 20)
     begin_datatime = models.DateTimeField()
-    end_datatime = models.DateTimeField()
+    #end_datatime = models.DateTimeFiel()
     people_count = models.IntegerField(default = 0)
-    models.CharField(max_length = 1000)
+    theme = models.CharField(max_length = 1000)
     location = models.CharField(max_length = 1024)
     submit_peopleId = models.IntegerField(default = 0)
-    name = models.CharField(max_length = 1024)
+    #name = models.CharField(max_length = 1024)
     details = models.CharField(max_length = 3000)

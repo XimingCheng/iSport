@@ -40,7 +40,7 @@
 	    
 	    <Button
 	        android:id="@+id/login" 
-        	android:layout_width="60dp"
+        	android:layout_width="50dp"
         	android:layout_height="30dp"
         	android:layout_alignParentRight="true"
         	android:gravity="center"
@@ -48,18 +48,19 @@
         	android:layout_alignTop="@+id/title_bar_menu_btn" 
         	android:background="@drawable/shape"
         	android:textColor="@color/loginColor"
-        	android:text="加入" />
+        	android:text="加 入" />
 	</RelativeLayout>
     
     <LinearLayout
-        android:background="@drawable/cat_back_list"
+       
 		android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 	    
 	    <LinearLayout
 			android:layout_width="match_parent"
-	        android:layout_height="100dip"
+	        android:layout_height="120dip"
+	        android:background="@drawable/shape"
 	        android:orientation="horizontal" >
 	    
 		    <LinearLayout
@@ -68,8 +69,8 @@
 		        android:orientation="vertical" >
 		        <ImageView
 			       android:id="@+id/activity_info_protrait"
-		           android:layout_width="60dip"
-		           android:layout_height="60dip"
+		           android:layout_width="80dip"
+		           android:layout_height="80dip"
 		           android:gravity="center_horizontal"
 			       android:layout_marginLeft="20dip"
 			       android:layout_marginTop="15dip"
@@ -87,49 +88,57 @@
 		     
 		    <LinearLayout
 		        android:layout_width="wrap_content"
-		        android:layout_height="100dip"
+		        android:layout_height="110dip"
 		        android:orientation="vertical" >
 		        <TextView 
 		           android:id="@+id/activity_theme"
 		           android:layout_width="wrap_content"
 		           android:layout_height="20dip"
-		           android:layout_marginLeft="20dip"
-		           android:layout_marginTop="20dip"
+		           android:layout_marginLeft="25dip"
+		           android:layout_marginTop="10dip"
 		           android:gravity="left"
+		           android:textSize="16sp"
 		           android:textColor="@color/fontColor"
-		           android:text="今天去打篮球啊啊啊"/><!-- object -->
+		           android:text="今天去打篮球"/><!-- object -->
 		        <LinearLayout
 		            android:layout_width="wrap_content"
+		            android:layout_marginTop="5dp"
 		        	android:layout_height="20dip" >
-		        	<ImageView 
+		        	 <ImageView 
 		        	    android:layout_width="15dip"
 		        	    android:layout_height="15dip"
-		        	    android:layout_marginLeft="20dip"
+		        	    android:layout_marginLeft="25dip"
 		        	    android:layout_marginTop="1dip"
-		        	    android:src="@drawable/clock_small" />
+		        	    android:src="@drawable/time1" />
 			        <TextView
 						android:id="@+id/activity_info_time_range"
 						android:layout_width="wrap_content"
 						android:layout_height="20dip"
 						android:layout_marginLeft="5dip"
 						android:gravity="left"
+						android:textSize="15sp"
 						android:text="时间：2014/07/35 7:00"/><!-- Time Range -->
 		        </LinearLayout>
 		        <LinearLayout
 		            android:layout_width="wrap_content"
+		            android:layout_marginTop="5dp"
 		        	android:layout_height="20dip" >
-		        	<ImageView 
+		        	 <ImageView 
+		        	    android:id="@+id/mappic"
 		        	    android:layout_width="15dip"
 		        	    android:layout_height="15dip"
-		        	    android:layout_marginLeft="20dip"
+		        	    android:layout_marginLeft="25dip"
 		        	    android:layout_marginTop="1dip"
-		        	    android:src="@drawable/location" />
+		        	    android:src="@drawable/weizhi1" /> 
 		        	<TextView
+		        	    android:id="@+id/addressInfo"
 			           android:layout_width="wrap_content"
 			           android:layout_height="20dip"
 			           android:layout_marginLeft="5dip"
 			           android:gravity="left"
 			           android:autoLink="map"
+			           android:textSize="15sp"
+			           
 			           android:text="地点："/>
 			        <TextView 
 			           android:id="@+id/activity_info_map_link"
@@ -138,25 +147,83 @@
 			           android:layout_marginLeft="1dip"
 			           android:gravity="left"
 			           android:autoLink="map"
-			           android:textColor="@color/fontColor"
-			           android:text="火星"/><!-- map link -->
+			           android:textSize="15sp"
+			           android:text="滨江区网易"/><!-- map link -->
+			           
+			           <!-- <TextView
+			               android:id="@+id/activity_info_map"
+			               android:layout_width="wrap_content"
+			               android:layout_height="wrap_content"
+			               android:layout_marginLeft="10dip"
+			               android:background="@drawable/map"
+			               android:gravity="left"
+			               android:textColor="@color/fontColor" /> -->
+
+				</LinearLayout>
+				<LinearLayout
+		            android:layout_width="wrap_content"
+		            android:layout_marginTop="5dp"
+		        	android:layout_height="20dip" >
+		        	<!-- <ImageView 
+		        	    android:id="@+id/mapInfo"
+		        	    android:layout_width="15dip"
+		        	    android:layout_height="15dip"
+		        	    android:layout_marginLeft="20dip"
+		        	    android:layout_marginTop="1dip"
+		        	    android:src="@drawable/location" /> -->
+		        	<TextView
+		        	    android:id="@+id/mapInfo"
+			           android:layout_width="wrap_content"
+			           android:layout_height="20dip"
+			           android:layout_marginLeft="90dip"
+			           android:gravity="left"
+			           android:autoLink="map"
+			           android:textSize="15sp"
+			           android:drawablePadding="3dp"
+			           android:text="查看地图"/>
+			        <ImageView 
+		        	    android:id="@+id/mapPic"
+		        	    android:layout_width="15dip"
+		        	    android:layout_height="15dip"
+		        	    android:layout_marginTop="1dip"
+		        	    android:layout_marginLeft="3dip"
+		        	    android:src="@drawable/map" />
+			           
+			           <!-- <TextView
+			               android:id="@+id/activity_info_map"
+			               android:layout_width="wrap_content"
+			               android:layout_height="wrap_content"
+			               android:layout_marginLeft="10dip"
+			               android:background="@drawable/map"
+			               android:gravity="left"
+			               android:textColor="@color/fontColor" /> -->
+
 				</LinearLayout>
 		    </LinearLayout>
 	    
 		</LinearLayout>
 		
-		<TextView 
-		    android:id="@+id/activity_info_map_link"
-		    android:layout_marginLeft="20dip"
-		    android:layout_marginRight="20dip"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:text="今天晚上7:00到8:00在火星打篮球，求队友！ 求队友！求队友！求队友！求队友！求队友！求队友！求队友！求队友！"/><!--main body  -->
-		
-		<LinearLayout
-		    android:layout_marginTop="10dip"
+	    <LinearLayout
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
+		     android:background="@drawable/shape"
+		     android:layout_marginTop="1dp"
+		    android:orientation="horizontal" >
+		
+		<TextView 
+		    android:layout_marginLeft="15dp"
+		    android:layout_marginRight="15dp"
+		    android:id="@+id/activity_info_map_link"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:textSize="15sp"
+		    android:text="今天晚上7:00到8:00在火星打篮球，求队友！ 求队友！求队友！求队友！求队友！求队友！求队友！求队友！求队友！"/><!--main body  -->
+		</LinearLayout>
+		<LinearLayout
+		    android:layout_marginTop="1dip"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:background="@drawable/shape"
 		    android:orientation="horizontal" >
 		    
 			<LinearLayout

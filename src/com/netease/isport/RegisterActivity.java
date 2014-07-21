@@ -32,7 +32,7 @@ import android.widget.Toast;
 
 import com.netease.util.GetIntentInstance;
 import com.netease.util.MD5util;
-import com.netease.util.PostConnectionUtil;
+import com.netease.util.PostandGetConnectionUtil;
 
 public class RegisterActivity extends Activity implements OnClickListener{
 	private Button button=null;
@@ -149,12 +149,12 @@ public class RegisterActivity extends Activity implements OnClickListener{
 		
 		list.add(new BasicNameValuePair("username",username));
 		list.add(new BasicNameValuePair("password",password));
-		PostConnectionUtil.setParm(list);
-		httpResponse=PostConnectionUtil.postConnect(PostConnectionUtil.regUrl);
+		PostandGetConnectionUtil.setParm(list);
+		httpResponse=PostandGetConnectionUtil.postConnect(PostandGetConnectionUtil.regUrl);
 		
-        if(PostConnectionUtil.responseCode(httpResponse)==200){
+        if(PostandGetConnectionUtil.responseCode(httpResponse)==200){
         	String message=null;
-        	message=PostConnectionUtil.GetResponseMessage(httpResponse);            
+        	message=PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
             Toast.makeText(getApplicationContext(), "×¢²á³É¹¦", Toast.LENGTH_SHORT).show();
             intent.setClass(RegisterActivity.this, MainActivity.class);
     	    startActivity(intent);

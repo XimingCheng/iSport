@@ -64,7 +64,7 @@
     android:layout_height="50.0dip"
     android:layout_gravity="center"
     android:gravity="center_vertical" >
-      <TextView
+      <!-- <TextView
 	     android:id="@+id/texeView"
 	     android:layout_width="60dp"
 	     android:layout_height="35dp"
@@ -74,12 +74,12 @@
 	     android:layout_centerVertical="true"
 	     android:drawableLeft="@drawable/classes"
 	     android:textColor="@color/loginColor">
-       </TextView>
+       </TextView> -->
       <Spinner
         android:id="@+id/spinner1"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:layout_marginLeft="60dp"
+        
         android:layout_centerVertical="true"
         android:dropDownWidth="10dp"
         android:background="@drawable/shape"
@@ -95,7 +95,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:gravity="center_vertical" >
-      <TextView
+      <!-- <TextView
             android:layout_marginTop="10dp"
             android:id="@+id/texeView"
             android:layout_width="60dp"
@@ -107,16 +107,16 @@
             android:textColor="@color/loginColor"
             android:drawableLeft="@drawable/date"
           >
-          </TextView>
+          </TextView> -->
       <TextView
         android:id="@+id/date"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:layout_marginLeft="60dp"
         android:layout_centerVertical="true"
-        android:gravity="center"
-        android:textSize="15sp"
+        android:textSize="16sp"
+        android:textColorHint="@color/fontColor"
+        android:hint="日期"
         android:background="@drawable/shape"
       />
               
@@ -130,7 +130,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:gravity="center_vertical" >
-      <TextView
+      <!-- <TextView
           android:layout_marginTop="10dp"
             android:id="@+id/texeView"
             android:layout_width="60dp"
@@ -141,18 +141,18 @@
              android:textColor="@color/loginColor"
             android:drawableLeft="@drawable/time"
           >
-          </TextView>
+          </TextView> -->
       <TextView
         android:id="@+id/time"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:layout_marginLeft="60dp"
         android:layout_centerVertical="true"
-        android:gravity="center"
         android:dropDownWidth="10dp"
         android:background="@drawable/shape"
-        android:textSize="15sp"
+        android:textSize="16sp"
+        android:textColorHint="@color/fontColor"
+        android:hint="时间"
       />
  	      
 </RelativeLayout>
@@ -164,7 +164,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:gravity="center_vertical" >
-      <TextView
+      <!-- <TextView
             android:layout_marginTop="10dp"
             android:id="@+id/adress"
             android:layout_width="60dp"
@@ -176,18 +176,18 @@
             android:textColor="@color/loginColor"
             android:drawableLeft="@drawable/location"
           >
-          </TextView>
+          </TextView> -->
       <TextView
-        android:id="@+id/time"
+        android:id="@+id/adress"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:layout_marginLeft="60dp"
         android:layout_centerVertical="true"
-        android:gravity="center"
         android:dropDownWidth="10dp"
         android:background="@drawable/shape"
-        android:textSize="15sp"
+        android:textSize="16sp"
+        android:textColorHint="@color/fontColor"
+        android:hint="地址"
       />
               
  	      

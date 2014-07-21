@@ -95,7 +95,7 @@ public class SlideMenu extends ViewGroup {
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 		if (mLocked) {
-			return true;
+			return false;
 		}
 
 		final int action = ev.getAction();

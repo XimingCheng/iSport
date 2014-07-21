@@ -41,18 +41,37 @@
 	    android:paddingTop="3dp"
 	    android:layout_width="fill_parent"
         android:layout_height="90dip"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
 		<TextView
 		    android:id="@+id/list_act_theme"
-	        android:layout_width="fill_parent"
+	        android:layout_width="100dp"
 			android:layout_height="20dip"
-			android:drawableRight="@drawable/location"
 			android:text="主题：打篮球" />
-		<View
+		<ImageView
+		    android:id="@+id/mappic"
+		        	    android:layout_width="fill_parent"
+		        	    android:layout_height="15dip"
+		        	    android:gravity="right"
+		        	    android:layout_marginLeft="90dp"
+		        	    android:layout_gravity="right"
+		        	    android:src="@drawable/weizhi1"
+		 />
+   </LinearLayout>
+		 
+		<LinearLayout
+	    android:layout_toRightOf="@id/use_profile_image_text"
+	    android:layout_marginRight="20dip"
+	    android:id="@+id/list_info"
+	    android:layout_marginTop="25dip"
+	    android:paddingTop="3dp"
+	    android:layout_width="fill_parent"
+        android:layout_height="90dip"
+        android:orientation="vertical" >  
+        <View
 		    android:layout_width="fill_parent"
 			android:layout_height="3dip"
 		    >
-		</View>    
+		</View> 
 		<TextView
 	        android:id="@+id/list_act_main_page"
 	        android:layout_width="fill_parent"
@@ -68,7 +87,6 @@
 	        android:id="@+id/list_act_time"
 	        android:layout_width="fill_parent"
 			android:layout_height="20dip"
-			android:drawableRight="@drawable/clock_small"
 			android:text="时间：2014/07/20 08:30" />
 		
 		<View

@@ -2,15 +2,21 @@ package com.netease.isport;
 
 public class JsonInfoResult {
 	
+	private String ret;
 	private String username;
 	private String location;
 	private String sex;
 	private float  score;
-	private String completed_act_id;
-	private String uncompleted_act_id;
-	private String user_image;
+	private String completed;
+	private String uncompleted;
+	private String userimage;
 	private String label;
-	
+	public String getRet() {
+		return ret;
+	}
+	public void setRet(String ret) {
+		this.ret = ret;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -35,23 +41,23 @@ public class JsonInfoResult {
 	public void setScore(float score) {
 		this.score = score;
 	}
-	public String getCompleted_act_id() {
-		return completed_act_id;
+	public String getCompleted() {
+		return completed;
 	}
-	public void setCompleted_act_id(String completed_act_id) {
-		this.completed_act_id = completed_act_id;
+	public void setCompleted(String completed) {
+		this.completed = completed;
 	}
-	public String getUncompleted_act_id() {
-		return uncompleted_act_id;
+	public String getUncompleted() {
+		return uncompleted;
 	}
-	public void setUncompleted_act_id(String uncompleted_act_id) {
-		this.uncompleted_act_id = uncompleted_act_id;
+	public void setUncompleted(String uncompleted) {
+		this.uncompleted = uncompleted;
 	}
-	public String getUser_image() {
-		return user_image;
+	public String getUserimage() {
+		return userimage;
 	}
-	public void setUser_image(String user_image) {
-		this.user_image = user_image;
+	public void setUserimage(String userimage) {
+		this.userimage = userimage;
 	}
 	public String getLabel() {
 		return label;
@@ -59,4 +65,6 @@ public class JsonInfoResult {
 	public void setLabel(String label) {
 		this.label = label;
 	}
+	
+	
 }

@@ -1,6 +1,16 @@
 package com.netease.isport;
 
+import java.net.URISyntaxException;
+
+import org.apache.http.HttpResponse;
+
+import com.netease.util.NetWorkUtil;
+import com.netease.util.PostandGetConnectionUtil;
+import com.netease.util.SharedPreferenceUtil;
+import com.netease.util.ToastUtil;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -9,6 +19,7 @@ import br.com.dina.ui.widget.UITableView.ClickListener;
 
 public class SettingActivity extends Activity {
 
+	private ProgressDialog progDialog = null;
 	UITableView tableView;
 	
     @Override
@@ -36,11 +47,61 @@ public class SettingActivity extends Activity {
     	tableView.addBasicItem(R.drawable.logout, "退出登录", "退出当前的账户");
     }
     
+    private void showProgressDialog() {
+		if (progDialog == null)
+			progDialog = new ProgressDialog(this);
+		progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		progDialog.setIndeterminate(false);
+		progDialog.setCancelable(false);
+		progDialog.setMessage("正在退出您的账户");
+		progDialog.show();
+	}
+
+	/**
+	 * 隐藏进度框
+	 */
+	private void dissmissProgressDialog() {
+		if (progDialog != null) {
+			progDialog.dismiss();
+		}
+	}
+	
     private class CustomClickListener implements ClickListener {
 
 		@Override
 		public void onClick(int index) {
-			Toast.makeText(SettingActivity.this, "item clicked: " + index, Toast.LENGTH_SHORT).show();
+			//Toast.makeText(SettingActivity.this, "item clicked: " + index, Toast.LENGTH_SHORT).show();
+			switch(index) {
+			case 5: //logout
+				if( !NetWorkUtil.isNetworkConnected(SettingActivity.this.getApplicationContext()) ) {
+					ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+					return;
+				}
+				HttpResponse httpResponse = null;
+				try {
+					showProgressDialog();
+					httpResponse = PostandGetConnectionUtil.postConnect(PostandGetConnectionUtil.logoutUrl);
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(PostandGetConnectionUtil.responseCode(httpResponse) == 200){
+					String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
+		            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+		            JsonRet o = new DecodeJson().jsonRet(message);
+		            if(o.getRet().equals("ok")) {
+		            	SharedPreferenceUtil.setLogin(false);
+		            	ToastUtil.show(getApplicationContext(), "退出登录成功！");
+		            	SettingActivity.this.finish();
+		            } else {
+		            	ToastUtil.show(getApplicationContext(), "退出登录失败了啊啊啊啊啊！");
+		            }
+				} else {
+					ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
+				}
+				dissmissProgressDialog();
+				break;
+			}
 		}
     	
     }

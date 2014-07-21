@@ -2,8 +2,12 @@ package com.netease.isport;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import org.apache.http.HttpResponse;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.netease.util.GetConnectionUtil;
+import com.netease.util.PostandGetConnectionUtil;
 import com.netease.util.RoundImageUtil;
 import com.netease.util.SharedPreferenceUtil;
 
@@ -65,7 +69,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		option_setting = (TextView) findViewById(R.id.option_settings);
 		ImageView menuImg = (ImageView) findViewById(R.id.title_bar_menu_btn);
 		
-		synloginInfo();
+		try {
+			if( !synloginInfo() ) {
+				SharedPreferenceUtil.setLogin(false);
+			}
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gaoyuanyuan);
 		
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
@@ -108,33 +119,35 @@ public class MainActivity extends Activity implements OnClickListener {
 		mUserImage.setOnClickListener(this);
 	}
 	
-	boolean synloginInfo() {
+	boolean synloginInfo() throws URISyntaxException {
 		if( SharedPreferenceUtil.isLogin() ) {
-			String url = "http://efly.freeshell.ustc.edu.cn:54322/getinfo/";
-			String media_url_base = "http://efly.freeshell.ustc.edu.cn:54322/media/";
-			String param = "";
-			String json_str = GetConnectionUtil.sendGet(url, param);
-			JsonInfoResult o = new DecodeJson().json(json_str);
-			String image_location = media_url_base + o.getUser_image();
-			String imageBase64 = "";
-			// get the image from the url
-			try{
-				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				URL url_image = new URL(image_location);  
-				InputStream is = url_image.openStream();  
-				Bitmap bitmap  = BitmapFactory.decodeStream(is);
-				bitmap.compress(CompressFormat.JPEG, 0, baos);
-				imageBase64 = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
-				is.close();
-				Bitmap output = RoundImageUtil.toRoundCorner(bitmap);
-				mUserImage.setImageBitmap(output);
-			} catch(Exception e) {  
-	            e.printStackTrace();  
-	        } 
-			SharedPreferenceUtil.saveAccount(o.getUsername(), o.getLocation(),
-					o.getScore(), o.getCompleted_act_id(), o.getUncompleted_act_id(),
-					o.getSex(), imageBase64, o.getLabel());
-			return true;
+			HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl);
+			String json_str = PostandGetConnectionUtil.GetResponseMessage(res);
+			if(json_str.length() != 0) {
+				JsonInfoResult o = new DecodeJson().jsonInfo(json_str);
+				if(o.getRet().equals("ok")) {
+					String image_location = PostandGetConnectionUtil.mediaUrlBase + o.getUserimage();
+					String imageBase64 = "";
+					// get the image from the url
+					try{
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						URL url_image = new URL(image_location);  
+						InputStream is = url_image.openStream();  
+						Bitmap bitmap  = BitmapFactory.decodeStream(is);
+						bitmap.compress(CompressFormat.JPEG, 0, baos);
+						imageBase64 = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
+						is.close();
+					} catch(Exception e) {  
+			            e.printStackTrace();  
+			        } 
+					SharedPreferenceUtil.saveAccount(o.getUsername(), o.getLocation(),
+							o.getScore(), o.getCompleted(), o.getUncompleted(),
+							o.getSex(), imageBase64, o.getLabel());
+					return true;
+				} else
+					return false;
+			} else
+				return false;
 		} else {
 			return false;
 		}
@@ -179,8 +192,13 @@ public class MainActivity extends Activity implements OnClickListener {
 					   }
 				   }
 				   case R.id.title_bar_menu_btn:{
-					   intent.setClass(MainActivity.this,LoginActivity.class);
-					   startActivity(intent);
+//					   intent.setClass(MainActivity.this,LoginActivity.class);
+//					   startActivity(intent);
+					   if(!mSlideMenu.isMainScreenShowing()) {
+						   mSlideMenu.closeMenu();
+					   } else {
+						   mSlideMenu.openMenu();
+					   }
 					   break;
 				   }
 				   case R.id.user_image:{

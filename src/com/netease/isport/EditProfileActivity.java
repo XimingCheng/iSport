@@ -16,10 +16,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -207,6 +209,29 @@ public class EditProfileActivity extends UITableViewActivity {
 			 if (resultCode == 0)  
 				 return; 
 			 Uri uri = data.getData();
+			 String[] proj = { MediaStore.Images.Media.DATA };
+			 Cursor actualimagecursor = managedQuery(uri,proj,null,null,null); 
+			 int actual_image_column_index = actualimagecursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			 actualimagecursor.moveToFirst();
+			 String img_path = actualimagecursor.getString(actual_image_column_index);
+			 
+			 HttpResponse httpResponse=null;
+			 httpResponse = PostandGetConnectionUtil.doFileUpload(img_path);
+			 if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse) == 200){
+					String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
+		            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+		            JsonRet o = new DecodeJson().jsonRet(message);
+		            if(o.getRet().equals("ok")) {
+		            	SharedPreferenceUtil.setLogin(true);
+		            	ToastUtil.show(getApplicationContext(), "上传成功！");
+		            	this.finish();
+		            } else {
+		            	ToastUtil.show(getApplicationContext(), "上传失败了啊啊啊啊啊！");
+		            }
+				} else {
+					ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
+				}
+			 
 			 Bitmap bmp = null;
 			 ContentResolver cr = this.getContentResolver();   
 		     try {

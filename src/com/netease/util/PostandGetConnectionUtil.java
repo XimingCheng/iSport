@@ -98,7 +98,7 @@ public class PostandGetConnectionUtil {
 		}
 		   return message;
 	}
-	public String doFileUpload(String path){
+	public static HttpResponse doFileUpload(String path){
 		httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 
 	    HttpPost httppost = new HttpPost(uploadUrl);
@@ -119,7 +119,7 @@ public class PostandGetConnectionUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return GetResponseMessage(response);
+		return response;
 //	    HttpEntity resEntity = response.getEntity();
 //
 //	    System.out.println(response.getStatusLine());

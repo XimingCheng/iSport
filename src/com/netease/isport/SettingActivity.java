@@ -22,13 +22,9 @@ import br.com.dina.ui.widget.UITableView.ClickListener;
 
 public class SettingActivity extends Activity {
 
-<<<<<<< HEAD
 	private ProgressDialog progDialog = null;
-	UITableView tableView;
-=======
 	private UITableView tableView;
 	private ImageView title_bar_menu_btn=null;
->>>>>>> 7876dc7b2cff82b7b9c708e7443ad9963b150e51
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {

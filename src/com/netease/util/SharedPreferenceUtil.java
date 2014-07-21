@@ -14,6 +14,10 @@ public class SharedPreferenceUtil {
 		sp = sps;
 	}
 	
+	public static SharedPreferences getSharedPreferences() {
+		return sp;
+	}
+	
 	public static void saveAccount(String username, String location, float score,
 			String completed_act_id, String uncompleted_act_id,
 			String sex, String imageBase64, String label) {

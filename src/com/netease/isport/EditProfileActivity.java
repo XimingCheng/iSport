@@ -15,6 +15,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -32,7 +33,6 @@ import android.widget.Toast;
 import br.com.dina.ui.activity.UITableViewActivity;
 import br.com.dina.ui.model.ViewItem;
 import br.com.dina.ui.widget.UITableView.ClickListener;
-
 import com.netease.util.MD5util;
 import com.netease.util.PostandGetConnectionUtil;
 import com.netease.util.RoundImageUtil;
@@ -126,7 +126,7 @@ public class EditProfileActivity extends UITableViewActivity {
 				    	HttpResponse httpResponse=null;
 				    	List<NameValuePair> list=new ArrayList<NameValuePair>();
 				    	String sexMsg[] = new String[] {"M", "F"};
-				    	String out_sex = sexMsg[which_gender];
+				    	String out_sex = sexMsg[which];
 						list.add(new BasicNameValuePair("sex",out_sex));
 						PostandGetConnectionUtil.setParm(list);
 						try {
@@ -135,13 +135,16 @@ public class EditProfileActivity extends UITableViewActivity {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						if(PostandGetConnectionUtil.responseCode(httpResponse) == 200){
+						if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse) == 200){
 							String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
 				            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 				            JsonRet o = new DecodeJson().jsonRet(message);
 				            if(o.getRet().equals("ok")) {
 				            	getUITableView().setSubTitle(index, gender);
 				            	which_gender = which;
+				            	SharedPreferences.Editor editor = SharedPreferenceUtil.getSharedPreferences().edit();
+				            	editor.putString("sex", sexMsg[which_gender]);
+				            	editor.commit();
 				            	ToastUtil.show(getApplicationContext(), "修改性别成功！");
 				            } else {
 				            	ToastUtil.show(getApplicationContext(), "修改性别失败了啊啊啊啊啊！");
@@ -172,12 +175,15 @@ public class EditProfileActivity extends UITableViewActivity {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							if(PostandGetConnectionUtil.responseCode(httpResponse) == 200){
+							if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse) == 200){
 								String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
 					            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 					            JsonRet o = new DecodeJson().jsonRet(message);
 					            if(o.getRet().equals("ok")) {
 					            	getUITableView().setSubTitle(index, mLable);
+					            	SharedPreferences.Editor editor = SharedPreferenceUtil.getSharedPreferences().edit();
+					            	editor.putString("label", mLable);
+					            	editor.commit();
 					            	ToastUtil.show(getApplicationContext(), "修改签名档成功！");
 					            } else {
 					            	ToastUtil.show(getApplicationContext(), "修改签名档失败了啊啊啊啊啊！");

@@ -140,6 +140,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	boolean synloginInfo() throws URISyntaxException {
 		if( SharedPreferenceUtil.isLogin() ) {
 			HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl);
+			if (PostandGetConnectionUtil.responseCode(res) != 200)
+				return false;
 			String json_str = PostandGetConnectionUtil.GetResponseMessage(res);
 			if(json_str.length() != 0) {
 				JsonInfoResult o = new DecodeJson().jsonInfo(json_str);

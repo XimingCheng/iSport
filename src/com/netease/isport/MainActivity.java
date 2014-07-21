@@ -48,6 +48,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private TextView  option_submit_act;
 	static final private int LoginId = 1;
 	static final private int LogoutId = 2;
+	static final private int setImage = 3;
+	static final private int useProfile = 4;
 
 	private TextView  option_search_act,option_edit_profile;
 	private TextView  option_setting;
@@ -83,7 +85,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		try {
 			if( !synloginInfo() ) {
 				SharedPreferenceUtil.setLogin(false);
-				mSlideMenu.lock();
+				//mSlideMenu.lock();
 			}
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -140,6 +142,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	boolean synloginInfo() throws URISyntaxException {
 		if( SharedPreferenceUtil.isLogin() ) {
 			HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl);
+			if (PostandGetConnectionUtil.responseCode(res) != 200)
+				return false;
 			String json_str = PostandGetConnectionUtil.GetResponseMessage(res);
 			if(json_str.length() != 0) {
 				JsonInfoResult o = new DecodeJson().jsonInfo(json_str);
@@ -236,12 +240,12 @@ public class MainActivity extends Activity implements OnClickListener {
 				   }
 				   case R.id.user_image:{
 					   intent.setClass(MainActivity.this,UserProfileActivity.class);
-					   startActivity(intent); 
+					   startActivityForResult(intent, useProfile); 
 					   break;
 				   }
 				   case R.id.option_edit_profile:{
 					   intent.setClass(MainActivity.this,EditProfileActivity.class);
-					   startActivity(intent); 
+					   startActivityForResult(intent, setImage); 
 					   break;
 				   }
 				   case R.id.option_settings: {
@@ -289,17 +293,23 @@ public class MainActivity extends Activity implements OnClickListener {
 		if(LoginId == requestCode && RESULT_OK == resultCode) {
 			try {
 				synloginInfo();
-				mSlideMenu.unlock();
+				//mSlideMenu.unlock();
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			refresh_ctrl();
 		} else if (LogoutId == requestCode && RESULT_OK == resultCode) {
-			mSlideMenu.lock();
+			//mSlideMenu.lock();
 			mUserImage.setImageBitmap(mDefaultBit);
 			TextView nametx = (TextView) findViewById(R.id.user_name);
-			nametx.setText("蒹葭苍苍 白露为霜");
+			nametx.setText("没有登录的用户");
+		} else if(setImage == requestCode && RESULT_OK == resultCode) {
+			String imageBase64 = sp.getString("imageBase64", "");
+			byte[] base64Bytes = Base64.decode(imageBase64.getBytes(), Base64.DEFAULT);
+			ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
+			Bitmap bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(bais));
+			mUserImage.setImageBitmap(bitmap);
 		}
 	}
 }

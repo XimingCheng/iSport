@@ -110,10 +110,9 @@ public class LoginActivity extends Activity implements OnClickListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(PostandGetConnectionUtil.responseCode(httpResponse) == 200){
+		if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse) == 200){
 			String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-            dissmissProgressDialog();
             JsonRet o = new DecodeJson().jsonRet(message);
             if(o.getRet().equals("ok")) {
             	SharedPreferenceUtil.setLogin(true);
@@ -126,5 +125,6 @@ public class LoginActivity extends Activity implements OnClickListener{
 		} else {
 			ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
 		}
+		dissmissProgressDialog();
 	}
 }

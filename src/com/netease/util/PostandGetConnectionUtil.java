@@ -1,5 +1,6 @@
 package com.netease.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.CookieStore;
@@ -9,15 +10,23 @@ import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.FileEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
-
 import android.net.ParseException;
 
 public class PostandGetConnectionUtil {
@@ -28,11 +37,13 @@ public class PostandGetConnectionUtil {
 	public final static String getinfoUrl = "http://efly.freeshell.ustc.edu.cn:54322/getinfo/";
 	public final static String mediaUrlBase = "http://efly.freeshell.ustc.edu.cn:54322/media/";
 	public final static String publicUrl="http://efly.freeshell.ustc.edu.cn:54322/public/";
-	
+	public final static String editsexUrl = "http://efly.freeshell.ustc.edu.cn:54322/edit_sex/";
+	public final static String editlabelUrl = "http://efly.freeshell.ustc.edu.cn:54322/edit_label/";
+	public final static String uploadUrl = "http://efly.freeshell.ustc.edu.cn:54322/photo_upload/";
 	static List<NameValuePair> list=null;
 	
 	public static void setParm(List<NameValuePair> parm){
-		list=parm;
+		list = parm;
 	}
 	
 	public static HttpResponse getConnect(String url) throws URISyntaxException {
@@ -50,9 +61,24 @@ public class PostandGetConnectionUtil {
 		return httpResponse;
 	}
 	
+	public static HttpResponse postFile(String url, String image_path) throws ClientProtocolException, IOException {
+		HttpResponse response = null;
+		FileBody bin = null;
+		HttpPost httppost = new HttpPost(url);
+		File file = new File(image_path);
+        if(file != null) {
+            bin = new FileBody(file);
+        }
+        MultipartEntity reqEntity = new MultipartEntity();
+        reqEntity.addPart("photo", bin);
+        httppost.setEntity(reqEntity);
+        response = httpclient.execute(httppost);
+		return response;
+	}
+	
 	public static HttpResponse postConnect(String url) throws URISyntaxException {
 		HttpPost httpRequest = new HttpPost(new URI(url));
-		if(list != null) {
+		if(list != null && list.size() > 0) {
 			HttpEntity httpentity = null;
 	        try {
 	            httpentity = new UrlEncodedFormEntity(list,"utf8");
@@ -92,4 +118,6 @@ public class PostandGetConnectionUtil {
 		}
 		   return message;
 	}
+	
+	
 }

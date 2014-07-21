@@ -1,13 +1,12 @@
 package com.netease.isport;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import org.apache.http.HttpResponse;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +21,7 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private LinearLayout mUserProfileLayout;
 	private ImageView mUserImage,cat_basketball,cat_football,cat_pingpang,cat_badminton,cat_running;
 	private TextView  option_submit_act;
+	static final private int LoginId = 1;
 
 	private TextView  option_search_act,option_edit_profile;
 	private TextView  option_setting;
@@ -85,7 +86,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gaoyuanyuan);
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.user_photo);
 		
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
 				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
@@ -116,8 +117,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			 }
 		});
 
-		Bitmap output = RoundImageUtil.toRoundCorner(bitmap);
-		//mUserImage.setImageBitmap(output);
+		//Bitmap output = RoundImageUtil.toRoundCorner(bitmap);
+		mUserImage.setImageBitmap(bitmap);
+		refresh_ctrl();
 		menuImg.setOnClickListener(this);
 		option_edit_profile.setOnClickListener(this);
 		option_submit_act.setOnClickListener(this);
@@ -147,10 +149,10 @@ public class MainActivity extends Activity implements OnClickListener {
 						URL url_image = new URL(image_location);  
 						InputStream is = url_image.openStream();  
 						Bitmap bitmap  = BitmapFactory.decodeStream(is);
-						bitmap.compress(CompressFormat.JPEG, 0, baos);
+						bitmap.compress(CompressFormat.JPEG, 100, baos);
 						imageBase64 = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
 						is.close();
-					} catch(Exception e) {  
+					} catch(Exception e) {
 			            e.printStackTrace();  
 			        } 
 					SharedPreferenceUtil.saveAccount(o.getUsername(), o.getLocation(),
@@ -166,13 +168,28 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 	
+	private void refresh_ctrl() {
+		if( SharedPreferenceUtil.isLogin() ) {
+			String username = sp.getString("username", "");
+			String imageBase64 = sp.getString("imageBase64", "");
+			if(username.length() != 0 || imageBase64.length() != 0) {
+				TextView nametx = (TextView) findViewById(R.id.user_name);
+				nametx.setText(username);
+				byte[] base64Bytes = Base64.decode(imageBase64.getBytes(), Base64.DEFAULT);
+				ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
+				Bitmap bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(bais));
+				mUserImage.setImageBitmap(bitmap);
+			}
+		}
+	}
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		   Intent intent = new Intent();
-		   if(SharedPreferenceUtil.isLogin()){
+		   if(!SharedPreferenceUtil.isLogin()){
 		    	intent.setClass(MainActivity.this, LoginActivity.class);
-		    	startActivity(intent);
+		    	startActivityForResult(intent,LoginId);
 		   } else {
 			   switch(v.getId()) {
 				   case R.id.slide_menu:{
@@ -259,9 +276,21 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 	
     @Override  
-    protected void onStop() {  
-        super.onStop();  
+    protected void onStop() {
+        super.onStop();
         mSlideMenu.closeMenu();
-    } 
-	
+    }
+    
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(LoginId == requestCode && RESULT_OK == resultCode) {
+			try {
+				synloginInfo();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			refresh_ctrl();
+		}
+	}
 }

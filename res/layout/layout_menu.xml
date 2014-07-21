@@ -32,6 +32,7 @@
 		    android:layout_height="40dip" >
 
 			<TextView
+			    android:id="@+id/user_name"
 			    android:layout_height="40dip"
 			    android:layout_width="match_parent"
 			    android:gravity="center"

@@ -117,6 +117,7 @@ public class LoginActivity extends Activity implements OnClickListener{
             if(o.getRet().equals("ok")) {
             	SharedPreferenceUtil.setLogin(true);
             	ToastUtil.show(getApplicationContext(), "µÇÂ¼³É¹¦£¡");
+            	setResult(RESULT_OK, intent);
             	LoginActivity.this.finish();
             } else {
             	ToastUtil.show(getApplicationContext(), "µÇÂ¼Ê§°ÜÁË°¡°¡°¡°¡°¡£¡");

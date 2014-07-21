@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -27,10 +28,20 @@ public class EditProfileActivity extends UITableViewActivity {
 	private EditText mEditLabel;
 	String gender;
 	String label  = "一枝红杏出墙来 不如自挂东南枝";
+	private ImageView title_bar_menu_btn;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        title_bar_menu_btn=(ImageView)findViewById(R.id.title_bar_menu_btn);
+        title_bar_menu_btn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				EditProfileActivity.this.finish();
+			}
+		});
         CustomClickListener listener = new CustomClickListener();
         getUITableView().setClickListener(listener);
     }

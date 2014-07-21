@@ -1,13 +1,16 @@
 package com.netease.isport;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.app.AlertDialog;
@@ -19,6 +22,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -35,6 +39,8 @@ import android.widget.Toast;
 import br.com.dina.ui.activity.UITableViewActivity;
 import br.com.dina.ui.model.ViewItem;
 import br.com.dina.ui.widget.UITableView.ClickListener;
+
+import com.netease.util.GetIntentInstance;
 import com.netease.util.MD5util;
 import com.netease.util.PostandGetConnectionUtil;
 import com.netease.util.RoundImageUtil;
@@ -216,36 +222,49 @@ public class EditProfileActivity extends UITableViewActivity {
 			 String img_path = actualimagecursor.getString(actual_image_column_index);
 			 
 			 HttpResponse httpResponse=null;
-			 httpResponse = PostandGetConnectionUtil.doFileUpload(img_path);
-			 if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse) == 200){
+			 try {
+				httpResponse = PostandGetConnectionUtil.postFile(PostandGetConnectionUtil.uploadUrl, img_path);
+			} catch (ClientProtocolException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse) == 200){
 					String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
 		            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 		            JsonRet o = new DecodeJson().jsonRet(message);
 		            if(o.getRet().equals("ok")) {
-		            	SharedPreferenceUtil.setLogin(true);
+		            	Bitmap bmp = null;
+		   			 	ContentResolver cr = this.getContentResolver();   
+		   			 	try {
+		   			 		bmp = BitmapFactory.decodeStream(cr.openInputStream(uri));
+		   			 	} catch (FileNotFoundException e) {
+		   			 		// TODO Auto-generated catch block
+		   			 		e.printStackTrace();
+		   			 	}
+		   			 	if(bmp != null) {
+		   			 		Bitmap output = RoundImageUtil.toRoundCorner(RoundImageUtil.
+		   			    		 resizeImage(bmp, 100, 100));
+		   			 		mUserImage.setImageBitmap(output);
+		   			 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		   			 		output.compress(CompressFormat.JPEG, 100, baos);
+		   			 		String imageBase64 = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
+		   			 		SharedPreferences sp = SharedPreferenceUtil.getSharedPreferences();
+		   			 		SharedPreferences.Editor editor = sp.edit();
+		   			 		editor.putString("imageBase64", imageBase64);
+		   			 		editor.commit();
+		   			 	}
+		   			 	setResult(RESULT_OK, GetIntentInstance.getIntent());
 		            	ToastUtil.show(getApplicationContext(), "上传成功！");
-		            	this.finish();
 		            } else {
 		            	ToastUtil.show(getApplicationContext(), "上传失败了啊啊啊啊啊！");
 		            }
 				} else {
 					ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
-				}
-			 
-			 Bitmap bmp = null;
-			 ContentResolver cr = this.getContentResolver();   
-		     try {
-	            bmp = BitmapFactory.decodeStream(cr.openInputStream(uri));
-		     } catch (FileNotFoundException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-		     }
-		     if(bmp != null) {
-			     Bitmap output = RoundImageUtil.toRoundCorner(RoundImageUtil.
-			    		 resizeImage(bmp, 100, 100));
-			     mUserImage.setImageBitmap(output);
-		     }
-	         break;
+			}
+	        break;
 		 }
 	}
 

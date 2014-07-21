@@ -18,10 +18,15 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.FileEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
-
 import android.net.ParseException;
 
 public class PostandGetConnectionUtil {
@@ -54,6 +59,21 @@ public class PostandGetConnectionUtil {
 		    e.printStackTrace();
 		}
 		return httpResponse;
+	}
+	
+	public static HttpResponse postFile(String url, String image_path) throws ClientProtocolException, IOException {
+		HttpResponse response = null;
+		FileBody bin = null;
+		HttpPost httppost = new HttpPost(url);
+		File file = new File(image_path);
+        if(file != null) {
+            bin = new FileBody(file);
+        }
+        MultipartEntity reqEntity = new MultipartEntity();
+        reqEntity.addPart("photo", bin);
+        httppost.setEntity(reqEntity);
+        response = httpclient.execute(httppost);
+		return response;
 	}
 	
 	public static HttpResponse postConnect(String url) throws URISyntaxException {
@@ -98,38 +118,6 @@ public class PostandGetConnectionUtil {
 		}
 		   return message;
 	}
-	public static HttpResponse doFileUpload(String path){
-		httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-
-	    HttpPost httppost = new HttpPost(uploadUrl);
-	    File file = new File(path);
-
-	    FileEntity reqEntity = new FileEntity(file, "photo");
-
-	    httppost.setEntity(reqEntity);
-	    //reqEntity.setContentType("binary/octet-stream");
-	    System.out.println("executing request " + httppost.getRequestLine());
-	    HttpResponse response = null;
-		try {
-			response = httpclient.execute(httppost);
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return response;
-//	    HttpEntity resEntity = response.getEntity();
-//
-//	    System.out.println(response.getStatusLine());
-//	    if (resEntity != null) {
-//	      System.out.println(EntityUtils.toString(resEntity));
-//	    }
-//	    if (resEntity != null) {
-//	      resEntity.consumeContent();
-//	    }
-//
-//	    httpclient.getConnectionManager().shutdown();
-	}
+	
+	
 }

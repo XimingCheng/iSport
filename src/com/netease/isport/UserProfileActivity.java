@@ -166,18 +166,18 @@ public class UserProfileActivity extends Activity
 				UserProfileActivity.this.finish();
 				break;
 			}
-			case R.id.change_photo:
-//				if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-//				    startActivityForResult(fileChooserIntent , REQUEST_CODE);
-//		    	else
-//		    		toast(getText(R.string.sdcard_unmonted_hint));
-				Intent intent = new Intent();
-			    intent.setType("image/*");
-			    intent.setAction(Intent.ACTION_GET_CONTENT);
-			    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-			    startActivityForResult(Intent.createChooser(intent,
-			            "选择一张图片作为头像"), REQUEST_CODE);
-				break;
+//			case R.id.change_photo:
+////				if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+////				    startActivityForResult(fileChooserIntent , REQUEST_CODE);
+////		    	else
+////		    		toast(getText(R.string.sdcard_unmonted_hint));
+//				Intent intent = new Intent();
+//			    intent.setType("image/*");
+//			    intent.setAction(Intent.ACTION_GET_CONTENT);
+//			    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+//			    startActivityForResult(Intent.createChooser(intent,
+//			            "选择一张图片作为头像"), REQUEST_CODE);
+//				break;
 			case R.id.edit_user_profle:
 				Intent intent2 = new Intent();
 				intent2.setClass(UserProfileActivity.this, EditProfileActivity.class);

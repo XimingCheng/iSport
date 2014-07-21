@@ -41,11 +41,13 @@ import com.netease.util.RoundImageUtil;
 import com.netease.util.SharedPreferenceUtil;
 
 public class MainActivity extends Activity implements OnClickListener {
+	private Bitmap mDefaultBit;
 	private SlideMenu mSlideMenu;
 	private LinearLayout mUserProfileLayout;
 	private ImageView mUserImage,cat_basketball,cat_football,cat_pingpang,cat_badminton,cat_running;
 	private TextView  option_submit_act;
 	static final private int LoginId = 1;
+	static final private int LogoutId = 2;
 
 	private TextView  option_search_act,option_edit_profile;
 	private TextView  option_setting;
@@ -81,23 +83,24 @@ public class MainActivity extends Activity implements OnClickListener {
 		try {
 			if( !synloginInfo() ) {
 				SharedPreferenceUtil.setLogin(false);
+				mSlideMenu.lock();
 			}
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.user_photo);
+		mDefaultBit = BitmapFactory.decodeResource(getResources(), R.drawable.user_photo);
 		
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", mDefaultBit));
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", mDefaultBit));
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串",bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串",bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
 		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串",bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
 
 		// set the array adapter to use the above array list and tell the listview to set as the adapter
 	    // our custom adapter
@@ -118,7 +121,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		});
 
 		//Bitmap output = RoundImageUtil.toRoundCorner(bitmap);
-		mUserImage.setImageBitmap(bitmap);
+		mUserImage.setImageBitmap(mDefaultBit);
 		refresh_ctrl();
 		menuImg.setOnClickListener(this);
 		option_edit_profile.setOnClickListener(this);
@@ -243,7 +246,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				   }
 				   case R.id.option_settings: {
 					   intent.setClass(MainActivity.this,SettingActivity.class);
-					   startActivity(intent); 
+					   startActivityForResult(intent, LogoutId);
 					   break;
 				   }
 				   case R.id.cat_basketball:{
@@ -286,11 +289,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		if(LoginId == requestCode && RESULT_OK == resultCode) {
 			try {
 				synloginInfo();
+				mSlideMenu.unlock();
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			refresh_ctrl();
+		} else if (LogoutId == requestCode && RESULT_OK == resultCode) {
+			mSlideMenu.lock();
+			mUserImage.setImageBitmap(mDefaultBit);
+			TextView nametx = (TextView) findViewById(R.id.user_name);
+			nametx.setText("蒹葭苍苍 白露为霜");
 		}
 	}
 }

@@ -1,14 +1,13 @@
 package com.netease.isport;
 
 import java.net.URISyntaxException;
-
 import org.apache.http.HttpResponse;
 
+import com.netease.util.GetIntentInstance;
 import com.netease.util.NetWorkUtil;
 import com.netease.util.PostandGetConnectionUtil;
 import com.netease.util.SharedPreferenceUtil;
 import com.netease.util.ToastUtil;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -104,6 +103,7 @@ public class SettingActivity extends Activity {
 		            if(o.getRet().equals("ok")) {
 		            	SharedPreferenceUtil.setLogin(false);
 		            	ToastUtil.show(getApplicationContext(), "ÍË³öµÇÂ¼³É¹¦£¡");
+		            	setResult(RESULT_OK, GetIntentInstance.getIntent());
 		            	SettingActivity.this.finish();
 		            } else {
 		            	ToastUtil.show(getApplicationContext(), "ÍË³öµÇÂ¼Ê§°ÜÁË°¡°¡°¡°¡°¡£¡");

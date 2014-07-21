@@ -21,7 +21,7 @@
 		        android:layout_width="70dip"
 		        android:layout_height="70dip"
 		        android:gravity="center_horizontal"
-		        android:layout_marginLeft="80dip"
+		        android:layout_marginLeft="85dip"
 		        android:layout_marginTop="10dip"
 		        android:layout_marginBottom="10dip"
 		        android:id="@+id/user_image" >
@@ -36,7 +36,7 @@
 			    android:layout_height="40dip"
 			    android:layout_width="match_parent"
 			    android:gravity="center"
-			    android:text="蒹葭苍苍  白露为霜"
+			    android:text="没有登录的用户"
 			    android:textColor="#ff959595"
 			    android:textSize="14.0sp"
 			    android:textStyle="bold" >

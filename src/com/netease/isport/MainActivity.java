@@ -49,6 +49,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	static final private int LoginId = 1;
 	static final private int LogoutId = 2;
 	static final private int setImage = 3;
+	static final private int useProfile = 4;
 
 	private TextView  option_search_act,option_edit_profile;
 	private TextView  option_setting;
@@ -84,7 +85,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		try {
 			if( !synloginInfo() ) {
 				SharedPreferenceUtil.setLogin(false);
-				mSlideMenu.lock();
+				//mSlideMenu.lock();
 			}
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -239,7 +240,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				   }
 				   case R.id.user_image:{
 					   intent.setClass(MainActivity.this,UserProfileActivity.class);
-					   startActivity(intent); 
+					   startActivityForResult(intent, useProfile); 
 					   break;
 				   }
 				   case R.id.option_edit_profile:{
@@ -292,14 +293,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		if(LoginId == requestCode && RESULT_OK == resultCode) {
 			try {
 				synloginInfo();
-				mSlideMenu.unlock();
+				//mSlideMenu.unlock();
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			refresh_ctrl();
 		} else if (LogoutId == requestCode && RESULT_OK == resultCode) {
-			mSlideMenu.lock();
+			//mSlideMenu.lock();
 			mUserImage.setImageBitmap(mDefaultBit);
 			TextView nametx = (TextView) findViewById(R.id.user_name);
 			nametx.setText("没有登录的用户");

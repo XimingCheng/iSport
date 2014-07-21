@@ -27,6 +27,7 @@ public class PostandGetConnectionUtil {
 	public final static String logoutUrl = "http://efly.freeshell.ustc.edu.cn:54322/logout/";
 	public final static String getinfoUrl = "http://efly.freeshell.ustc.edu.cn:54322/getinfo/";
 	public final static String mediaUrlBase = "http://efly.freeshell.ustc.edu.cn:54322/media/";
+	public final static String publicUrl="http://efly.freeshell.ustc.edu.cn:54322/public/";
 	
 	static List<NameValuePair> list=null;
 	

@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 public class DateAndTimeUtil {
 	
-	    final static SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
-	    final static SimpleDateFormat timeFormat = new SimpleDateFormat("hh时mm分");
+	    final static SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+	    final static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 	    static TextView timeLabel;
 	    static TextView dateAndTimeLabel;
 	    static Calendar dateAndTime = Calendar.getInstance(Locale.CHINA);

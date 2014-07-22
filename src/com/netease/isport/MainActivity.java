@@ -351,26 +351,36 @@ public class MainActivity<TimeTask> extends Activity implements OnClickListener 
 				   }
 				   case R.id.cat_basketball:{
 					   intent.setClass(MainActivity.this,ResultListActivity.class);
+					   intent.putExtra("class_act", "ÀºÇò");
+					   intent.putExtra("flag",0);
 					   startActivity(intent); 
 					   break;
 				   }
 				   case R.id.cat_football:{
 					   intent.setClass(MainActivity.this,ResultListActivity.class);
+					   intent.putExtra("class_act", "×ãÇò");
+					   intent.putExtra("flag",0);
 					   startActivity(intent); 
 					   break;
 				   }
 				   case R.id.cat_pingpang:{
 					   intent.setClass(MainActivity.this,ResultListActivity.class);
+					   intent.putExtra("class_act", "Æ¹ÅÒÇò");
+					   intent.putExtra("flag",0);
 					   startActivity(intent); 
 					   break;
 				   }
 				   case R.id.cat_badminton:{
 					   intent.setClass(MainActivity.this,ResultListActivity.class);
+					   intent.putExtra("class_act", "ÓðÃ«Çò");
+					   intent.putExtra("flag",0);
 					   startActivity(intent); 
 					   break;
 				   }
 				   case R.id.cat_running:{
 					   intent.setClass(MainActivity.this,ResultListActivity.class);
+					   intent.putExtra("class_act", "ÅÜ²½");
+					   intent.putExtra("flag",0);
 					   startActivity(intent); 
 					   break;
 				   }

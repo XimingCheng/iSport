@@ -8,9 +8,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import org.apache.http.HttpResponse;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
@@ -27,6 +32,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -311,7 +317,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			mUserImage.setImageBitmap(mDefaultBit);
 			TextView nametx = (TextView) findViewById(R.id.user_name);
 			nametx.setText("没有登录的用户");
-		} else if(setImage == requestCode && RESULT_OK == resultCode) {
+		} else if (LogoutId == requestCode && RESULT_CANCELED == resultCode) {
+			MainActivity.this.finish();
+		} 
+		else if(setImage == requestCode && RESULT_OK == resultCode) {
 			String imageBase64 = sp.getString("imageBase64", "");
 			byte[] base64Bytes = Base64.decode(imageBase64.getBytes(), Base64.DEFAULT);
 			ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
@@ -319,4 +328,30 @@ public class MainActivity extends Activity implements OnClickListener {
 			mUserImage.setImageBitmap(bitmap);
 		}
 	}
+	public boolean onKeyDown(int keyCode, KeyEvent event) {  
+        PackageManager pm = getPackageManager();  
+        ResolveInfo homeInfo = 
+            pm.resolveActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME), 0); 
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            ActivityInfo ai = homeInfo.activityInfo;  
+            Intent startIntent = new Intent(Intent.ACTION_MAIN);  
+            startIntent.addCategory(Intent.CATEGORY_LAUNCHER);  
+            startIntent.setComponent(new ComponentName(ai.packageName, ai.name));  
+            startActivitySafely(startIntent);  
+            return true;  
+        } else  
+            return super.onKeyDown(keyCode, event);  
+    }
+    private void startActivitySafely(Intent intent) {  
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
+        try {  
+            startActivity(intent);  
+        } catch (ActivityNotFoundException e) {  
+            Toast.makeText(this, "null",  
+                    Toast.LENGTH_SHORT).show();  
+        } catch (SecurityException e) {  
+            Toast.makeText(this, "null",  
+                    Toast.LENGTH_SHORT).show();   
+        }  
+    }
 }

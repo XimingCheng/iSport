@@ -178,8 +178,8 @@
             android:drawableLeft="@drawable/location"
           >
           </TextView> -->
-      <TextView
-        android:id="@+id/adress"
+      <AutoCompleteTextView
+        android:id="@+id/address"
         
         android:layout_width="fill_parent"
         android:layout_height="35dp"

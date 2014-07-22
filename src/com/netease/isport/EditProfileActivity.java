@@ -226,7 +226,7 @@ public class EditProfileActivity extends UITableViewActivity {
 			 Bitmap bitmap = BitmapFactory.decodeFile(img_path, options); // 此时返回的bitmap为null   
 		     int wideth = options.outWidth;
 		     int height = options.outHeight;
-		     if(wideth>400||height>400)
+		     if(wideth>100||height>100)
 		     {
 		    	 ToastUtil.show(getApplicationContext(), "图片太大会爆炸哦么么哒");
 		    	 break;

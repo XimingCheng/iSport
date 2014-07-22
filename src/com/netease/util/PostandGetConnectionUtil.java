@@ -51,6 +51,7 @@ public class PostandGetConnectionUtil {
 	}
 	
 	public static HttpResponse getConnect(String url,List<NameValuePair> list) throws URISyntaxException {
+		url+="?";
 		for(int i=0;i<list.size();i++){
 			NameValuePair pair=list.get(i);
 			if(i<list.size()-1){

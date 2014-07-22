@@ -231,6 +231,11 @@ public class EditProfileActivity extends UITableViewActivity {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			if(null == httpResponse)
+			{
+				ToastUtil.show(getApplicationContext(), "图片太大手机会爆炸！");
+				return;
+			}
 			if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse) == 200){
 					String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
 		            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();

@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import android.content.ContextWrapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -28,6 +29,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import android.net.ParseException;
+import android.widget.Toast;
 
 public class PostandGetConnectionUtil {
 	private static HttpClient httpclient = new DefaultHttpClient();
@@ -66,6 +68,8 @@ public class PostandGetConnectionUtil {
 		FileBody bin = null;
 		HttpPost httppost = new HttpPost(url);
 		File file = new File(image_path);
+		if(file.length()>819200)
+			return response;
         if(file != null) {
             bin = new FileBody(file);
         }

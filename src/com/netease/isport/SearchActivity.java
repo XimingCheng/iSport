@@ -46,8 +46,8 @@ public class SearchActivity extends Activity implements OnClickListener{
     private ArrayAdapter<String> adapter;
     
     /*   处理日历       */
-    SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
-    SimpleDateFormat timeFormat = new SimpleDateFormat("hh时mm分");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
     //定义一个TextView控件对象
     TextView dateAndTimeLabel,timeLabel = null;
     //获取一个日历对象
@@ -171,10 +171,11 @@ public class SearchActivity extends Activity implements OnClickListener{
 		 String time_act=time.getText().toString();
 		 String address_act=address.getText().toString();
 		 List<NameValuePair> list=new ArrayList<NameValuePair>();
+		 date_act=date_act.replace('/', '_');
 		 list.add(new BasicNameValuePair("date_act",date_act));
 	     list.add(new BasicNameValuePair("time_act",time_act));
 		 list.add(new BasicNameValuePair("class_act",class_act));
-		 list.add(new BasicNameValuePair("adress_act", address_act));
+		 list.add(new BasicNameValuePair("address_act", address_act));
 		try {
 			httpResponse = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.searchUrl,list);
 		} catch (URISyntaxException e) {

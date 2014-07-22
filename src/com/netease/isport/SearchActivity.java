@@ -1,36 +1,48 @@
 package com.netease.isport;
 
-import java.text.DateFormat;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 import com.netease.util.GetIntentInstance;
 import com.netease.util.MyAdapter;
+import com.netease.util.PostandGetConnectionUtil;
+import com.netease.util.ToastUtil;
 
 public class SearchActivity extends Activity implements OnClickListener{
    // Button button=null;
     private TextView date,time;
+    private AutoCompleteTextView address;
     private ImageView imageView;
     private Button button;
     private Spinner spinner;
+    private String class_act;
     private ArrayAdapter<String> adapter;
     
     /*   处理日历       */
@@ -80,10 +92,12 @@ public class SearchActivity extends Activity implements OnClickListener{
 		button=(Button) findViewById(R.id.search);         //搜索框
 		date=(TextView)findViewById(R.id.date);
 		time=(TextView)findViewById(R.id.time);
+		address=(AutoCompleteTextView)findViewById(R.id.address);
 		imageView=(ImageView) findViewById(R.id.title_bar_menu_btn);
 		
 		date.setOnClickListener(this);
 		time.setOnClickListener(this);
+		address.setOnClickListener(this);
 		
 		String[] mItems = getResources().getStringArray(R.array.planets_arry);
 		MyAdapter _Adapter=new MyAdapter(this,mItems);
@@ -91,7 +105,7 @@ public class SearchActivity extends Activity implements OnClickListener{
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 	    		@Override
 	    		public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
-	    			   String str=parent.getItemAtPosition(position).toString();
+	    			 class_act=parent.getItemAtPosition(position).toString();
 	    	    	}
 	    		@Override
 	    		public void onNothingSelected(AdapterView<?> parent) {
@@ -114,6 +128,7 @@ public class SearchActivity extends Activity implements OnClickListener{
 		switch(v.getId()) {
 			case R.id.search :{
 				//搜索业务逻辑
+				search();
 				break;
 			}
 			case R.id.title_bar_menu_btn : {
@@ -136,7 +151,9 @@ public class SearchActivity extends Activity implements OnClickListener{
 	                        dateAndTime.get(Calendar.MINUTE),
 	                        true).show();
 	            }
-	        });}
+	        });
+			  break;
+			}
 		}
 	}
 	
@@ -148,4 +165,34 @@ public class SearchActivity extends Activity implements OnClickListener{
 		//timeFormat.format(dateAndTime.getTime());
 		time.setText(timeFormat.format(dateAndTime.getTime()));
 	}
+	private void search(){
+		HttpResponse httpResponse=null;
+		 String date_act=date.getText().toString();
+		 String time_act=time.getText().toString();
+		 String address_act=address.getText().toString();
+		 List<NameValuePair> list=new ArrayList<NameValuePair>();
+		 list.add(new BasicNameValuePair("date_act",date_act));
+	     list.add(new BasicNameValuePair("time_act",time_act));
+		 list.add(new BasicNameValuePair("class_act",class_act));
+		 list.add(new BasicNameValuePair("adress_act", address_act));
+		try {
+			httpResponse = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.searchUrl,list);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(httpResponse!=null&&PostandGetConnectionUtil.responseCode(httpResponse)== 200){
+			String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            JsonRet o = new DecodeJson().jsonRet(message);
+            if(o.getRet().equals("ok")) {
+            	SearchActivity.this.finish();
+            } else {
+            	ToastUtil.show(getApplicationContext(), "搜索失败");
+            }
+		} else {
+			ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
+		}
+	}
 }
+

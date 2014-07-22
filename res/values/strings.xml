@@ -28,11 +28,13 @@
       <string-array name="planets_arry"> 
         <item>篮球</item> 
         <item>足球</item> 
+        <item>乒乓球</item>
+        <item>羽毛球</item> 
+        <item>跑步</item> 
         <item>自行车</item> 
         <item>游泳</item> 
         <item>瑜伽</item> 
-        <item>跑步</item> 
         <item>健身</item> 
-        <item>羽毛球</item> 
+        <item>网球</item> 
     </string-array> 
 </resources>

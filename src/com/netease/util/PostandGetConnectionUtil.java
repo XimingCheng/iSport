@@ -45,6 +45,8 @@ public class PostandGetConnectionUtil {
 	public final static String pushUrl = "http://efly.freeshell.ustc.edu.cn:54322/push/";
 	public final static String searchUrl = "http://efly.freeshell.ustc.edu.cn:54322/query/";
 	public final static String getActInfoUrl = "http://efly.freeshell.ustc.edu.cn:54322/getact/";
+	public final static String getCompletedUrl = "http://efly.freeshell.ustc.edu.cn:54322/complete/";
+	public final static String getUnCompletedUrl = "http://efly.freeshell.ustc.edu.cn:54322/uncomplete/";
 	
 	static List<NameValuePair> list=null;
 	
@@ -86,7 +88,7 @@ public class PostandGetConnectionUtil {
 		FileBody bin = null;
 		HttpPost httppost = new HttpPost(url);
 		File file = new File(image_path);
-		if(file.length()>819200)
+		if(file.length()>519200)
 			return response;
         if(file != null) {
             bin = new FileBody(file);

@@ -39,6 +39,7 @@ public class SettingActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				setResult(-2, GetIntentInstance.getIntent());
 				SettingActivity.this.finish();
 			}
 		});

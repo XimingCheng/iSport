@@ -34,5 +34,5 @@ public class RoundImageUtil {
         paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect,rectF, paint);
         return output;
-    }
+    } 
 }

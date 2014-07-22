@@ -1,11 +1,24 @@
 package com.netease.isport;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import com.netease.util.GetIntentInstance;
+import com.netease.util.NetWorkUtil;
+import com.netease.util.PostandGetConnectionUtil;
 import com.netease.util.RoundImageUtil;
 import com.netease.util.SharedPreferenceUtil;
+import com.netease.util.ToastUtil;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -32,6 +45,7 @@ public class UserProfileActivity extends Activity
 	private ImageView mSexImage;
 	private TextView  mUserName;
 	private TextView  mUserLabel;
+	private Bitmap    mDefaultBit;
 	
 	private static final int REQUEST_CODE = 1;//选择文件的返回码
 	//private Intent fileChooserIntent;
@@ -106,30 +120,27 @@ public class UserProfileActivity extends Activity
 		ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
 		Bitmap bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(bais));
 		photoCh.setImageBitmap(bitmap);
+		mDefaultBit = BitmapFactory.decodeResource(getResources(), R.drawable.user_photo);
 		
-		
-		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
-		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
-		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
-		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
-		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
-		
-		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
-		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
-		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
-		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
-		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
-		
+//		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
+//		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
+//		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
+//		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
+//		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
+//		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
+		try {
+			setJobs(PostandGetConnectionUtil.getCompletedUrl, mCompletedItemArray);
+			setJobs(PostandGetConnectionUtil.getUnCompletedUrl, mUnCompletedItemArray);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		mCompletedListAdapter = new ListItemArrayAdapter(UserProfileActivity.this,
 				R.layout.list_item, mCompletedItemArray);
 		mUnCompletedListAdapter = new ListItemArrayAdapter(UserProfileActivity.this,
@@ -140,6 +151,50 @@ public class UserProfileActivity extends Activity
 		mUnCompletedListView.setItemsCanFocus(false);
 		mCompletedListView.setAdapter(mCompletedListAdapter);
 		mUnCompletedListView.setAdapter(mUnCompletedListAdapter);
+	}
+	
+	void setJobs(String url, ArrayList<ListItem> itemArray) throws URISyntaxException {
+		if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
+			ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+			return;
+		}
+		List<NameValuePair> list=new ArrayList<NameValuePair>();
+		list.add(new BasicNameValuePair("name", (String) mUserName.getText()));
+    	HttpResponse res = PostandGetConnectionUtil.getConnect(url, list);
+		if (PostandGetConnectionUtil.responseCode(res) != 200)
+			return;
+		Toast.makeText(UserProfileActivity.this, 
+				 "setJobs", Toast.LENGTH_LONG).show();
+		String json_str = PostandGetConnectionUtil.GetResponseMessage(res);
+		if(json_str.length() != 0) {
+			JsonPushRet o = new DecodeJson().jsonPush(json_str);
+			itemArray.clear();
+			if(o.getRet().equals("ok")) {
+				int count = o.getCount();
+				for(int i = 0; i < count; i++) {
+					String theme = "主题：" + o.getList().get(i).getTheme();
+					String details = "正文：" + o.getList().get(i).getDetails();
+					String time = "时间：" + o.getList().get(i).getTime();
+					String cnt = "人数："+ o.getList().get(i).getCount();
+					String name = o.getList().get(i).getName();
+					String img = o.getList().get(i).getImg();
+					String id  = o.getList().get(i).getId();
+					Bitmap bitmap = mDefaultBit;
+					String image_location = PostandGetConnectionUtil.mediaUrlBase + img;
+					// get the image from the url
+					try{
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						URL url_image = new URL(image_location);  
+						InputStream is = url_image.openStream();
+						bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(is));
+						is.close();
+					} catch(Exception e) {
+			            e.printStackTrace();  
+			        }
+					itemArray.add(new ListItem(name, theme, time, cnt, details, id, bitmap));
+				}
+			}
+		}
 	}
 	
 	@Override 

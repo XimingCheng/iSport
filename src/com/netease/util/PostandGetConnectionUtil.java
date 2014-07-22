@@ -40,6 +40,8 @@ public class PostandGetConnectionUtil {
 	public final static String editsexUrl = "http://efly.freeshell.ustc.edu.cn:54322/edit_sex/";
 	public final static String editlabelUrl = "http://efly.freeshell.ustc.edu.cn:54322/edit_label/";
 	public final static String uploadUrl = "http://efly.freeshell.ustc.edu.cn:54322/photo_upload/";
+	public final static String pushUrl = "http://efly.freeshell.ustc.edu.cn:54322/push/";
+	
 	static List<NameValuePair> list=null;
 	
 	public static void setParm(List<NameValuePair> parm){

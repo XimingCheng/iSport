@@ -40,10 +40,25 @@ public class PostandGetConnectionUtil {
 	public final static String editsexUrl = "http://efly.freeshell.ustc.edu.cn:54322/edit_sex/";
 	public final static String editlabelUrl = "http://efly.freeshell.ustc.edu.cn:54322/edit_label/";
 	public final static String uploadUrl = "http://efly.freeshell.ustc.edu.cn:54322/photo_upload/";
+	public final static String searchUrl = "http://efly.freeshell.ustc.edu.cn:54322/query/";
+	
 	static List<NameValuePair> list=null;
 	
 	public static void setParm(List<NameValuePair> parm){
 		list = parm;
+	}
+	
+	public static HttpResponse getConnect(String url,List<NameValuePair> list) throws URISyntaxException {
+		for(int i=0;i<list.size();i++){
+			NameValuePair pair=list.get(i);
+			if(i<list.size()-1){
+			   url+=pair.getName()+"="+pair.getValue()+"&";
+			}
+			else{
+				url+=pair.getName()+"="+pair.getValue();
+			}
+		}
+		return getConnect(url);
 	}
 	
 	public static HttpResponse getConnect(String url) throws URISyntaxException {

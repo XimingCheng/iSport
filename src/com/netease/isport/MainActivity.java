@@ -44,7 +44,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Bitmap mDefaultBit;
 	private SlideMenu mSlideMenu;
 	private LinearLayout mUserProfileLayout;
-	private ImageView mUserImage,cat_basketball,cat_football,cat_pingpang,cat_badminton,cat_running;
+	private ImageView mUserImage,cat_basketball,cat_football,cat_pingpang,cat_more,cat_badminton,cat_running;
 	private TextView  option_submit_act;
 	static final private int LoginId = 1;
 	static final private int LogoutId = 2;
@@ -79,6 +79,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		cat_pingpang   =(ImageView)findViewById(R.id.cat_pingpang);
 		cat_badminton  =(ImageView)findViewById(R.id.cat_badminton);
 		cat_running    =(ImageView)findViewById(R.id.cat_running);
+		cat_more       =(ImageView)findViewById(R.id.cat_more);
 		
 		ImageView menuImg = (ImageView) findViewById(R.id.title_bar_menu_btn);
 		
@@ -137,6 +138,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		option_setting.setOnClickListener(this);
 		mUserProfileLayout.setOnClickListener(this);
 		mUserImage.setOnClickListener(this);
+		cat_more.setOnClickListener(this);
 	}
 	
 	boolean synloginInfo() throws URISyntaxException {
@@ -156,7 +158,7 @@ public class MainActivity extends Activity implements OnClickListener {
 						URL url_image = new URL(image_location);  
 						InputStream is = url_image.openStream();  
 						Bitmap bitmap  = BitmapFactory.decodeStream(is);
-						bitmap.compress(CompressFormat.JPEG, 100, baos);
+						bitmap.compress(CompressFormat.PNG, 100, baos);
 						imageBase64 = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
 						is.close();
 					} catch(Exception e) {
@@ -275,6 +277,11 @@ public class MainActivity extends Activity implements OnClickListener {
 				   }
 				   case R.id.cat_running:{
 					   intent.setClass(MainActivity.this,ResultListActivity.class);
+					   startActivity(intent); 
+					   break;
+				   }
+				   case R.id.cat_more:{
+					   intent.setClass(MainActivity.this,SearchActivity.class);
 					   startActivity(intent); 
 					   break;
 				   }

@@ -1,6 +1,5 @@
 package com.netease.isport;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -10,24 +9,26 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
 import com.netease.util.GetIntentInstance;
 import com.netease.util.MyAdapter;
 
 public class SearchActivity extends Activity implements OnClickListener{
    // Button button=null;
     private TextView date,time;
+    private AutoCompleteTextView address;
     private ImageView imageView;
     private Button button;
     private Spinner spinner;
@@ -80,10 +81,12 @@ public class SearchActivity extends Activity implements OnClickListener{
 		button=(Button) findViewById(R.id.search);         //ËÑË÷¿ò
 		date=(TextView)findViewById(R.id.date);
 		time=(TextView)findViewById(R.id.time);
+		address=(AutoCompleteTextView)findViewById(R.id.address);
 		imageView=(ImageView) findViewById(R.id.title_bar_menu_btn);
 		
 		date.setOnClickListener(this);
 		time.setOnClickListener(this);
+		address.setOnClickListener(this);
 		
 		String[] mItems = getResources().getStringArray(R.array.planets_arry);
 		MyAdapter _Adapter=new MyAdapter(this,mItems);
@@ -136,7 +139,9 @@ public class SearchActivity extends Activity implements OnClickListener{
 	                        dateAndTime.get(Calendar.MINUTE),
 	                        true).show();
 	            }
-	        });}
+	        });
+			  break;
+			}
 		}
 	}
 	

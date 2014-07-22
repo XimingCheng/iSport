@@ -158,7 +158,7 @@ public class MainActivity extends Activity implements OnClickListener {
 						URL url_image = new URL(image_location);  
 						InputStream is = url_image.openStream();  
 						Bitmap bitmap  = BitmapFactory.decodeStream(is);
-						bitmap.compress(CompressFormat.JPEG, 100, baos);
+						bitmap.compress(CompressFormat.PNG, 100, baos);
 						imageBase64 = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
 						is.close();
 					} catch(Exception e) {

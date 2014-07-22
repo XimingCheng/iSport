@@ -249,7 +249,7 @@ public class EditProfileActivity extends UITableViewActivity {
 		   			    		 resizeImage(bmp, 100, 100));
 		   			 		mUserImage.setImageBitmap(output);
 		   			 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		   			 		output.compress(CompressFormat.JPEG, 100, baos);
+		   			 		output.compress(CompressFormat.PNG, 100, baos);
 		   			 		String imageBase64 = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
 		   			 		SharedPreferences sp = SharedPreferenceUtil.getSharedPreferences();
 		   			 		SharedPreferences.Editor editor = sp.edit();

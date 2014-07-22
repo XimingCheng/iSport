@@ -1,5 +1,18 @@
 package com.netease.isport;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,8 +23,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.netease.util.GetIntentInstance;
+import com.netease.util.NetWorkUtil;
+import com.netease.util.PostandGetConnectionUtil;
 import com.netease.util.RoundImageUtil;
+import com.netease.util.ToastUtil;
 
 public class InfoActivity extends Activity implements OnClickListener {
 
@@ -21,13 +39,33 @@ public class InfoActivity extends Activity implements OnClickListener {
 	private ImageView mInfoProtrait2;
 	private ImageView mInfoProtrait3,mapPic;
 	private TextView  adressInfo,mapInfo,addressInfo;
+	private TextView  mTxTheme, mTxTime, mTxDetails, mTxJoinedNum;
 	private String    mapString;
+	private String    mActId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_info);
+		mTxTheme       = (TextView) findViewById(R.id.activity_theme);
+		mTxTime        = (TextView) findViewById(R.id.activity_info_time_range);
+		mTxDetails     = (TextView) findViewById(R.id.activity_info_details);
+		mTxJoinedNum   = (TextView) findViewById(R.id.activity_participate_num);
 		mInfoProtrait  = (ImageView) findViewById(R.id.activity_info_protrait);
+		
+		mInfoProtrait.setOnClickListener(new OnClickListener() {
+			@Override
+            public void onClick(View v) {
+					Intent intent1 = getIntent();
+					String user_name = intent1.getStringExtra("name");
+                	Toast.makeText(getApplicationContext(), "Edit", Toast.LENGTH_LONG).show();
+            		Intent intent = new Intent();
+            		intent.putExtra("user", "other");
+            		intent.putExtra("name", user_name);
+            		intent.setClass(getApplicationContext(), UserProfileActivity.class);
+            		startActivity(intent);
+            	}
+		});
 		mInfoProtrait1 = (ImageView) findViewById(R.id.activity_info_protrait_001);
 		mInfoProtrait2 = (ImageView) findViewById(R.id.activity_info_protrait_002);
 		mInfoProtrait3 = (ImageView) findViewById(R.id.activity_info_protrait_003);
@@ -49,6 +87,86 @@ public class InfoActivity extends Activity implements OnClickListener {
 		mBackBtn.setOnClickListener(this);
 		addressInfo.setOnClickListener(this);
 		adressInfo.setOnClickListener(this);
+		Intent intent1 = getIntent();
+		mActId = intent1.getStringExtra("id");
+		try {
+			setContent();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	void setContent() throws URISyntaxException {
+		if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
+			ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+			return;
+		}
+		HttpResponse httpResponse=null;
+		List<NameValuePair> list=new ArrayList<NameValuePair>();
+		list.add(new BasicNameValuePair("id", mActId));
+		httpResponse = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getActInfoUrl,list);
+		if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse)== 200){
+			String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
+            //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            JsonActRet o = new DecodeJson().jsonActRet(message);
+            if(o.getRet().equals("ok")) {
+            	mTxTheme.setText(o.getTheme_act());
+            	mTxTime.setText("时间：" + o.getTime_act());
+            	adressInfo.setText(o.getLocation_act());
+            	mapString = o.getLocation_act();
+            	mTxDetails.setText(o.getDetail_act());
+            	mTxJoinedNum.setText("参加人数 " + o.getJoined_num() + "/" + o.getTotalnum());
+            	try {
+					setAllImage(o.getSubmit_img(), o.getImg1(), o.getImg2(), o.getImg3());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	//ToastUtil.show(getApplicationContext(), "info成功");
+            } else {
+            	ToastUtil.show(getApplicationContext(), "info失败");
+            }
+		} else {
+			ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
+		}
+	}
+	
+	void setAllImage(String mainimage, String img1, String img2, String img3) throws IOException {
+		if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
+			ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+			return;
+		}
+		String image_location = PostandGetConnectionUtil.mediaUrlBase + mainimage;
+		URL url_image = new URL(image_location);  
+		InputStream is = url_image.openStream();  
+		Bitmap bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(is));
+		mInfoProtrait.setImageBitmap(bitmap);
+		if(img1.length() > 0) {
+			image_location = PostandGetConnectionUtil.mediaUrlBase + img1;
+			url_image = new URL(image_location);  
+			is = url_image.openStream();
+			bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(is));
+			mInfoProtrait1.setImageBitmap(bitmap);
+		} else 
+			mInfoProtrait1.setVisibility(View.GONE);
+		if (img2.length() > 0) {
+			image_location = PostandGetConnectionUtil.mediaUrlBase + img2;
+			url_image = new URL(image_location);  
+			is = url_image.openStream();
+			bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(is));
+			mInfoProtrait2.setImageBitmap(bitmap);
+		} else 
+			mInfoProtrait2.setVisibility(View.GONE);
+		if (img3.length() > 0) {
+			image_location = PostandGetConnectionUtil.mediaUrlBase + img3;
+			url_image = new URL(image_location);  
+			is = url_image.openStream();
+			bitmap.recycle();
+			bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(is));
+			mInfoProtrait3.setImageBitmap(bitmap);
+		} else 
+			mInfoProtrait3.setVisibility(View.GONE);
 	}
 	
 	@Override

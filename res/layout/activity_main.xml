@@ -183,7 +183,7 @@
 			    android:layout_height="fill_parent"
 				android:layout_width="fill_parent"
 				android:cacheColorHint="#FFFFFF"
-				android:dividerHeight="5dp"
+				android:dividerHeight="10dp"
 				android:divider="@color/bgColor"
 				android:layout_marginLeft="10dip"
 				android:layout_marginRight="10dip"

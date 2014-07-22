@@ -6,6 +6,7 @@ import com.netease.util.RoundImageUtil;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 	public class ListItemArrayAdapter extends ArrayAdapter<ListItem> {
 		Context context;
 		int layoutResourceId;
+		Activity act;
+
 		ArrayList<ListItem> items = new ArrayList<ListItem>();
 			 
 	    public ListItemArrayAdapter(Context context, int layoutResourceId,
@@ -52,7 +55,7 @@ import android.widget.Toast;
 	        	listItemWrapper = (ListItemWrapper) v.getTag();
 	        }
 	 
-	        ListItem item = items.get(position);
+	        final ListItem item = items.get(position);
 	        listItemWrapper.mUserName.setText(item.getmUserName());
 	        listItemWrapper.mActivityTitile.setText(item.getmActivityTitile());
 	        listItemWrapper.mActivityContent.setText(item.getmActivityContent());
@@ -60,13 +63,18 @@ import android.widget.Toast;
 	        listItemWrapper.mPeopleCount.setText(item.getmPeopleCount());
 	        listItemWrapper.mUserImage.setImageBitmap(RoundImageUtil.
 	        		toRoundCorner(item.getmUserImage()));
-	        listItemWrapper.mUserImage.setOnClickListener(new OnClickListener() {
-	 
-	            @Override
-	            public void onClick(View v) {
-	                	Toast.makeText(context, "Edit", Toast.LENGTH_LONG).show();
-	            	}
-	        });
+//	        listItemWrapper.mUserImage.setOnClickListener(new OnClickListener() {
+//	 
+//	            @Override
+//	            public void onClick(View v) {
+//	                	Toast.makeText(context, "Edit", Toast.LENGTH_LONG).show();
+//	            		Intent intent = new Intent();
+//	            		intent.putExtra("user", "other");
+//	            		intent.putExtra("name", item.getmUserName());
+//	            		intent.setClass(context, InfoActivity.class);
+//	            		act.startActivity(intent);
+//	            	}
+//	        });
 		 
 			return v;
 		}

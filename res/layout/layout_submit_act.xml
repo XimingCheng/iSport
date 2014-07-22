@@ -30,7 +30,6 @@
 	        android:layout_centerVertical="true"
 	        android:ellipsize="end"
 	        android:gravity="center"
-	       
 	        android:singleLine="true" 
 	        android:layout_alignTop="@+id/title_bar_menu_btn" 
 	        android:text="发布活动"

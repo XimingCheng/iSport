@@ -220,7 +220,17 @@ public class EditProfileActivity extends UITableViewActivity {
 			 int actual_image_column_index = actualimagecursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			 actualimagecursor.moveToFirst();
 			 String img_path = actualimagecursor.getString(actual_image_column_index);
+			 BitmapFactory.Options options = new BitmapFactory.Options(); 
 			 
+			 options.inJustDecodeBounds = true;  
+			 Bitmap bitmap = BitmapFactory.decodeFile(img_path, options); // 此时返回的bitmap为null   
+		     int wideth = options.outWidth;
+		     int height = options.outHeight;
+		     if(wideth>100||height>100)
+		     {
+		    	 ToastUtil.show(getApplicationContext(), "图片太大会爆炸哦么么哒");
+		    	 break;
+		     }
 			 HttpResponse httpResponse=null;
 			 try {
 				httpResponse = PostandGetConnectionUtil.postFile(PostandGetConnectionUtil.uploadUrl, img_path);
@@ -230,6 +240,11 @@ public class EditProfileActivity extends UITableViewActivity {
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			}
+			if(null == httpResponse)
+			{
+				ToastUtil.show(getApplicationContext(), "图片太大手机会爆炸！");
+				return;
 			}
 			if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse) == 200){
 					String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
@@ -249,7 +264,7 @@ public class EditProfileActivity extends UITableViewActivity {
 		   			    		 resizeImage(bmp, 100, 100));
 		   			 		mUserImage.setImageBitmap(output);
 		   			 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		   			 		output.compress(CompressFormat.JPEG, 100, baos);
+		   			 		output.compress(CompressFormat.PNG, 100, baos);
 		   			 		String imageBase64 = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
 		   			 		SharedPreferences sp = SharedPreferenceUtil.getSharedPreferences();
 		   			 		SharedPreferences.Editor editor = sp.edit();

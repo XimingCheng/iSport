@@ -46,7 +46,7 @@
         android:gravity="center"
         android:layout_marginRight="5dp" 
         android:layout_alignTop="@+id/title_bar_menu_btn" 
-        android:text="登录"
+        android:text="登 录"
         android:background="@drawable/shape"
         android:textColor="@color/loginColor"
         />

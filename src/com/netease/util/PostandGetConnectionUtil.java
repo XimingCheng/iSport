@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import android.content.ContextWrapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -28,6 +29,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import android.net.ParseException;
+import android.widget.Toast;
 
 public class PostandGetConnectionUtil {
 	private static HttpClient httpclient = new DefaultHttpClient();
@@ -40,10 +42,30 @@ public class PostandGetConnectionUtil {
 	public final static String editsexUrl = "http://efly.freeshell.ustc.edu.cn:54322/edit_sex/";
 	public final static String editlabelUrl = "http://efly.freeshell.ustc.edu.cn:54322/edit_label/";
 	public final static String uploadUrl = "http://efly.freeshell.ustc.edu.cn:54322/photo_upload/";
+	public final static String pushUrl = "http://efly.freeshell.ustc.edu.cn:54322/push/";
+	public final static String searchUrl = "http://efly.freeshell.ustc.edu.cn:54322/query/";
+	public final static String getActInfoUrl = "http://efly.freeshell.ustc.edu.cn:54322/getact/";
+	public final static String getCompletedUrl = "http://efly.freeshell.ustc.edu.cn:54322/complete/";
+	public final static String getUnCompletedUrl = "http://efly.freeshell.ustc.edu.cn:54322/uncomplete/";
+	
 	static List<NameValuePair> list=null;
 	
 	public static void setParm(List<NameValuePair> parm){
 		list = parm;
+	}
+	
+	public static HttpResponse getConnect(String url,List<NameValuePair> list) throws URISyntaxException {
+		url += "?";
+		for(int i=0;i<list.size();i++){
+			NameValuePair pair=list.get(i);
+			if(i<list.size()-1){
+			   url+=pair.getName()+"="+pair.getValue()+"&";
+			}
+			else{
+				url+=pair.getName()+"="+pair.getValue();
+			}
+		}
+		return getConnect(url);
 	}
 	
 	public static HttpResponse getConnect(String url) throws URISyntaxException {
@@ -66,6 +88,8 @@ public class PostandGetConnectionUtil {
 		FileBody bin = null;
 		HttpPost httppost = new HttpPost(url);
 		File file = new File(image_path);
+		if(file.length()>519200)
+			return response;
         if(file != null) {
             bin = new FileBody(file);
         }

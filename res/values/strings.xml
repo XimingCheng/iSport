@@ -8,12 +8,12 @@
     <string name="password">密 码</string>
     <string name="confirm_pass">确认密码</string>
     <string name="findpassword">找回密码</string>
-    <string name="next_step">完成</string>
+    <string name="next_step">完 成</string>
     <string name="register">没有帐号？</string>
-    <string name="registerPage">注册</string>
+    <string name="registerPage">注 册</string>
     <string name="submit_act">发  布</string>
     <string name="act_main_title">活动主题</string>
-     <string name="searchWord">搜索</string>
+     <string name="searchWord">搜 索</string>
      <string name="hasAccount">已有账号？</string>
      <string name="error_key">key验证无效！</string>
     <string name="error_other">未知错误，请稍后重试!错误码为</string>
@@ -28,11 +28,13 @@
       <string-array name="planets_arry"> 
         <item>篮球</item> 
         <item>足球</item> 
+        <item>乒乓球</item>
+        <item>羽毛球</item> 
+        <item>跑步</item> 
         <item>自行车</item> 
         <item>游泳</item> 
         <item>瑜伽</item> 
-        <item>跑步</item> 
         <item>健身</item> 
-        <item>羽毛球</item> 
+        <item>网球</item> 
     </string-array> 
 </resources>

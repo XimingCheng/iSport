@@ -57,11 +57,11 @@
 
 
 <RelativeLayout 
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="10dp"
     android:layout_width="fill_parent"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_height="50.0dip"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:gravity="center_vertical" >
       <!-- <TextView
@@ -78,8 +78,7 @@
       <Spinner
         android:id="@+id/spinner1"
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        
+        android:layout_height="35dp"
         android:layout_centerVertical="true"
         android:dropDownWidth="10dp"
         android:background="@drawable/shape"
@@ -89,9 +88,10 @@
 </RelativeLayout>
 
 <RelativeLayout 
-    android:layout_height="50.0dip"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_width="fill_parent"
+    android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:gravity="center_vertical" >
@@ -110,9 +110,8 @@
           </TextView> -->
       <TextView
         android:id="@+id/date"
-        android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_centerVertical="true"
         android:textSize="16sp"
         android:textColorHint="@color/fontColor"
@@ -125,8 +124,9 @@
 
 <RelativeLayout 
     android:layout_width="fill_parent"
-    android:layout_height="50.0dip"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
+      android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:gravity="center_vertical" >
@@ -144,9 +144,9 @@
           </TextView> -->
       <TextView
         android:id="@+id/time"
-        android:layout_marginTop="10dp"
+      
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_centerVertical="true"
         android:dropDownWidth="10dp"
         android:background="@drawable/shape"
@@ -158,10 +158,11 @@
 </RelativeLayout>
 
 <RelativeLayout 
-    android:layout_height="50.0dip"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_width="fill_parent"
     android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
     android:layout_marginRight="10dp"
     android:gravity="center_vertical" >
       <!-- <TextView
@@ -177,11 +178,11 @@
             android:drawableLeft="@drawable/location"
           >
           </TextView> -->
-      <TextView
-        android:id="@+id/adress"
-        android:layout_marginTop="10dp"
+      <AutoCompleteTextView
+        android:id="@+id/address"
+        
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_centerVertical="true"
         android:dropDownWidth="10dp"
         android:background="@drawable/shape"

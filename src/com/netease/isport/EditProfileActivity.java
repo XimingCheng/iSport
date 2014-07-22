@@ -220,7 +220,17 @@ public class EditProfileActivity extends UITableViewActivity {
 			 int actual_image_column_index = actualimagecursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			 actualimagecursor.moveToFirst();
 			 String img_path = actualimagecursor.getString(actual_image_column_index);
+			 BitmapFactory.Options options = new BitmapFactory.Options(); 
 			 
+			 options.inJustDecodeBounds = true;  
+			 Bitmap bitmap = BitmapFactory.decodeFile(img_path, options); // 此时返回的bitmap为null   
+		     int wideth = options.outWidth;
+		     int height = options.outHeight;
+		     if(wideth>400||height>400)
+		     {
+		    	 ToastUtil.show(getApplicationContext(), "图片太大会爆炸哦么么哒");
+		    	 break;
+		     }
 			 HttpResponse httpResponse=null;
 			 try {
 				httpResponse = PostandGetConnectionUtil.postFile(PostandGetConnectionUtil.uploadUrl, img_path);

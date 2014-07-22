@@ -3,6 +3,7 @@ package com.netease.isport;
 import android.graphics.Bitmap;
 
 	public class ListItem {
+		private String mAcTId;
 		private String mUserName;
 		private String mActivityTitile;
 		private String mTime;
@@ -11,16 +12,25 @@ import android.graphics.Bitmap;
 		private Bitmap mUserImage;
 
 		public ListItem(String userName, String activityTitile, String time, 
-				String peopleCount, String activityContent, Bitmap userImage) {
+				String peopleCount, String activityContent, String id, Bitmap userImage) {
 			super();
 	        this.mUserName        = userName;
 	        this.mActivityTitile  = activityTitile;
 	        this.mTime            = time;
 	        this.mPeopleCount     = peopleCount;
 	        this.mActivityContent = activityContent;
+	        this.mAcTId           = id;
 	        this.setmUserImage(userImage);
 	    }
 		
+		public String getmAcTId() {
+			return mAcTId;
+		}
+
+		public void setmAcTId(String mAcTId) {
+			this.mAcTId = mAcTId;
+		}
+
 		public String getmUserName() {
 			return mUserName;
 		}

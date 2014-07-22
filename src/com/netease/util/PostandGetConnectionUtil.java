@@ -44,6 +44,7 @@ public class PostandGetConnectionUtil {
 	public final static String uploadUrl = "http://efly.freeshell.ustc.edu.cn:54322/photo_upload/";
 	public final static String pushUrl = "http://efly.freeshell.ustc.edu.cn:54322/push/";
 	public final static String searchUrl = "http://efly.freeshell.ustc.edu.cn:54322/query/";
+	public final static String getActInfoUrl = "http://efly.freeshell.ustc.edu.cn:54322/getact/";
 	
 	static List<NameValuePair> list=null;
 	
@@ -52,6 +53,7 @@ public class PostandGetConnectionUtil {
 	}
 	
 	public static HttpResponse getConnect(String url,List<NameValuePair> list) throws URISyntaxException {
+		url += "?";
 		for(int i=0;i<list.size();i++){
 			NameValuePair pair=list.get(i);
 			if(i<list.size()-1){

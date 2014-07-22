@@ -26,4 +26,11 @@ public class DecodeJson {
 	    JsonRet b = gson.fromJson(result, type);
 	    return b;
 	}
+	
+	public JsonActRet jsonActRet(String result) {
+		Type type = new TypeToken<JsonActRet>(){}.getType();  
+	    Gson gson = new Gson();  
+	    JsonActRet b = gson.fromJson(result, type);
+	    return b;
+	}
 }

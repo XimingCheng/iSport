@@ -119,6 +119,7 @@ public class MainActivity<TimeTask> extends Activity implements OnClickListener 
 					String cnt = "ÈËÊý£º"+ o.getList().get(i).getCount();
 					String name = o.getList().get(i).getName();
 					String img = o.getList().get(i).getImg();
+					String id  = o.getList().get(i).getId();
 					Bitmap bitmap = mDefaultBit;
 					String image_location = PostandGetConnectionUtil.mediaUrlBase + img;
 					// get the image from the url
@@ -131,7 +132,7 @@ public class MainActivity<TimeTask> extends Activity implements OnClickListener 
 					} catch(Exception e) {
 			            e.printStackTrace();  
 			        }
-					mItemArray.add(new ListItem(name, theme, time, cnt, details, bitmap));
+					mItemArray.add(new ListItem(name, theme, time, cnt, details, id, bitmap));
 				}
 			}
 		}
@@ -193,11 +194,18 @@ public class MainActivity<TimeTask> extends Activity implements OnClickListener 
 			 @Override
 			 public void onItemClick(AdapterView<?> parent, View v,
 			     final int position, long id) {
-				 Toast.makeText(MainActivity.this, 
-						 "List Item Clicked:" + position + " id " + id, Toast.LENGTH_LONG).show();
-				 Intent intent = new Intent();
-				 intent.setClass(MainActivity.this, InfoActivity.class);
-				 startActivity(intent);
+				 if (SharedPreferenceUtil.isLogin() ) {
+//				 Toast.makeText(MainActivity.this, 
+//						 "List Item Clicked:" + position + " id " + id, Toast.LENGTH_LONG).show();
+					 Intent intent = new Intent();
+					 intent.putExtra("id", mItemArray.get((int) id).getmAcTId());
+					 intent.setClass(MainActivity.this, InfoActivity.class);
+					 startActivity(intent);
+				 } else {
+					 Intent intent = new Intent();
+					 intent.setClass(MainActivity.this, LoginActivity.class);
+				     startActivityForResult(intent,LoginId);
+				 }
 			 }
 		});
 
@@ -408,17 +416,20 @@ public class MainActivity<TimeTask> extends Activity implements OnClickListener 
 			mUserImage.setImageBitmap(bitmap);
 		}
 	}
-	public boolean onKeyDown(int keyCode, KeyEvent event) {  
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
         PackageManager pm = getPackageManager();  
         ResolveInfo homeInfo = 
             pm.resolveActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME), 0); 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            ActivityInfo ai = homeInfo.activityInfo;  
-            Intent startIntent = new Intent(Intent.ACTION_MAIN);  
-            startIntent.addCategory(Intent.CATEGORY_LAUNCHER);  
-            startIntent.setComponent(new ComponentName(ai.packageName, ai.name));  
-            startActivitySafely(startIntent);  
-            return true;  
+        	if( SharedPreferenceUtil.isLogin() ) {
+	            ActivityInfo ai = homeInfo.activityInfo;  
+	            Intent startIntent = new Intent(Intent.ACTION_MAIN);  
+	            startIntent.addCategory(Intent.CATEGORY_LAUNCHER);  
+	            startIntent.setComponent(new ComponentName(ai.packageName, ai.name));  
+	            startActivitySafely(startIntent);  
+	            return true;
+        	} else
+        		return super.onKeyDown(keyCode, event);
         } else  
             return super.onKeyDown(keyCode, event);  
     }

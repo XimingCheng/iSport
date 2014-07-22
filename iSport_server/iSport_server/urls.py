@@ -2,8 +2,10 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 import settings
 from iSport_server.iSport.views import register_new_user, login
-from iSport_server.iSport.views import upload_user_photo, get_account_info
+from iSport_server.iSport.views import upload_user_photo,search, get_account_info
 from iSport_server.iSport.views import logout,public_act, edit_sex, edit_user_label
+from iSport_server.iSport.views import push, reset_all_image, getact, getCompleted
+from iSport_server.iSport.views import getUnCompleted
 
 admin.autodiscover()
 
@@ -24,6 +26,12 @@ urlpatterns = patterns('',
     url(r'^public/', public_act),
     url(r'^edit_sex/', edit_sex),
     url(r'^edit_label/', edit_user_label),
+    url(r'^push/', push),
+    url(r'^reset/', reset_all_image),
+    url(r'^query/',search),
+    url(r'^getact/', getact),
+    url(r'^complete/', getCompleted),
+    url(r'^uncomplete', getUnCompleted),
 )
 
 

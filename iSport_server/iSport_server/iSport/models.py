@@ -24,4 +24,6 @@ class Activity(models.Model):
     location = models.CharField(max_length = 1024)
     submit_peopleId = models.IntegerField(default = 0)
     #name = models.CharField(max_length = 1024)
+    joined_peopleId = models.CharField(max_length = 1000, blank = True)
+    istimeout = models.CharField(max_length = 3)
     details = models.CharField(max_length = 3000)

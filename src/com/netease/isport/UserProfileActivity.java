@@ -109,26 +109,26 @@ public class UserProfileActivity extends Activity
 		
 		
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
 		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
 		
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
 		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", bitmap));
+				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
 		
 		mCompletedListAdapter = new ListItemArrayAdapter(UserProfileActivity.this,
 				R.layout.list_item, mCompletedItemArray);

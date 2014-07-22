@@ -13,10 +13,24 @@ public class DecodeJson {
 	    return b;
 	}
 	
+	public JsonPushRet jsonPush(String result) {
+		Type type = new TypeToken<JsonPushRet>(){}.getType();  
+	    Gson gson = new Gson();  
+	    JsonPushRet b = gson.fromJson(result, type);
+	    return b;
+	}
+	
 	public JsonRet jsonRet(String result) {
 		Type type = new TypeToken<JsonRet>(){}.getType();  
 	    Gson gson = new Gson();  
 	    JsonRet b = gson.fromJson(result, type);
+	    return b;
+	}
+	
+	public JsonActRet jsonActRet(String result) {
+		Type type = new TypeToken<JsonActRet>(){}.getType();  
+	    Gson gson = new Gson();  
+	    JsonActRet b = gson.fromJson(result, type);
 	    return b;
 	}
 }

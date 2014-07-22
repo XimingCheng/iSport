@@ -9,7 +9,9 @@ import com.netease.util.PostandGetConnectionUtil;
 import com.netease.util.SharedPreferenceUtil;
 import com.netease.util.ToastUtil;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -74,48 +76,76 @@ public class SettingActivity extends Activity {
 			progDialog.dismiss();
 		}
 	}
+	public void live_or_die()
+	{
+		new AlertDialog.Builder(this).setTitle("不要退出啊，亚美蝶！").setIcon(android.R.drawable.ic_dialog_info).
+		setItems(new String[] { "换个号登陆", "退出程序" }, new DialogInterface.OnClickListener() {//添加button并响应点击事件
+		      @Override
+		      public void onClick(DialogInterface dialog, int which) {
+		      if(0 == which)
+		      {
+		    	  logout();
+		    	  SettingActivity.this.finish();
+		      }
+		      else if(1 == which)
+		      {
+		    	  logout();
+		    	  setResult(RESULT_CANCELED, GetIntentInstance.getIntent());
+	              SettingActivity.this.finish();
+		      }
+		     }
+		      }).setNegativeButton("取消",new DialogInterface.OnClickListener() {//添加button并响应点击事件
+			      @Override
+			      public void onClick(DialogInterface dialog, int which) {
+			    	  return;
+			     }
+			    }).show();
+	}
+	public void logout()
+	{
+		if( !NetWorkUtil.isNetworkConnected(SettingActivity.this.getApplicationContext()) ) {
+			ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+			return;
+		}
+		HttpResponse httpResponse = null;
+		try {
+			showProgressDialog();
+			httpResponse = PostandGetConnectionUtil.postConnect(PostandGetConnectionUtil.logoutUrl);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(PostandGetConnectionUtil.responseCode(httpResponse) == 200){
+			String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            JsonRet o = new DecodeJson().jsonRet(message);
+            if(o.getRet().equals("ok")) {
+            	SharedPreferenceUtil.setLogin(false);
+            	ToastUtil.show(getApplicationContext(), "退出登录成功！");
+            	setResult(RESULT_OK, GetIntentInstance.getIntent());
+            } else {
+            	SharedPreferenceUtil.setLogin(false);
+            	setResult(RESULT_OK, GetIntentInstance.getIntent());
+            	//SettingActivity.this.finish();
+            	//ToastUtil.show(getApplicationContext(), "退出登录失败了啊啊啊啊啊！");
+            }
+		} else {
+			SharedPreferenceUtil.setLogin(false);
+        	setResult(RESULT_OK, GetIntentInstance.getIntent());
+        	//SettingActivity.this.finish();
+			ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
+		}
+		dissmissProgressDialog();
+	}
 	
     private class CustomClickListener implements ClickListener {
-
+    	
 		@Override
 		public void onClick(int index) {
 			//Toast.makeText(SettingActivity.this, "item clicked: " + index, Toast.LENGTH_SHORT).show();
 			switch(index) {
 			case 3: //logout
-				if( !NetWorkUtil.isNetworkConnected(SettingActivity.this.getApplicationContext()) ) {
-					ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
-					return;
-				}
-				HttpResponse httpResponse = null;
-				try {
-					showProgressDialog();
-					httpResponse = PostandGetConnectionUtil.postConnect(PostandGetConnectionUtil.logoutUrl);
-				} catch (URISyntaxException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if(PostandGetConnectionUtil.responseCode(httpResponse) == 200){
-					String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
-		            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-		            JsonRet o = new DecodeJson().jsonRet(message);
-		            if(o.getRet().equals("ok")) {
-		            	SharedPreferenceUtil.setLogin(false);
-		            	ToastUtil.show(getApplicationContext(), "退出登录成功！");
-		            	setResult(RESULT_OK, GetIntentInstance.getIntent());
-		            	SettingActivity.this.finish();
-		            } else {
-		            	SharedPreferenceUtil.setLogin(false);
-		            	setResult(RESULT_OK, GetIntentInstance.getIntent());
-		            	SettingActivity.this.finish();
-		            	//ToastUtil.show(getApplicationContext(), "退出登录失败了啊啊啊啊啊！");
-		            }
-				} else {
-					SharedPreferenceUtil.setLogin(false);
-	            	setResult(RESULT_OK, GetIntentInstance.getIntent());
-	            	SettingActivity.this.finish();
-					ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
-				}
-				dissmissProgressDialog();
+				live_or_die();
 				break;
 			}
 		}

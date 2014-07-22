@@ -44,7 +44,7 @@
         android:orientation="horizontal" >
 		<TextView
 		    android:id="@+id/list_act_theme"
-	        android:layout_width="100dp"
+	        android:layout_width="fill_parent"
 			android:layout_height="20dip"
 			android:text="主题：打篮球" />
 		<!-- <ImageView

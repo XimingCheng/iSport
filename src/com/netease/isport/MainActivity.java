@@ -6,11 +6,18 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import org.apache.http.HttpResponse;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
@@ -25,8 +32,11 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -36,11 +46,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.netease.util.NetWorkUtil;
 import com.netease.util.PostandGetConnectionUtil;
 import com.netease.util.RoundImageUtil;
 import com.netease.util.SharedPreferenceUtil;
+import com.netease.util.ToastUtil;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity<TimeTask> extends Activity implements OnClickListener {
 	private Bitmap mDefaultBit;
 	private SlideMenu mSlideMenu;
 	private LinearLayout mUserProfileLayout;
@@ -59,6 +71,73 @@ public class MainActivity extends Activity implements OnClickListener {
 	private ListItemArrayAdapter mListItemArrayAdapter;
 	ArrayList<ListItem> mItemArray = new ArrayList<ListItem>();
 	
+	Handler handler = new Handler() {  
+        public void handleMessage(Message msg) {  
+            if (msg.what == 1) {  
+                try {
+					onPushed();
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }  
+            super.handleMessage(msg);
+        };
+    };
+	private Timer timer = new Timer();
+	TimerTask task = new TimerTask() {
+		
+        @Override  
+        public void run() {
+            // 需要做的事:发送消息  
+            Message message = new Message();
+            message.what = 1;
+            handler.sendMessage(message);
+        }
+    };
+	
+    protected void onPushed() throws URISyntaxException {
+    	if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
+			ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+			return;
+		}
+    	HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.pushUrl);
+		if (PostandGetConnectionUtil.responseCode(res) != 200)
+			return;
+		Toast.makeText(MainActivity.this, 
+				 "onPushed()", Toast.LENGTH_LONG).show();
+		String json_str = PostandGetConnectionUtil.GetResponseMessage(res);
+		if(json_str.length() != 0) {
+			JsonPushRet o = new DecodeJson().jsonPush(json_str);
+			mItemArray.clear();
+			if(o.getRet().equals("ok")) {
+				int count = o.getCount();
+				for(int i = 0; i < count; i++) {
+					String theme = "主题：" + o.getList().get(i).getTheme();
+					String details = "正文：" + o.getList().get(i).getDetails();
+					String time = "时间：" + o.getList().get(i).getTime();
+					String cnt = "人数："+ o.getList().get(i).getCount();
+					String name = o.getList().get(i).getName();
+					String img = o.getList().get(i).getImg();
+					String id  = o.getList().get(i).getId();
+					Bitmap bitmap = mDefaultBit;
+					String image_location = PostandGetConnectionUtil.mediaUrlBase + img;
+					// get the image from the url
+					try{
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						URL url_image = new URL(image_location);  
+						InputStream is = url_image.openStream();
+						bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(is));
+						is.close();
+					} catch(Exception e) {
+			            e.printStackTrace();  
+			        }
+					mItemArray.add(new ListItem(name, theme, time, cnt, details, id, bitmap));
+				}
+			}
+		}
+    }
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -94,16 +173,16 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 		mDefaultBit = BitmapFactory.decodeResource(getResources(), R.drawable.user_photo);
 		
-		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", mDefaultBit));
-		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", mDefaultBit));
-		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
-		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
-		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
+//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", mDefaultBit));
+//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", mDefaultBit));
+//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
+//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
+//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
+//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
 
 		// set the array adapter to use the above array list and tell the listview to set as the adapter
 	    // our custom adapter
@@ -115,11 +194,18 @@ public class MainActivity extends Activity implements OnClickListener {
 			 @Override
 			 public void onItemClick(AdapterView<?> parent, View v,
 			     final int position, long id) {
-				 Toast.makeText(MainActivity.this, 
-						 "List Item Clicked:" + position + " id " + id, Toast.LENGTH_LONG).show();
-				 Intent intent = new Intent();
-				 intent.setClass(MainActivity.this, InfoActivity.class);
-				 startActivity(intent);
+				 if (SharedPreferenceUtil.isLogin() ) {
+//				 Toast.makeText(MainActivity.this, 
+//						 "List Item Clicked:" + position + " id " + id, Toast.LENGTH_LONG).show();
+					 Intent intent = new Intent();
+					 intent.putExtra("id", mItemArray.get((int) id).getmAcTId());
+					 intent.setClass(MainActivity.this, InfoActivity.class);
+					 startActivity(intent);
+				 } else {
+					 Intent intent = new Intent();
+					 intent.setClass(MainActivity.this, LoginActivity.class);
+				     startActivityForResult(intent,LoginId);
+				 }
 			 }
 		});
 
@@ -139,6 +225,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		mUserProfileLayout.setOnClickListener(this);
 		mUserImage.setOnClickListener(this);
 		cat_more.setOnClickListener(this);
+		//timer.schedule(task, 0, 300000);
+		//timer.schedule(task, 0, 5000);
+		try {
+			onPushed();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	boolean synloginInfo() throws URISyntaxException {
@@ -311,7 +405,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			mUserImage.setImageBitmap(mDefaultBit);
 			TextView nametx = (TextView) findViewById(R.id.user_name);
 			nametx.setText("没有登录的用户");
-		} else if(setImage == requestCode && RESULT_OK == resultCode) {
+		} else if (LogoutId == requestCode && RESULT_CANCELED == resultCode) {
+			MainActivity.this.finish();
+		} 
+		else if(setImage == requestCode && RESULT_OK == resultCode) {
 			String imageBase64 = sp.getString("imageBase64", "");
 			byte[] base64Bytes = Base64.decode(imageBase64.getBytes(), Base64.DEFAULT);
 			ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
@@ -319,4 +416,33 @@ public class MainActivity extends Activity implements OnClickListener {
 			mUserImage.setImageBitmap(bitmap);
 		}
 	}
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+        PackageManager pm = getPackageManager();  
+        ResolveInfo homeInfo = 
+            pm.resolveActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME), 0); 
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        	if( SharedPreferenceUtil.isLogin() ) {
+	            ActivityInfo ai = homeInfo.activityInfo;  
+	            Intent startIntent = new Intent(Intent.ACTION_MAIN);  
+	            startIntent.addCategory(Intent.CATEGORY_LAUNCHER);  
+	            startIntent.setComponent(new ComponentName(ai.packageName, ai.name));  
+	            startActivitySafely(startIntent);  
+	            return true;
+        	} else
+        		return super.onKeyDown(keyCode, event);
+        } else  
+            return super.onKeyDown(keyCode, event);  
+    }
+    private void startActivitySafely(Intent intent) {  
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
+        try {  
+            startActivity(intent);  
+        } catch (ActivityNotFoundException e) {  
+            Toast.makeText(this, "null",  
+                    Toast.LENGTH_SHORT).show();  
+        } catch (SecurityException e) {  
+            Toast.makeText(this, "null",  
+                    Toast.LENGTH_SHORT).show();   
+        }  
+    }
 }

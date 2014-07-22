@@ -175,7 +175,7 @@ public class SearchActivity extends Activity implements OnClickListener{
 		 list.add(new BasicNameValuePair("date_act",date_act));
 	     list.add(new BasicNameValuePair("time_act",time_act));
 		 list.add(new BasicNameValuePair("class_act",class_act));
-		 list.add(new BasicNameValuePair("adress_act", address_act));
+		 list.add(new BasicNameValuePair("address_act", address_act));
 		try {
 			httpResponse = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.searchUrl,list);
 		} catch (URISyntaxException e) {

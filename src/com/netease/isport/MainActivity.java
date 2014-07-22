@@ -52,7 +52,7 @@ import com.netease.util.RoundImageUtil;
 import com.netease.util.SharedPreferenceUtil;
 import com.netease.util.ToastUtil;
 
-public class MainActivity<TimeTask> extends Activity implements OnClickListener {
+public class MainActivity extends Activity implements OnClickListener {
 	private Bitmap mDefaultBit;
 	private SlideMenu mSlideMenu;
 	private LinearLayout mUserProfileLayout;
@@ -70,31 +70,6 @@ public class MainActivity<TimeTask> extends Activity implements OnClickListener 
 	private ListView mListview;
 	private ListItemArrayAdapter mListItemArrayAdapter;
 	ArrayList<ListItem> mItemArray = new ArrayList<ListItem>();
-	
-	Handler handler = new Handler() {  
-        public void handleMessage(Message msg) {  
-            if (msg.what == 1) {  
-                try {
-					onPushed();
-				} catch (URISyntaxException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }  
-            super.handleMessage(msg);
-        };
-    };
-	private Timer timer = new Timer();
-	TimerTask task = new TimerTask() {
-		
-        @Override  
-        public void run() {
-            // 需要做的事:发送消息  
-            Message message = new Message();
-            message.what = 1;
-            handler.sendMessage(message);
-        }
-    };
 	
     protected void onPushed() throws URISyntaxException {
     	if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
@@ -172,17 +147,6 @@ public class MainActivity<TimeTask> extends Activity implements OnClickListener 
 			e.printStackTrace();
 		}
 		mDefaultBit = BitmapFactory.decodeResource(getResources(), R.drawable.user_photo);
-		
-//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", mDefaultBit));
-//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", mDefaultBit));
-//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
-//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
-//		mItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", mDefaultBit));
 
 		// set the array adapter to use the above array list and tell the listview to set as the adapter
 	    // our custom adapter
@@ -199,6 +163,7 @@ public class MainActivity<TimeTask> extends Activity implements OnClickListener 
 //						 "List Item Clicked:" + position + " id " + id, Toast.LENGTH_LONG).show();
 					 Intent intent = new Intent();
 					 intent.putExtra("id", mItemArray.get((int) id).getmAcTId());
+					 intent.putExtra("name", mItemArray.get((int) id).getmUserName());
 					 intent.setClass(MainActivity.this, InfoActivity.class);
 					 startActivity(intent);
 				 } else {
@@ -318,6 +283,7 @@ public class MainActivity<TimeTask> extends Activity implements OnClickListener 
 				   }
 				   case R.id.user_image_layout:{
 					   if (!mSlideMenu.isMainScreenShowing()) {
+						   intent.putExtra("user", "my");
 						   intent.setClass(MainActivity.this, UserProfileActivity.class);
 						   startActivity(intent);
 						   mSlideMenu.closeMenu();

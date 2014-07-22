@@ -53,7 +53,7 @@ public class SettingActivity extends Activity {
     private void createList() {
     	CustomClickListener listener = new CustomClickListener();
     	tableView.setClickListener(listener);
-    	tableView.addBasicItem(R.drawable.clock, "活动提前提醒", "提前30分钟");
+    	//tableView.addBasicItem(R.drawable.clock, "活动提前提醒", "提前30分钟");
     	tableView.addBasicItem(R.drawable.version, "程序版本", "版本太大，超出手机存储范围1.0");
     	tableView.addBasicItem(R.drawable.info, "关于iSport", "iSport的介绍说明");
     	tableView.addBasicItem(R.drawable.logout, "退出登录", "退出当前的账户");
@@ -145,7 +145,7 @@ public class SettingActivity extends Activity {
 		public void onClick(int index) {
 			//Toast.makeText(SettingActivity.this, "item clicked: " + index, Toast.LENGTH_SHORT).show();
 			switch(index) {
-			case 3: //logout
+			case 2: //logout
 				live_or_die();
 				break;
 			}

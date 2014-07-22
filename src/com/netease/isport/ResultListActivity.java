@@ -87,6 +87,8 @@ public class ResultListActivity extends Activity{
 				 Toast.makeText(ResultListActivity.this, 
 						 "List Item Clicked:" + position + " id " + id, Toast.LENGTH_LONG).show();
 				 Intent intent = new Intent();
+				 intent.putExtra("id", mItemArray.get((int) id).getmAcTId());
+				 intent.putExtra("name", mItemArray.get((int) id).getmUserName());
 				 intent.setClass(ResultListActivity.this, InfoActivity.class);
 				 startActivity(intent);
 			 }

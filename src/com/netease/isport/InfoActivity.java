@@ -52,6 +52,20 @@ public class InfoActivity extends Activity implements OnClickListener {
 		mTxDetails     = (TextView) findViewById(R.id.activity_info_details);
 		mTxJoinedNum   = (TextView) findViewById(R.id.activity_participate_num);
 		mInfoProtrait  = (ImageView) findViewById(R.id.activity_info_protrait);
+		
+		mInfoProtrait.setOnClickListener(new OnClickListener() {
+			@Override
+            public void onClick(View v) {
+					Intent intent1 = getIntent();
+					String user_name = intent1.getStringExtra("name");
+                	Toast.makeText(getApplicationContext(), "Edit", Toast.LENGTH_LONG).show();
+            		Intent intent = new Intent();
+            		intent.putExtra("user", "other");
+            		intent.putExtra("name", user_name);
+            		intent.setClass(getApplicationContext(), UserProfileActivity.class);
+            		startActivity(intent);
+            	}
+		});
 		mInfoProtrait1 = (ImageView) findViewById(R.id.activity_info_protrait_001);
 		mInfoProtrait2 = (ImageView) findViewById(R.id.activity_info_protrait_002);
 		mInfoProtrait3 = (ImageView) findViewById(R.id.activity_info_protrait_003);

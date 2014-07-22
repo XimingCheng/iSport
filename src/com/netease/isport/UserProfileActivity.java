@@ -27,17 +27,20 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Base64;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class UserProfileActivity extends Activity 
 	implements OnViewChangeListener, OnClickListener{
@@ -64,6 +67,8 @@ public class UserProfileActivity extends Activity
 	//private ImageView mEditUserProfile;
 	private ListItemArrayAdapter mCompletedListAdapter;
 	private ListItemArrayAdapter mUnCompletedListAdapter;
+	private Boolean mBeMyself = true;
+	private String  mOtherName;
 	ArrayList<ListItem> mCompletedItemArray   = new ArrayList<ListItem>();
 	ArrayList<ListItem> mUnCompletedItemArray = new ArrayList<ListItem>();
 	
@@ -75,7 +80,11 @@ public class UserProfileActivity extends Activity
 		mSexImage = (ImageView) findViewById(R.id.sex_profile);
 		mUserName = (TextView) findViewById(R.id.user_name_profile);
 		mUserLabel = (TextView) findViewById(R.id.label_profile);
-		
+		Intent intent = getIntent();
+		if (intent.getStringExtra("user").equals("other") )
+			mBeMyself = false;
+		if(! mBeMyself)
+			mOtherName = intent.getStringExtra("name");
 		//mEditUserProfile = (ImageView) findViewById(R.id.edit_user_profle);
 		//mEditUserProfile.setOnClickListener(this);
 		preStep.setOnClickListener(this);
@@ -104,36 +113,33 @@ public class UserProfileActivity extends Activity
     	mCurSel = 0;
     	mImageViews[mCurSel].setEnabled(false);    	
     	mScrollLayout.SetOnViewChangeListener(this);
-    	SharedPreferences sp = SharedPreferenceUtil.getSharedPreferences();
-    	String imageBase64 = sp.getString("imageBase64", "");
-    	String username = sp.getString("username", "");
-    	String sex = sp.getString("sex", "");
-    	String label = sp.getString("label", "");
-    	if(sex.equals("F")) {
-    		mSexImage.setImageResource(R.drawable.girl);
+    	if(mBeMyself) {
+	    	SharedPreferences sp = SharedPreferenceUtil.getSharedPreferences();
+	    	String imageBase64 = sp.getString("imageBase64", "");
+	    	String username = sp.getString("username", "");
+	    	String sex = sp.getString("sex", "");
+	    	String label = sp.getString("label", "");
+	    	if(sex.equals("F")) {
+	    		mSexImage.setImageResource(R.drawable.girl);
+	    	} else {
+	    		mSexImage.setImageResource(R.drawable.boy);
+	    	}
+	    	mUserName.setText(username);
+	    	mUserLabel.setText(label);
+			byte[] base64Bytes = Base64.decode(imageBase64.getBytes(), Base64.DEFAULT);
+			ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
+			Bitmap bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(bais));
+			photoCh.setImageBitmap(bitmap);
+			mDefaultBit = BitmapFactory.decodeResource(getResources(), R.drawable.user_photo);
     	} else {
-    		mSexImage.setImageResource(R.drawable.boy);
+    		try {
+				setInfo_other();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
-    	mUserName.setText(username);
-    	mUserLabel.setText(label);
-		byte[] base64Bytes = Base64.decode(imageBase64.getBytes(), Base64.DEFAULT);
-		ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
-		Bitmap bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(bais));
-		photoCh.setImageBitmap(bitmap);
-		mDefaultBit = BitmapFactory.decodeResource(getResources(), R.drawable.user_photo);
 		
-//		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
-//		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
-//		mCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
-//		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
-//		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数：3/20", "正文：测试的字符串", "1", bitmap));
-//		mUnCompletedItemArray.add(new ListItem("高圆圆", "主题：打篮球", 
-//				"时间：2014/07/24 8:30 - 11:30", "人数 ：3/20", "正文：测试的字符串", "1", bitmap));
 		try {
 			setJobs(PostandGetConnectionUtil.getCompletedUrl, mCompletedItemArray);
 			setJobs(PostandGetConnectionUtil.getUnCompletedUrl, mUnCompletedItemArray);
@@ -151,6 +157,72 @@ public class UserProfileActivity extends Activity
 		mUnCompletedListView.setItemsCanFocus(false);
 		mCompletedListView.setAdapter(mCompletedListAdapter);
 		mUnCompletedListView.setAdapter(mUnCompletedListAdapter);
+		
+		mUnCompletedListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.putExtra("id", mUnCompletedItemArray.get((int) arg3).getmAcTId());
+				intent.putExtra("name", mUnCompletedItemArray.get((int) arg3).getmUserName());
+				intent.setClass(UserProfileActivity.this, InfoActivity.class);
+				startActivity(intent);
+			}
+			
+		});
+		
+		mCompletedListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.putExtra("id", mCompletedItemArray.get((int) arg3).getmAcTId());
+				intent.putExtra("name", mCompletedItemArray.get((int) arg3).getmUserName());
+				intent.setClass(UserProfileActivity.this, InfoActivity.class);
+				startActivity(intent);
+			}
+			
+		});
+	}
+	
+	void setInfo_other() throws URISyntaxException {
+		if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
+			ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+			return;
+		}
+		List<NameValuePair> list=new ArrayList<NameValuePair>();
+		list.add(new BasicNameValuePair("name", mOtherName));
+    	HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl, list);
+		if (PostandGetConnectionUtil.responseCode(res) != 200)
+			return;
+		String json_str = PostandGetConnectionUtil.GetResponseMessage(res);
+		if(json_str.length() != 0) {
+			JsonInfoResult o = new DecodeJson().jsonInfo(json_str);
+			if(o.getRet().equals("ok")) {
+				mUserName.setText(o.getUsername());
+				mUserLabel.setText(o.getLabel());
+				if(o.getSex().equals("F")) {
+		    		mSexImage.setImageResource(R.drawable.girl);
+		    	} else {
+		    		mSexImage.setImageResource(R.drawable.boy);
+		    	}
+				String image_location = PostandGetConnectionUtil.mediaUrlBase + o.getUserimage();
+				try{
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					URL url_image = new URL(image_location);  
+					InputStream is = url_image.openStream();  
+					Bitmap bitmap  = BitmapFactory.decodeStream(is);
+					photoCh.setImageBitmap(RoundImageUtil.toRoundCorner(bitmap));
+					is.close();
+				} catch(Exception e) {
+		            e.printStackTrace();  
+		        } 
+			}
+		}
 	}
 	
 	void setJobs(String url, ArrayList<ListItem> itemArray) throws URISyntaxException {
@@ -246,23 +318,6 @@ public class UserProfileActivity extends Activity
 				UserProfileActivity.this.finish();
 				break;
 			}
-//			case R.id.change_photo:
-////				if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-////				    startActivityForResult(fileChooserIntent , REQUEST_CODE);
-////		    	else
-////		    		toast(getText(R.string.sdcard_unmonted_hint));
-//				Intent intent = new Intent();
-//			    intent.setType("image/*");
-//			    intent.setAction(Intent.ACTION_GET_CONTENT);
-//			    intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-//			    startActivityForResult(Intent.createChooser(intent,
-//			            "选择一张图片作为头像"), REQUEST_CODE);
-//				break;
-//			case R.id.edit_user_profle:
-//				Intent intent2 = new Intent();
-//				intent2.setClass(UserProfileActivity.this, EditProfileActivity.class);
-//				startActivity(intent2); 
-//				break;
 		}
 		
 	}

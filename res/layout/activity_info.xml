@@ -95,8 +95,9 @@
 		        android:orientation="vertical" >
 		        <TextView 
 		           android:id="@+id/activity_theme"
+		           android:singleLine="false"
 		           android:layout_width="wrap_content"
-		           android:layout_height="20dip"
+		           android:layout_height="wrap_content"
 		           android:layout_marginLeft="25dip"
 		           android:layout_marginTop="10dip"
 		           android:gravity="left"
@@ -114,9 +115,10 @@
 		        	    android:layout_marginTop="1dip"
 		        	    android:src="@drawable/time1" />
 			        <TextView
+			            android:singleLine="false"
 						android:id="@+id/activity_info_time_range"
 						android:layout_width="wrap_content"
-						android:layout_height="20dip"
+						android:layout_height="wrap_content"
 						android:layout_marginLeft="5dip"
 						android:gravity="left"
 						android:textSize="15sp"
@@ -144,9 +146,10 @@
 			           
 			           android:text="地点："/>
 			        <TextView 
+			           android:singleLine="false"
 			           android:id="@+id/activity_info_map_link"
 			           android:layout_width="wrap_content"
-			           android:layout_height="20dip"
+			           android:layout_height="wrap_content"
 			           android:layout_marginLeft="1dip"
 			           android:gravity="left"
 			           android:autoLink="map"

@@ -32,7 +32,8 @@
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,51 +45,76 @@
             android:name=".GuideActivity"
             android:configChanges="keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
+            />
         	
         <activity
-            android:name=".MainActivity" >
+            android:name=".MainActivity" 
+            android:screenOrientation="portrait"
+            >
             
         </activity>
         <activity
-            android:name="com.netease.isport.RegisterActivity" >      
+            android:name="com.netease.isport.RegisterActivity" 
+            android:screenOrientation="portrait"
+            >      
         </activity> 
         <activity
-            android:name="com.netease.isport.LoginActivity" >
+            android:name="com.netease.isport.LoginActivity"
+            android:screenOrientation="portrait"
+             >
             
         </activity> 
         
         <activity
-            android:name="com.netease.isport.SpinnerActivity" >
+            android:name="com.netease.isport.SpinnerActivity"
+            android:screenOrientation="portrait"
+             >
         </activity>
 
         <activity
-            android:name="com.netease.isport.PublicActivity" >
+            android:name="com.netease.isport.PublicActivity" 
+            android:screenOrientation="portrait"
+            >
         </activity>
         
         
         <activity
-            android:name="com.netease.isport.SearchActivity" >
+            android:name="com.netease.isport.SearchActivity"
+            android:screenOrientation="portrait"
+             >
         </activity>
 
         <activity
-            android:name="com.netease.isport.UserProfileActivity" >
+            android:name="com.netease.isport.UserProfileActivity"
+            android:screenOrientation="portrait"
+             >
         </activity>
         <activity
-            android:name="com.netease.isport.InfoActivity" >
+            android:name="com.netease.isport.InfoActivity" 
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
-            android:name="com.netease.isport.SettingActivity" >
+            android:name="com.netease.isport.SettingActivity"
+            android:screenOrientation="portrait"
+             >
         </activity>
         <activity
-            android:name="com.netease.isport.EditProfileActivity" >
+            android:name="com.netease.isport.EditProfileActivity" 
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
-            android:name="com.netease.isport.PoiKeywordSearchActivity" >
+            android:name="com.netease.isport.PoiKeywordSearchActivity" 
+            android:screenOrientation="portrait"
+            >
         </activity>
         
         <activity
-            android:name="com.netease.isport.ResultListActivity" >
+            android:name="com.netease.isport.ResultListActivity"
+            android:screenOrientation="portrait"
+             >
         </activity>
         
         </application>

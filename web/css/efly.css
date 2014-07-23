@@ -1,0 +1,65 @@
+*{
+  margin:0 0;	
+}
+body {
+  background-color:#669ACC
+ 
+}
+
+.container{
+	margin:0px auto; 
+	width: 80%;
+	height:700px
+}
+.phone>img{
+	float:left;
+	margin-left:100px;
+	margin-top:40px;
+	width:300px
+}
+.erweima{
+  float:left;
+  position:relative;
+  margin-top:50px;
+  margin-left:200px
+}
+.download{
+	margin-top: 100px;
+	margin-left: 40px
+}
+.downbutton{
+	width:200px;
+	height:60px;
+	background-color: #6FBE29;
+	border-radius:5px;
+	
+}
+
+.fontstyle{
+	font-size: 20px;
+	color:white;
+	font-family:"Microsoft YaHei";
+	text-align: center;
+	padding-top:15px 
+}
+
+
+/* .phone{
+	float:left;
+	width:350px
+}
+.phone>img{
+	margin-left:250px;
+	margin-top:40px;
+	width:300px
+}
+
+.erweima{
+  float:left;
+  margin-top:50px;
+  margin-left:350px
+}
+.download{
+	position: relative;
+	
+} */

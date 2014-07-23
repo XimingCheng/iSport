@@ -149,7 +149,7 @@ public class PublicActivity extends Activity implements OnClickListener{
 		list.add(new BasicNameValuePair("num_act", num));
 		PostandGetConnectionUtil.setParm(list);
 		Toast.makeText(PublicActivity.this, 
-				 "theme:" + theme + " date " + date+ "category"+category+"  detail:"+detail+"  usercount:"+num+"  adress:"+address, Toast.LENGTH_LONG).show();
+				 "theme:" + theme + " time " + time+ "category"+category+"  detail:"+detail+"  usercount:"+num+"  adress:"+address, Toast.LENGTH_LONG).show();
 		try {
 			httpResponse = PostandGetConnectionUtil.postConnect(PostandGetConnectionUtil.publicUrl);
 		} catch (URISyntaxException e) {
@@ -162,7 +162,7 @@ public class PublicActivity extends Activity implements OnClickListener{
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             JsonRet o = new DecodeJson().jsonRet(message);
             if(o.getRet().equals("ok")) {
-            	ToastUtil.show(getApplicationContext(), "发布成功！");
+            //	ToastUtil.show(getApplicationContext(), "发布成功！");
             	PublicActivity.this.finish();
             } else {
             	ToastUtil.show(getApplicationContext(), "发布失败");

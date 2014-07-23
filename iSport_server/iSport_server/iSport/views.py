@@ -47,7 +47,8 @@ def login(request):
             out_data['ret'] = 'failed'
         login_usr = User.objects.filter(name = user_name)
         if len(login_usr) == 0:
-            out_data['ret'] == 'user_not_exist'
+            print 'user_not_exist'
+            out_data['ret'] = 'not_exist'
         else:
             login_usr_obj = login_usr[0]
             if login_usr_obj.password == password_md5:
@@ -290,7 +291,8 @@ def reset_all_image(request):
 def get_account_info(request):
     out_data = {}
     if request.method == "GET":
-        if 'user' in request.session:
+        is_other = request.GET.get('other', '')
+        if is_other != 'y' and 'user' in request.session:
             user_name = request.session['user']
             data = User.objects.get(name = user_name)
             out_data["ret"] = "ok"
@@ -396,13 +398,16 @@ def public_act(request):
             userid = User.objects.get(name=username).id
             now = datetime.datetime.fromtimestamp(time.mktime(time.
                     strptime(date_time, r"%Y/%m/%d %H:%M:%S")))
-            datess = now.date().isoformat()
+            datess = str(now)
+            print datess
+            print "now is  " +str(datess)
             if len(errors) > 0:
                 ret_data['ret'] = 'no theme'
             else:
                 pub_data = Activity(category = class_act, theme = theme_act,
                     begin_datatime = datess, people_count = num_act,
-                    details = detail_act, submit_peopleId = userid,location=address_act,joined_peopleId=userid)
+                    details = detail_act, submit_peopleId = userid,
+                    location=address_act,joined_peopleId=userid)
                 #total=len(Activity.objects.all())+1
                 pub_data.istimeout = 'n'
                 pub_data.save()

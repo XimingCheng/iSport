@@ -73,6 +73,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 		progDialog.setCancelable(false);
 		progDialog.setMessage("正在登录您的账户");
 		progDialog.show();
+		
 	}
 
 	/**

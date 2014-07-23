@@ -113,7 +113,13 @@ public class InfoActivity extends Activity implements OnClickListener {
             JsonActRet o = new DecodeJson().jsonActRet(message);
             if(o.getRet().equals("ok")) {
                 if(o.getBsubmit().equals("yes")) {
-                	
+                	join.setText("完 成");
+                } else if(o.getBjoined().equals("yes")) {
+                	join.setText("退 出");
+                } else
+                	join.setText("加 入");
+                if(o.getBtimeout().equals("y")) {
+                	join.setText("已 完");
                 }
             	mTxTheme.setText(o.getTheme_act());
             	mTxTime.setText("时间：" + o.getTime_act());
@@ -214,10 +220,73 @@ public class InfoActivity extends Activity implements OnClickListener {
 		case R.id.join:{
 			//Intent intent=GetIntentInstance.getIntent();
 			ToastUtil.show(getApplicationContext(), "点击");
-			join();
+			String tx = (String)join.getText();
+			if (tx.equals("加 入")) {
+				join();
+			} else if (tx.equals("退 出")){
+				unjoin();
+			} else if (tx.equals("完 成")) {
+				com_act();
+			} else {
+				ToastUtil.show(getApplicationContext(), "活动已完成！");
+			}
 		}
 		
 	}
+	}
+	
+	private void com_act() {
+		List<NameValuePair> list=new ArrayList<NameValuePair>();
+		list.add(new BasicNameValuePair("id_act",mActId));
+		HttpResponse httpResponse=null;
+		PostandGetConnectionUtil.setParm(list);
+		try {
+			httpResponse = PostandGetConnectionUtil.postConnect(PostandGetConnectionUtil.comUrl);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(httpResponse!=null&&PostandGetConnectionUtil.responseCode(httpResponse)== 200){
+			String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            JsonRet o = new DecodeJson().jsonRet(message);
+            
+            if(o.getRet().equals("ok")) {
+            	ToastUtil.show(getApplicationContext(), "完成成功！");
+            	InfoActivity.this.finish();
+            } else {
+            	ToastUtil.show(getApplicationContext(), "完成失败");
+            }
+		} else {
+			ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
+		}
+	}
+	
+	private void unjoin() {
+		List<NameValuePair> list=new ArrayList<NameValuePair>();
+		list.add(new BasicNameValuePair("id_act",mActId));
+		HttpResponse httpResponse=null;
+		PostandGetConnectionUtil.setParm(list);
+		try {
+			httpResponse = PostandGetConnectionUtil.postConnect(PostandGetConnectionUtil.unjoinUrl);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(httpResponse!=null&&PostandGetConnectionUtil.responseCode(httpResponse)== 200){
+			String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            JsonRet o = new DecodeJson().jsonRet(message);
+            
+            if(o.getRet().equals("ok")) {
+            	ToastUtil.show(getApplicationContext(), "退出成功！");
+            	InfoActivity.this.finish();
+            } else {
+            	ToastUtil.show(getApplicationContext(), "退出失败");
+            }
+		} else {
+			ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");
+		}
 	}
 	
 	private void join(){
@@ -238,6 +307,7 @@ public class InfoActivity extends Activity implements OnClickListener {
             
             if(o.getRet().equals("ok")) {
             	ToastUtil.show(getApplicationContext(), "加入成功！");
+            	InfoActivity.this.finish();
             } else {
             	ToastUtil.show(getApplicationContext(), "加入失败");
             }

@@ -3,6 +3,7 @@ package com.netease.isport;
 import java.util.ArrayList;
 import java.util.List;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -16,6 +17,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener {
 	private ViewPager vp;
 	private ViewPagerAdapter vpAdapter;
 	private List<View> views;
+	private boolean bAbout = false;
 
 	private ImageView[] dots;
 
@@ -25,7 +27,10 @@ public class GuideActivity extends Activity implements OnPageChangeListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.guide);
-
+		Intent intent = getIntent();
+		String flag = intent.getStringExtra("flag");
+		if(flag != null)
+			bAbout = true;
 		initViews();
 
 		initDots();

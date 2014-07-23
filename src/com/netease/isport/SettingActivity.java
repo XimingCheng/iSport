@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -145,6 +146,9 @@ public class SettingActivity extends Activity {
 		public void onClick(int index) {
 			//Toast.makeText(SettingActivity.this, "item clicked: " + index, Toast.LENGTH_SHORT).show();
 			switch(index) {
+			case 1: // about
+				ToastUtil.show(getApplicationContext(), "欢迎您使用我们用最快速度开发的App！");
+				break;
 			case 2: //logout
 				live_or_die();
 				break;

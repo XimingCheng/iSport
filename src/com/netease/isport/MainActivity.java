@@ -202,6 +202,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	
 	boolean synloginInfo() throws URISyntaxException {
 		if( SharedPreferenceUtil.isLogin() ) {
+			if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
+				ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+				return false;
+			}
 			HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl);
 			if (PostandGetConnectionUtil.responseCode(res) != 200)
 				return false;
@@ -301,6 +305,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					   break;
 				   }
 				   case R.id.user_image:{
+					   intent.putExtra("user", "my");
 					   intent.setClass(MainActivity.this,UserProfileActivity.class);
 					   startActivityForResult(intent, useProfile); 
 					   break;

@@ -172,7 +172,6 @@ public class InfoActivity extends Activity implements OnClickListener {
 			image_location = PostandGetConnectionUtil.mediaUrlBase + img3;
 			url_image = new URL(image_location);  
 			is = url_image.openStream();
-			bitmap.recycle();
 			bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(is));
 			mInfoProtrait3.setImageBitmap(bitmap);
 		} else 
@@ -228,7 +227,7 @@ public class InfoActivity extends Activity implements OnClickListener {
 			} else if (tx.equals("完 成")) {
 				com_act();
 			} else {
-				ToastUtil.show(getApplicationContext(), "活动已完成！");
+				ToastUtil.show(getApplicationContext(), "活动已结束（发起者确认完成了活动）！请您参加别的活动，谢谢！");
 			}
 		}
 		
@@ -308,6 +307,8 @@ public class InfoActivity extends Activity implements OnClickListener {
             if(o.getRet().equals("ok")) {
             	ToastUtil.show(getApplicationContext(), "加入成功！");
             	InfoActivity.this.finish();
+            } else if(o.getRet().equals("full")) {
+            	ToastUtil.show(getApplicationContext(), "用户人数已经达到上限！不能再加入了！");
             } else {
             	ToastUtil.show(getApplicationContext(), "加入失败");
             }

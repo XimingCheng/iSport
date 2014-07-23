@@ -113,7 +113,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 		}
 		if(httpResponse != null && PostandGetConnectionUtil.responseCode(httpResponse) == 200){
 			String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
-            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             JsonRet o = new DecodeJson().jsonRet(message);
             if(o.getRet().equals("ok")) {
             	SharedPreferenceUtil.setLogin(true);

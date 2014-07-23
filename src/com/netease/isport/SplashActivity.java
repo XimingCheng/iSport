@@ -23,7 +23,7 @@ public class SplashActivity extends Activity{
     private static final int GO_HOME = 1000;
     private static final int GO_GUIDE = 1001;
     // —”≥Ÿ3√Î
-    private static final long SPLASH_DELAY_MILLIS = 2500;
+    private static final long SPLASH_DELAY_MILLIS = 2300;
     private ImageView imgTween1,imgTween2,imgTween3; 
     private AnimationSet as,ns,js; 
     private Intent intent;

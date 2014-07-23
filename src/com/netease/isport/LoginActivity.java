@@ -120,8 +120,15 @@ public class LoginActivity extends Activity implements OnClickListener{
             	ToastUtil.show(getApplicationContext(), "登录成功！");
             	setResult(RESULT_OK, intent);
             	LoginActivity.this.finish();
-            } else {
-            	ToastUtil.show(getApplicationContext(), "登录失败了啊啊啊啊啊！");
+            }
+            else if(o.getRet().equals("not_exist")){
+            	ToastUtil.show(getApplicationContext(), "帐号不存在，请重新登录");	
+            }
+            else if(o.getRet().equals("password_error")){
+            	ToastUtil.show(getApplicationContext(), "密码不正确，请重新输入");
+            }
+            else {
+            	ToastUtil.show(getApplicationContext(), "登录失败了啊！");
             }
 		} else {
 			ToastUtil.show(getApplicationContext(), "网络服务有问题，我也不知道怎么搞哦！");

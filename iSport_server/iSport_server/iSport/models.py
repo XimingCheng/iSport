@@ -12,7 +12,7 @@ class User(models.Model):
     sex = models.CharField(max_length = 2, default = 'F')
     user_image = models.CharField(max_length = 1024, default = 'test.png')
     label = models.CharField(max_length = 1000, blank = True)
-    img = models.ImageField(upload_to='photo',null=True,blank=True)
+    img = models.ImageField(upload_to='photo',default = 'photo/user_photo.png')
     title = models.CharField(max_length = 1000, blank = True )
 
 class Activity(models.Model):
@@ -25,5 +25,5 @@ class Activity(models.Model):
     submit_peopleId = models.IntegerField(default = 0)
     #name = models.CharField(max_length = 1024)
     joined_peopleId = models.CharField(max_length = 1000, blank = True)
-    istimeout = models.CharField(max_length = 3)
+    istimeout = models.CharField(blank = True, max_length = 3, default = 'n')
     details = models.CharField(max_length = 3000)

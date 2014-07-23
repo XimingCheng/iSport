@@ -5,7 +5,7 @@ from iSport_server.iSport.views import register_new_user, login
 from iSport_server.iSport.views import upload_user_photo,search, get_account_info
 from iSport_server.iSport.views import logout,public_act, edit_sex, edit_user_label
 from iSport_server.iSport.views import push, reset_all_image, getact, getCompleted
-from iSport_server.iSport.views import getUnCompleted
+from iSport_server.iSport.views import getUnCompleted,join_act, unjoin_act, com_act
 
 admin.autodiscover()
 
@@ -32,6 +32,9 @@ urlpatterns = patterns('',
     url(r'^getact/', getact),
     url(r'^complete/', getCompleted),
     url(r'^uncomplete', getUnCompleted),
+    url(r'^join',join_act),
+    url(r'^unjoin',unjoin_act),
+    url(r'^comact',com_act),
 )
 
 

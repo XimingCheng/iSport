@@ -240,8 +240,8 @@ public class UserProfileActivity extends Activity
     	HttpResponse res = PostandGetConnectionUtil.getConnect(url, list);
 		if (PostandGetConnectionUtil.responseCode(res) != 200)
 			return;
-		Toast.makeText(UserProfileActivity.this, 
-				 "setJobs", Toast.LENGTH_LONG).show();
+//		Toast.makeText(UserProfileActivity.this, 
+//				 "setJobs", Toast.LENGTH_LONG).show();
 		String json_str = PostandGetConnectionUtil.GetResponseMessage(res);
 		if(json_str.length() != 0) {
 			JsonPushRet o = new DecodeJson().jsonPush(json_str);

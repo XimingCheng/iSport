@@ -84,8 +84,8 @@ public class ResultListActivity extends Activity{
 			 @Override
 			 public void onItemClick(AdapterView<?> parent, View v,
 			     final int position, long id) {
-				 Toast.makeText(ResultListActivity.this, 
-						 "List Item Clicked:" + position + " id " + id, Toast.LENGTH_LONG).show();
+//				 Toast.makeText(ResultListActivity.this, 
+//						 "List Item Clicked:" + position + " id " + id, Toast.LENGTH_LONG).show();
 				 Intent intent = new Intent();
 				 intent.putExtra("id", mItemArray.get((int) id).getmAcTId());
 				 intent.putExtra("name", mItemArray.get((int) id).getmUserName());
@@ -105,7 +105,7 @@ public class ResultListActivity extends Activity{
 		if (PostandGetConnectionUtil.responseCode(httpResponse) != 200)
 			return;
 			String message = PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
-            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             //String json_str = PostandGetConnectionUtil.GetResponseMessage(httpResponse); //post·½Ê½
             if(message.length() != 0) {
     			JsonPushRet o = new DecodeJson().jsonPush(message);

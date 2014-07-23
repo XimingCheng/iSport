@@ -89,8 +89,8 @@ public class MainActivity extends Activity implements OnClickListener {
     	HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.pushUrl);
 		if (PostandGetConnectionUtil.responseCode(res) != 200)
 			return;
-		Toast.makeText(MainActivity.this, 
-				 "onPushed()", Toast.LENGTH_LONG).show();
+//		Toast.makeText(MainActivity.this, 
+//				 "onPushed()", Toast.LENGTH_LONG).show();
 		String json_str = PostandGetConnectionUtil.GetResponseMessage(res);
 		if(json_str.length() != 0) {
 			JsonPushRet o = new DecodeJson().jsonPush(json_str);
@@ -220,7 +220,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				return false;
 			}
 			List<NameValuePair> list=new ArrayList<NameValuePair>();
-			list.add(new BasicNameValuePair("other", "y"));
+			list.add(new BasicNameValuePair("other", "n"));
 			HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl, list);
 			if (PostandGetConnectionUtil.responseCode(res) != 200)
 				return false;

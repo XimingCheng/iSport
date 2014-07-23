@@ -58,7 +58,7 @@ public class InfoActivity extends Activity implements OnClickListener {
             public void onClick(View v) {
 					Intent intent1 = getIntent();
 					String user_name = intent1.getStringExtra("name");
-                	Toast.makeText(getApplicationContext(), "Edit", Toast.LENGTH_LONG).show();
+                	//Toast.makeText(getApplicationContext(), "Edit", Toast.LENGTH_LONG).show();
             		Intent intent = new Intent();
             		intent.putExtra("user", "other");
             		intent.putExtra("name", user_name);
@@ -219,7 +219,7 @@ public class InfoActivity extends Activity implements OnClickListener {
 		}
 		case R.id.join:{
 			//Intent intent=GetIntentInstance.getIntent();
-			ToastUtil.show(getApplicationContext(), "点击");
+			//ToastUtil.show(getApplicationContext(), "点击");
 			String tx = (String)join.getText();
 			if (tx.equals("加 入")) {
 				join();

@@ -33,6 +33,7 @@ import android.widget.Toast;
 import com.netease.util.GetIntentInstance;
 import com.netease.util.MD5util;
 import com.netease.util.PostandGetConnectionUtil;
+import com.netease.util.ToastUtil;
 
 public class RegisterActivity extends Activity implements OnClickListener{
 	private Button button=null;
@@ -69,11 +70,11 @@ public class RegisterActivity extends Activity implements OnClickListener{
 				// TODO Auto-generated method stub
 				if(!hasFocus){
                     username=autoTextAccount.getText().toString().trim();
-                    if(username.length()<3){
-                       // Toast.makeText(getApplicationContext(), "用户名不能小于5个字符", Toast.LENGTH_SHORT);
-                        autoTextAccount.setText("");
-                        
-                    }
+//                    if(username.length()<3){
+//                       // Toast.makeText(getApplicationContext(), "用户名不能小于5个字符", Toast.LENGTH_SHORT);
+//                        autoTextAccount.setText("");
+//                        
+//                    }
                 }
 			}
 		});
@@ -86,6 +87,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 					password=autoTextpassword.getText().toString().trim();
                     if(password.length()<3){
                     	autoTextpassword.setText("");
+                    	ToastUtil.show(getApplicationContext(), "密码不能低于3位");
                     }
                 }
 			}

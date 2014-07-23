@@ -16,7 +16,11 @@ import android.graphics.Bitmap;
 			super();
 	        this.mUserName        = userName;
 	        this.mActivityTitile  = activityTitile;
-	        this.mTime            = time;
+	        int idx = time.indexOf("+");
+	        if (idx == -1)
+	        	this.mTime        = time;
+	        else
+	        	this.mTime        = time.substring(0, idx);
 	        this.mPeopleCount     = peopleCount;
 	        this.mActivityContent = activityContent;
 	        this.mAcTId           = id;

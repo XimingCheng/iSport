@@ -135,7 +135,7 @@ public class PublicActivity extends Activity implements OnClickListener{
 		String category=act_category;
 		String detail=act_content.getText().toString();
 		String num=userCount.getText().toString();
-		String adress=act_location.getText().toString();
+		String address=act_location.getText().toString();
 		String time=act_time.getText().toString()+":00";
 		/*Toast.makeText(PublicActivity.this, 
 				 "theme:" + theme + " date " + date+ "category"+category+"  detail:"+detail+"  usercount:"+num+"  adress:"+adress, Toast.LENGTH_LONG).show();*/
@@ -145,11 +145,11 @@ public class PublicActivity extends Activity implements OnClickListener{
 		list.add(new BasicNameValuePair("time_act",time));
 		list.add(new BasicNameValuePair("class_act",category));
 		list.add(new BasicNameValuePair("detail_act",detail));
-		list.add(new BasicNameValuePair("adress_act", adress));
+		list.add(new BasicNameValuePair("address_act", address));
 		list.add(new BasicNameValuePair("num_act", num));
 		PostandGetConnectionUtil.setParm(list);
 		Toast.makeText(PublicActivity.this, 
-				 "theme:" + theme + " date " + date+ "category"+category+"  detail:"+detail+"  usercount:"+num+"  adress:"+adress, Toast.LENGTH_LONG).show();
+				 "theme:" + theme + " date " + date+ "category"+category+"  detail:"+detail+"  usercount:"+num+"  adress:"+address, Toast.LENGTH_LONG).show();
 		try {
 			httpResponse = PostandGetConnectionUtil.postConnect(PostandGetConnectionUtil.publicUrl);
 		} catch (URISyntaxException e) {

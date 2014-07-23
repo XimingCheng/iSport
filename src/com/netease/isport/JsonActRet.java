@@ -9,6 +9,13 @@ public class JsonActRet {
 	private String detail_act;
 	private String joined_num;
 	private String bjoined;
+	private String bsubmit;
+	public String getBsubmit() {
+		return bsubmit;
+	}
+	public void setBsubmit(String bsubmit) {
+		this.bsubmit = bsubmit;
+	}
 	private String submit_img;
 	private String totalnum;
 	private String img1;

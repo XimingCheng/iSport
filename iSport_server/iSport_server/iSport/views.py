@@ -47,7 +47,8 @@ def login(request):
             out_data['ret'] = 'failed'
         login_usr = User.objects.filter(name = user_name)
         if len(login_usr) == 0:
-            out_data['ret'] == 'user_not_exist'
+            print 'user_not_exist'
+            out_data['ret'] = 'not_exist'
         else:
             login_usr_obj = login_usr[0]
             if login_usr_obj.password == password_md5:
@@ -290,7 +291,8 @@ def reset_all_image(request):
 def get_account_info(request):
     out_data = {}
     if request.method == "GET":
-        if 'user' in request.session:
+        is_other = request.GET.get('other', '')
+        if is_other != 'y' and 'user' in request.session:
             user_name = request.session['user']
             data = User.objects.get(name = user_name)
             out_data["ret"] = "ok"

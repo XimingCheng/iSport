@@ -189,6 +189,20 @@
 				android:layout_marginRight="10dip"
 	    		android:layout_below="@id/recommend"
 	    	/>
+			<TextView
+			    android:id="@+id/reflash"
+			    android:layout_width="200dp"  
+			    android:layout_height="35dip"
+			    android:gravity="center"
+			    android:layout_gravity="center"
+			    android:background="@drawable/cat_back"
+			    android:text="刷新"
+			    android:layout_centerVertical="true"
+			    android:textColor="@color/recommendColor"
+			    android:layout_below="@id/slide_menu"
+			    android:visibility="gone"
+			    android:layout_marginTop="-200dp">
+			 </TextView>
 		</LinearLayout>
 	</com.netease.isport.SlideMenu>
 	

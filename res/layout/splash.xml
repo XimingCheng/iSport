@@ -1,50 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-    apk:layout_height="fill_parent" 
-    apk:layout_width="fill_parent" 
-    apk:orientation="vertical"
-     xmlns:apk="http://schemas.android.com/apk/res/android">
-
-
-
-
-<ImageView
-    apk:layout_height="fill_parent" 
-    apk:layout_width="fill_parent" 
-    apk:background="@anim/startanimation" 
-    apk:id="@+id/donghua"/>
-
-</LinearLayout>
-<!-- <?xml version="1.0" encoding="utf-8"?>
- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?> 
+ <LinearLayout 
+     xmlns:android="http://schemas.android.com/apk/res/android" 
+     android:orientation="horizontal" 
+     android:layout_width="match_parent" 
      android:layout_height="match_parent"
-     tools:context=".SplashActivity" >
- 
-     <ImageView
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:adjustViewBounds="true"
-         android:background="@drawable/pic1"
-         android:scaleType="centerCrop" />
-  
- </RelativeLayout> -->
-<!-- <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-    apk:layout_height="fill_parent" 
-    apk:layout_width="fill_parent" 
-    apk:orientation="vertical"
-     xmlns:apk="http://schemas.android.com/apk/res/android">
+     android:background="@drawable/pbeijing2"
+     > 
+     <ImageView 
+         android:id="@+id/imgTween1" 
+         android:src="@drawable/pzuo" 
+         android:layout_height="fill_parent" 
+                  android:layout_width="wrap_content"
+         android:scaleType="centerCrop"
+         android:layout_weight="2"
+          /> 
 
-Frame动画图片
-
-
-<ImageView
-    apk:layout_height="fill_parent" 
-    apk:layout_width="fill_parent" 
-    apk:background="@anim/startanimation" 
-    apk:id="@+id/donghua"/>
-
-</LinearLayout> -->
-
+          <ImageView
+              android:id="@+id/imgTween3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:scaleType="centerInside"
+              android:src="@drawable/pqiu" 
+                       android:layout_weight="1"
+              />
+           
+          <ImageView 
+         android:id="@+id/imgTween2" 
+         android:src="@drawable/pyou" 
+         android:layout_height="fill_parent" 
+         android:scaleType="centerCrop"
+         android:layout_width="wrap_content"
+         android:layout_weight="2"
+          /> 
+ </LinearLayout>

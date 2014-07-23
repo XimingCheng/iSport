@@ -9,6 +9,14 @@ public class JsonActRet {
 	private String detail_act;
 	private String joined_num;
 	private String bjoined;
+	private String bsubmit;
+	private String btimeout;
+	public String getBsubmit() {
+		return bsubmit;
+	}
+	public void setBsubmit(String bsubmit) {
+		this.bsubmit = bsubmit;
+	}
 	private String submit_img;
 	private String totalnum;
 	private String img1;
@@ -93,6 +101,12 @@ public class JsonActRet {
 	}
 	public void setImg3(String img3) {
 		this.img3 = img3;
+	}
+	public String getBtimeout() {
+		return btimeout;
+	}
+	public void setBtimeout(String btimeout) {
+		this.btimeout = btimeout;
 	}
 	
 }

@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import org.apache.http.HttpResponse;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -53,8 +54,10 @@ import com.netease.util.SharedPreferenceUtil;
 import com.netease.util.ToastUtil;
 
 public class MainActivity extends Activity implements OnClickListener {
+	private TextView reflash=null;
 	private Bitmap mDefaultBit;
 	private SlideMenu mSlideMenu;
+	private ProgressDialog progDialog = null;
 	private LinearLayout mUserProfileLayout;
 	private ImageView mUserImage,cat_basketball,cat_football,cat_pingpang,cat_more,cat_badminton,cat_running;
 	private TextView  option_submit_act;
@@ -74,8 +77,11 @@ public class MainActivity extends Activity implements OnClickListener {
     protected void onPushed() throws URISyntaxException {
     	if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
 			ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+			reflash.setVisibility(View.VISIBLE);
 			return;
 		}
+    	
+    	
     	HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.pushUrl);
 		if (PostandGetConnectionUtil.responseCode(res) != 200)
 			return;
@@ -107,6 +113,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					} catch(Exception e) {
 			            e.printStackTrace();  
 			        }
+					dissmissProgressDialog();
 					mItemArray.add(new ListItem(name, theme, time, cnt, details, id, bitmap));
 				}
 			}
@@ -121,7 +128,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		mSlideMenu = (SlideMenu) findViewById(R.id.slide_menu);
 		mUserProfileLayout = (LinearLayout) findViewById(R.id.user_image_layout);
 		mUserImage = (ImageView) findViewById(R.id.user_image);
-
+		reflash    = (TextView) findViewById(R.id.reflash);
+		
 		SharedPreferenceUtil.setSharedPreferences(sp);
 
 		option_submit_act=(TextView)findViewById(R.id.option_submit_act);
@@ -190,6 +198,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		mUserProfileLayout.setOnClickListener(this);
 		mUserImage.setOnClickListener(this);
 		cat_more.setOnClickListener(this);
+		reflash.setOnClickListener(this);
 		//timer.schedule(task, 0, 300000);
 		//timer.schedule(task, 0, 5000);
 		try {
@@ -202,6 +211,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	
 	boolean synloginInfo() throws URISyntaxException {
 		if( SharedPreferenceUtil.isLogin() ) {
+			if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
+				ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+				return false;
+			}
 			HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl);
 			if (PostandGetConnectionUtil.responseCode(res) != 200)
 				return false;
@@ -255,7 +268,27 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		   Intent intent = new Intent();
-		   if(!SharedPreferenceUtil.isLogin()){
+		   if(v.getId()==R.id.reflash){
+			  if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ){
+				  ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+				  return;
+			  }
+			  else{
+			     reflash.setVisibility(View.GONE);
+				 try {
+					runOnUiThread(new Runnable() {
+					    public void run() {
+					    	mListItemArrayAdapter.notifyDataSetChanged();
+					    }
+					});
+					onPushed();
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			  }
+		   }
+		   else if(!SharedPreferenceUtil.isLogin()){
 		    	intent.setClass(MainActivity.this, LoginActivity.class);
 		    	startActivityForResult(intent,LoginId);
 		   } else {
@@ -301,6 +334,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					   break;
 				   }
 				   case R.id.user_image:{
+					   intent.putExtra("user", "my");
 					   intent.setClass(MainActivity.this,UserProfileActivity.class);
 					   startActivityForResult(intent, useProfile); 
 					   break;
@@ -355,6 +389,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					   startActivity(intent); 
 					   break;
 				   }
+				   
 			   } 
 		   }
 	}
@@ -421,4 +456,18 @@ public class MainActivity extends Activity implements OnClickListener {
                     Toast.LENGTH_SHORT).show();   
         }  
     }
+    private void showProgressDialog() {
+		if (progDialog == null)
+			progDialog = new ProgressDialog(MainActivity.this);
+		progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		progDialog.setIndeterminate(false);
+		progDialog.setCancelable(false);
+		progDialog.setMessage("正在刷新...");
+		progDialog.show();
+	}
+    private void dissmissProgressDialog() {
+		if (progDialog != null) {
+			progDialog.dismiss();
+		}
+	}
 }

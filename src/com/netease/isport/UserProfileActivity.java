@@ -81,7 +81,8 @@ public class UserProfileActivity extends Activity
 		mUserName = (TextView) findViewById(R.id.user_name_profile);
 		mUserLabel = (TextView) findViewById(R.id.label_profile);
 		Intent intent = getIntent();
-		if (intent.getStringExtra("user").equals("other") )
+		String user_name = intent.getStringExtra("user");
+		if (user_name.equals("other") )
 			mBeMyself = false;
 		if(! mBeMyself)
 			mOtherName = intent.getStringExtra("name");

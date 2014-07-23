@@ -88,13 +88,18 @@ def getact(request):
             out_data['detail_act'] = act.details
             splited_id = act.joined_peopleId.split(',')
             out_data['joined_num'] = "0"
+            out_data['btimeout'] = act.istimeout
             joined_num = 0
             if splited_id[0] != '':
                 out_data['joined_num'] = str(len(splited_id))
                 joined_num = int(out_data['joined_num'])
             out_data['bjoined'] = "no"
+            u = User.objects.get(name = user_name)
+            if user_sub_id == str(u.id):
+                out_data['bsubmit'] = 'yes'
+            else:
+                out_data['bsubmit'] = 'no'
             if joined_num > 0:
-                u = User.objects.get(name = user_name)
                 uid = str(u.id)
                 for id_str in splited_id:
                     if id_str == uid:
@@ -195,34 +200,37 @@ def push(request):
     if request.method == "GET":
         all_act = Activity.objects.all()
         num_act = len(all_act)
-        pushed_num = 10
-        out_index = []
-        for i in range(0, pushed_num):
-            out_index.append(random.randint(0, num_act - 1))
-        #print out_index
-        out_data['ret'] = 'ok'
-        out_list = []
-        real_count = pushed_num
-        for i in range(0, pushed_num):
-            index = out_index[i]
-            act = all_act[index]
-            data = {}
-            data['id'] = str(act.id)
-            data['theme'] = act.theme
-            data['details'] = act.details
-            data['time'] = str(act.begin_datatime)
-            data['count'] = str(act.people_count)
-            #data.append(str(act.submit_peopleId))
-            try:
-                u = User.objects.get(id = act.submit_peopleId)
-                data['img'] = str(u.img)
-            except: #query user id not exist
-                real_count -= 1
-                continue
-            data['name'] = u.name
-            out_list.append(data)
-        out_data['list'] = out_list
-        out_data['count'] = real_count
+        if num_act == 0:
+            out_data['ret'] = 'failed'
+        else:
+            pushed_num = 10
+            out_index = []
+            for i in range(0, pushed_num):
+                out_index.append(random.randint(0, num_act - 1))
+            #print out_index
+            out_data['ret'] = 'ok'
+            out_list = []
+            real_count = pushed_num
+            for i in range(0, pushed_num):
+                index = out_index[i]
+                act = all_act[index]
+                data = {}
+                data['id'] = str(act.id)
+                data['theme'] = act.theme
+                data['details'] = act.details
+                data['time'] = str(act.begin_datatime)
+                data['count'] = str(act.people_count)
+                #data.append(str(act.submit_peopleId))
+                try:
+                    u = User.objects.get(id = act.submit_peopleId)
+                    data['img'] = str(u.img)
+                except: #query user id not exist
+                    real_count -= 1
+                    continue
+                data['name'] = u.name
+                out_list.append(data)
+            out_data['list'] = out_list
+            out_data['count'] = real_count
     else:
         out_data['ret'] = 'failed'
     return HttpResponse(json.dumps(out_data), content_type="application/json")
@@ -295,17 +303,20 @@ def get_account_info(request):
             out_data["userimage"] = str(data.img)
             out_data["label"] = data.label
         else:
-            out_data["ret"] = 'ok'
             user_name = request.GET.get("name", "")
-            data = User.objects.get(name = user_name)
-            out_data["username"] = user_name
-            out_data["location"] = data.location
-            out_data["sex"] = data.sex
-            out_data["score"] = str(data.score)
-            out_data["completed"] = data.completed_id
-            out_data["uncompleted"] = data.uncompleted_id
-            out_data["userimage"] = str(data.img)
-            out_data["label"] = data.label
+            if not user_name:
+                out_data['ret'] = 'failed'
+            else:
+                out_data["ret"] = 'ok'
+                data = User.objects.get(name = user_name)
+                out_data["username"] = user_name
+                out_data["location"] = data.location
+                out_data["sex"] = data.sex
+                out_data["score"] = str(data.score)
+                out_data["completed"] = data.completed_id
+                out_data["uncompleted"] = data.uncompleted_id
+                out_data["userimage"] = str(data.img)
+                out_data["label"] = data.label
 
     else:
         out_data["ret"] = "get_info_failed"
@@ -378,7 +389,7 @@ def public_act(request):
             date_act   = request.POST.get('date_act','')
             time_act   = request.POST.get('time_act','')
             num_act    = request.POST.get('num_act','')
-            adress_act = request.POST.get('adress_act','')
+            address_act = request.POST.get('address_act','')
             detail_act = request.POST.get('detail_act','')
             username = request.session['user']
             date_time = date_act + " " + time_act
@@ -391,12 +402,210 @@ def public_act(request):
             else:
                 pub_data = Activity(category = class_act, theme = theme_act,
                     begin_datatime = datess, people_count = num_act,
-                    details = detail_act, submit_peopleId = userid)
-                ret_data['ret'] = 'ok'
+                    details = detail_act, submit_peopleId = userid,location=address_act,joined_peopleId=userid)
+                #total=len(Activity.objects.all())+1
+                pub_data.istimeout = 'n'
                 pub_data.save()
+                total = pub_data.id
+                u=User.objects.get(id=userid)
+                if u.uncompleted_id=='':
+                    u.uncompleted_id=str(total)
+                else:
+                    u.uncompleted_id+=(','+str(total))
+                u.save()
+                ret_data['ret'] = 'ok'
         else:
             ret_data['ret'] = 'failed'
     else:
         ret_data['ret'] = 'failed'
     return HttpResponse(json.dumps(ret_data), content_type='application/json')
+
+def unjoin_act(request):
+    ret_data = {}
+    if request.method == "POST":
+        id_act = request.POST.get('id_act', "")
+        if 'user' in request.session:
+            ret_data['ret'] = 'ok'
+            username = request.session['user']
+            u = User.objects.get(name = username)
+            uncompleted = u.uncompleted_id
+            uncompleted = uncompleted.split(",")
+            index = -1
+            cnt = 0
+            for unid in uncompleted:
+                if unid != '' and unid == str(id_act):
+                    index = cnt
+                    break
+                cnt += 1
+            if index != -1:
+                del uncompleted[index]
+            out = ""
+            for l in uncompleted:
+                out += l
+                out += ','
+            if len(out) == 0:
+                u.uncompleted_id = ""
+            else:
+                out = out[0, len(out) - 1]
+                u.uncompleted_id = out
+            u.save()
+            act = Activity.objects.get(id = id_act)
+            joined = act.joined_peopleId.split(",")
+            if joined[0] != '':
+                index = -1
+                cnt  = 0
+                for uid in joined:
+                    if uid == str(u.id):
+                        index = cnt
+                        break
+                    cnt += 1
+                if index != -1:
+                    del joined[index]
+                print joined
+                o = ""
+                for l in joined:
+                    o += l
+                    o += ','
+                print o
+                if l != '':
+                    o = o[0 : len(o) - 1]
+                print o
+                act.joined_peopleId = o
+                act.save()
+
+        else:
+            ret_data['ret'] = 'failed'
+    else:
+        ret_data['ret'] = "failed"
+    return HttpResponse(json.dumps(ret_data), content_type='application/json')
+
+def com_act(request):
+    ret_data = {}
+    if request.method == 'POST':
+        ret_data['ret'] = 'ok'
+        id_act = request.POST.get('id_act', "")
+        if 'user' in request.session:
+            username = request.session['user']
+            u = User.objects.get(name = username)
+            uncompleted = u.uncompleted_id
+            uncompleted = uncompleted.split(",")
+            index = -1
+            cnt = 0
+            for unid in uncompleted:
+                if unid != '' and unid == str(id_act):
+                    index = cnt
+                    break
+                cnt += 1
+            if index != -1:
+                del uncompleted[index]
+            out = ""
+            if u.completed_id == '':
+                u.completed_id = id_act
+            else:
+                u.completed_id += str("," + id_act)
+            for l in uncompleted:
+                out += l
+                out += ','
+            if len(out) == 0:
+                u.uncompleted_id = ""
+            else:
+                out = out[0 : len(out) - 1]
+                u.uncompleted_id = out
+            u.save()
+            act = Activity.objects.get(id = id_act)
+            act.istimeout = 'y'
+            joined = act.joined_peopleId.split(",")
+            print joined
+            if joined[0] != '':
+                for uid in joined:
+                    uu = User.objects.get(id = uid)
+                    uncom = uu.uncompleted_id.split(",")
+                    print uncom
+                    if uncom[0] != "":
+                        index = -1;
+                        cnt = 0
+                        for uncomid in uncom:
+                            if uncomid == id_act:
+                                index = cnt
+                                break
+                            cnt += 1
+                        if index != -1:
+                            print uncom[index]
+                            del uncom[index]
+                        o = ""
+                        for l in uncom:
+                            o += l
+                            o += ","
+                        if len(o) != 0:
+                            o = o[0 : len(o) - 1]
+                        uu.uncompleted_id = o
+                        com = uu.completed_id.split(",")
+                        o = ""
+                        print com
+                        if com[0] == "":
+                            o = id_act
+                        else:
+                            o = uu.completed_id + "," + id_act
+                        print "xxxxxx" + o
+                        uu.completed_id = o
+                        uu.save()
+                    #uu.save()
+
+            act.save()
+        else:
+            ret_data['ret'] = 'failed'
+
+    else:
+        ret_data['ret'] = 'failed'
+    return HttpResponse(json.dumps(ret_data), content_type='application/json')
+
+def join_act(request):
+    ret_data={}
+    if request.method=='POST':
+        id_act=request.POST.get('id_act', '')
+        if 'user' in request.session:
+            username=request.session['user']
+            userid=User.objects.get(name=username).id
+            activity=Activity.objects.get(id=id_act)
+            joined=activity.joined_peopleId
+            limit_num=activity.people_count
+            if joined=='':
+                joined_num=0
+            else:
+                joined_num=len(joined.split(','))
+            if joined_num <limit_num:
+            #``    newjoined=split_join(joined_num,userid)
+                if joined_num == 0:
+                    joined = str(userid)
+                else:
+                    joined += ("," + str(userid))
+                activity.save()
+                join_people=User.objects.get(name = username)
+                act = Activity.objects.get(id = id_act)
+                if join_people.uncompleted_id == '':
+                    join_people.uncompleted_id = id_act
+                else:
+                    join_people.uncompleted_id += ("," + id_act)
+                join_people.save()
+                if act.joined_peopleId =='':
+                    act.joined_peopleId = str(userid)
+                else:
+                    act.joined_peopleId += (',' + str(userid))
+                act.save()
+            else:
+                ret_data['ret']='full'
+        else:
+            ret_data['ret']='failed'
+        ret_data['ret']='ok'
+    else:
+        ret_data['ret']='failed'
+    return HttpResponse(json.dumps(ret_data), content_type='application/json')
+
+
+#def split_join(num,userid):
+#    if num==0:
+#        joined_activity=str(userid)
+#    else:
+#        joined_activity=joined_activity+','+str(userid)
+#    return join_activity
 

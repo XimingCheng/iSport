@@ -6,9 +6,13 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -215,7 +219,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
 				return false;
 			}
-			HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl);
+			List<NameValuePair> list=new ArrayList<NameValuePair>();
+			list.add(new BasicNameValuePair("other", "y"));
+			HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl, list);
 			if (PostandGetConnectionUtil.responseCode(res) != 200)
 				return false;
 			String json_str = PostandGetConnectionUtil.GetResponseMessage(res);

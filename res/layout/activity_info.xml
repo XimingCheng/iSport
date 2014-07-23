@@ -39,7 +39,7 @@
 	        android:textSize="20sp" />
 	    
 	    <Button
-	        android:id="@+id/login" 
+	        android:id="@+id/join" 
         	android:layout_width="50dp"
         	android:layout_height="30dp"
         	android:layout_alignParentRight="true"

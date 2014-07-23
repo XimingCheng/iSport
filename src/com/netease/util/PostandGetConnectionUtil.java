@@ -47,6 +47,7 @@ public class PostandGetConnectionUtil {
 	public final static String getActInfoUrl = "http://efly.freeshell.ustc.edu.cn:54322/getact/";
 	public final static String getCompletedUrl = "http://efly.freeshell.ustc.edu.cn:54322/complete/";
 	public final static String getUnCompletedUrl = "http://efly.freeshell.ustc.edu.cn:54322/uncomplete/";
+	public final static String joinUrl="http://efly.freeshell.ustc.edu.cn:54322/join/";
 	
 	static List<NameValuePair> list=null;
 	

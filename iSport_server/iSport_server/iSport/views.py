@@ -398,13 +398,16 @@ def public_act(request):
             userid = User.objects.get(name=username).id
             now = datetime.datetime.fromtimestamp(time.mktime(time.
                     strptime(date_time, r"%Y/%m/%d %H:%M:%S")))
-            datess = now.date().isoformat()
+            datess = str(now)
+            print datess
+            print "now is  " +str(datess)
             if len(errors) > 0:
                 ret_data['ret'] = 'no theme'
             else:
                 pub_data = Activity(category = class_act, theme = theme_act,
                     begin_datatime = datess, people_count = num_act,
-                    details = detail_act, submit_peopleId = userid,location=address_act,joined_peopleId=userid)
+                    details = detail_act, submit_peopleId = userid,
+                    location=address_act,joined_peopleId=userid)
                 #total=len(Activity.objects.all())+1
                 pub_data.istimeout = 'n'
                 pub_data.save()

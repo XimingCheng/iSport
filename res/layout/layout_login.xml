@@ -102,7 +102,7 @@
     android:textColor="@color/findPassword"
     android:text="@string/register" />
 
-<TextView
+<!-- <TextView
     android:id="@+id/findPassword"
     android:layout_width="wrap_content"
     android:layout_height="22dp"
@@ -113,7 +113,7 @@
     android:textSize="14sp"
     android:layout_marginRight="10dp"
     android:textColor="@color/findPassword"
-    android:text="@string/findpassword" />
+    android:text="@string/findpassword" /> -->
     
  </RelativeLayout>   
 

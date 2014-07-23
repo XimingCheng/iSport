@@ -53,6 +53,7 @@ import com.netease.util.SharedPreferenceUtil;
 import com.netease.util.ToastUtil;
 
 public class MainActivity extends Activity implements OnClickListener {
+	private TextView reflash=null;
 	private Bitmap mDefaultBit;
 	private SlideMenu mSlideMenu;
 	private LinearLayout mUserProfileLayout;
@@ -74,6 +75,7 @@ public class MainActivity extends Activity implements OnClickListener {
     protected void onPushed() throws URISyntaxException {
     	if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {
 			ToastUtil.show(getApplicationContext(), "网络服务不可用，请检查网络状态！");
+			reflash.setVisibility(View.VISIBLE);
 			return;
 		}
     	HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.pushUrl);
@@ -121,7 +123,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		mSlideMenu = (SlideMenu) findViewById(R.id.slide_menu);
 		mUserProfileLayout = (LinearLayout) findViewById(R.id.user_image_layout);
 		mUserImage = (ImageView) findViewById(R.id.user_image);
-
+		reflash    = (TextView) findViewById(R.id.reflash);
+		
 		SharedPreferenceUtil.setSharedPreferences(sp);
 
 		option_submit_act=(TextView)findViewById(R.id.option_submit_act);
@@ -190,6 +193,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		mUserProfileLayout.setOnClickListener(this);
 		mUserImage.setOnClickListener(this);
 		cat_more.setOnClickListener(this);
+		reflash.setOnClickListener(this);
 		//timer.schedule(task, 0, 300000);
 		//timer.schedule(task, 0, 5000);
 		try {
@@ -259,7 +263,21 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		   Intent intent = new Intent();
-		   if(!SharedPreferenceUtil.isLogin()){
+		   if(v.getId()==R.id.reflash){
+			   reflash.setVisibility(View.GONE);
+				try {
+					runOnUiThread(new Runnable() {
+					    public void run() {
+					    	mListItemArrayAdapter.notifyDataSetChanged();
+					    }
+					});
+					onPushed();
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		   }
+		   else if(!SharedPreferenceUtil.isLogin()){
 		    	intent.setClass(MainActivity.this, LoginActivity.class);
 		    	startActivityForResult(intent,LoginId);
 		   } else {
@@ -360,6 +378,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					   startActivity(intent); 
 					   break;
 				   }
+				   
 			   } 
 		   }
 	}

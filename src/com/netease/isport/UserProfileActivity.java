@@ -197,6 +197,7 @@ public class UserProfileActivity extends Activity
 		}
 		List<NameValuePair> list=new ArrayList<NameValuePair>();
 		list.add(new BasicNameValuePair("name", mOtherName));
+		list.add(new BasicNameValuePair("other", "y"));
     	HttpResponse res = PostandGetConnectionUtil.getConnect(PostandGetConnectionUtil.getinfoUrl, list);
 		if (PostandGetConnectionUtil.responseCode(res) != 200)
 			return;
@@ -232,7 +233,10 @@ public class UserProfileActivity extends Activity
 			return;
 		}
 		List<NameValuePair> list=new ArrayList<NameValuePair>();
-		list.add(new BasicNameValuePair("name", (String) mUserName.getText()));
+		if (mBeMyself)
+			list.add(new BasicNameValuePair("name", (String) mUserName.getText()));
+		else
+			list.add(new BasicNameValuePair("name", mOtherName));
     	HttpResponse res = PostandGetConnectionUtil.getConnect(url, list);
 		if (PostandGetConnectionUtil.responseCode(res) != 200)
 			return;

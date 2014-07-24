@@ -443,7 +443,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	            Intent startIntent = new Intent(Intent.ACTION_MAIN);  
 	            startIntent.addCategory(Intent.CATEGORY_LAUNCHER);  
 	            startIntent.setComponent(new ComponentName(ai.packageName, ai.name));  
-	            startActivitySafely(startIntent);  
+	            startActivitySafely(startIntent);
 	            return true;
         	} else
         		return super.onKeyDown(keyCode, event);

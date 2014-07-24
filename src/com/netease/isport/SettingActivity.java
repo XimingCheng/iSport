@@ -13,8 +13,11 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -27,6 +30,16 @@ public class SettingActivity extends Activity {
 	private ProgressDialog progDialog = null;
 	private UITableView tableView;
 	private ImageView title_bar_menu_btn=null;
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        	setResult(-2, GetIntentInstance.getIntent());
+			SettingActivity.this.finish();
+        	return true;
+        } else
+    		return super.onKeyDown(keyCode, event);
+	}
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -105,8 +105,9 @@ public class SettingActivity extends Activity {
 		      else if(1 == which)
 		      {
 		    	  logout();
-		    	  setResult(RESULT_CANCELED, GetIntentInstance.getIntent());
-	              SettingActivity.this.finish();
+		    	 // setResult(RESULT_CANCELED, GetIntentInstance.getIntent());
+	              //SettingActivity.this.finish();
+		    	  System.exit(0);
 		      }
 		     }
 		      }).setNegativeButton("取消",new DialogInterface.OnClickListener() {//添加button并响应点击事件

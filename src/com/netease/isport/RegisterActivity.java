@@ -33,6 +33,7 @@ import android.widget.Toast;
 import com.netease.util.GetIntentInstance;
 import com.netease.util.MD5util;
 import com.netease.util.PostandGetConnectionUtil;
+import com.netease.util.SharedPreferenceUtil;
 import com.netease.util.ToastUtil;
 
 public class RegisterActivity extends Activity implements OnClickListener{
@@ -138,6 +139,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 			}
 		else if(v.getId()==R.id.title_bar_menu_btn){
 			//×¢²áÒ³Ãæ
+			 setResult(RESULT_CANCELED, intent);
 			RegisterActivity.this.finish();
 		}
 	}
@@ -158,8 +160,11 @@ public class RegisterActivity extends Activity implements OnClickListener{
         	String message=null;
         	message=PostandGetConnectionUtil.GetResponseMessage(httpResponse);            
             Toast.makeText(getApplicationContext(), "×¢²á³É¹¦", Toast.LENGTH_SHORT).show();
-            intent.setClass(RegisterActivity.this, MainActivity.class);
-    	    startActivity(intent);
+            SharedPreferenceUtil.setLogin(true);
+            setResult(RESULT_OK, intent);
+//            intent.setClass(RegisterActivity.this, MainActivity.class);
+//    	    startActivity(intent);
+            RegisterActivity.this.finish();
         }
         else
         {

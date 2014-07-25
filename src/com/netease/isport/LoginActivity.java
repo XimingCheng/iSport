@@ -34,6 +34,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 	TextView textView,register=null;
 	ImageView preStep=null;
 	private ProgressDialog pd;
+	static final private int regOk = 5;
 	
 	Intent intent = GetIntentInstance.getIntent();
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,9 @@ public class LoginActivity extends Activity implements OnClickListener{
 		  
 		  case R.id.register :{
 			  intent.setClass(LoginActivity.this, RegisterActivity.class);
-			  startActivity(intent);  break;
+			  //startActivity(intent);
+			  startActivityForResult(intent, regOk);
+			  break;
 		  }
 		}
 	}
@@ -85,6 +88,14 @@ public class LoginActivity extends Activity implements OnClickListener{
             }
         }  
     }; 
+    
+    @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	if(regOk == requestCode && RESULT_OK == resultCode) {
+    		setResult(RESULT_OK, intent);
+        	LoginActivity.this.finish();
+    	}
+    }
     
 	public void login(){
 		if( !NetWorkUtil.isNetworkConnected(this.getApplicationContext()) ) {

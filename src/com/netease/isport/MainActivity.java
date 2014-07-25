@@ -69,6 +69,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	static final private int LogoutId = 2;
 	static final private int setImage = 3;
 	static final private int useProfile = 4;
+	static final private int regOk = 5;
 
 	private TextView  option_search_act,option_edit_profile;
 	private TextView  option_setting;
@@ -431,6 +432,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
 			Bitmap bitmap = RoundImageUtil.toRoundCorner(BitmapFactory.decodeStream(bais));
 			mUserImage.setImageBitmap(bitmap);
+		} else if (regOk == requestCode && RESULT_OK == resultCode) {
+			try {
+				synloginInfo();
+				//mSlideMenu.unlock();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			refresh_ctrl();
 		}
 	}
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

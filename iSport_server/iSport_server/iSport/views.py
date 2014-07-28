@@ -145,7 +145,7 @@ def getCompleted(request):
             out_list = []
             count = 0
             for id_data in splited_id:
-                if count > 2:
+                if count > 4:
                     break;
                 count += 1
                 act = Activity.objects.get(id  = id_data)
@@ -176,7 +176,7 @@ def getUnCompleted(request):
             out_list = []
             count = 0
             for id_data in splited_id:
-                if count > 2:
+                if count > 4:
                     break;
                 count += 1
                 act = Activity.objects.get(id  = id_data)
@@ -206,8 +206,10 @@ def push(request):
         else:
             pushed_num = 10
             out_index = []
-            for i in range(0, pushed_num):
-                out_index.append(random.randint(0, num_act - 1))
+            test_data = []
+            for i in range(0, num_act):
+                test_data.append(i)
+            out_index = random.sample(test_data, pushed_num)
             #print out_index
             out_data['ret'] = 'ok'
             out_list = []
@@ -400,9 +402,16 @@ def public_act(request):
                     strptime(date_time, r"%Y/%m/%d %H:%M:%S")))
             datess = str(now)
             print datess
+            try:
+                a = int(num_act)
+            except Exception:
+                ret_data["ret"] = 'no int'
+                return HttpResponse(json.dumps(ret_data), content_type='application/json')
             print "now is  " +str(datess)
             if len(errors) > 0:
                 ret_data['ret'] = 'no theme'
+            elif not num_act:
+                ret_data['ret'] = 'no people_count'
             else:
                 pub_data = Activity(category = class_act, theme = theme_act,
                     begin_datatime = datess, people_count = num_act,
@@ -451,8 +460,9 @@ def unjoin_act(request):
             if len(out) == 0:
                 u.uncompleted_id = ""
             else:
-                out = out[0, len(out) - 1]
+                out = out[0 : len(out) - 1]
                 u.uncompleted_id = out
+            print out
             u.save()
             act = Activity.objects.get(id = id_act)
             joined = act.joined_peopleId.split(",")
@@ -597,11 +607,11 @@ def join_act(request):
                 else:
                     act.joined_peopleId += (',' + str(userid))
                 act.save()
+                ret_data['ret']='ok'
             else:
                 ret_data['ret']='full'
         else:
             ret_data['ret']='failed'
-        ret_data['ret']='ok'
     else:
         ret_data['ret']='failed'
     return HttpResponse(json.dumps(ret_data), content_type='application/json')

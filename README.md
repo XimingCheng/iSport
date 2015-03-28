@@ -11,9 +11,11 @@ Images
 Introduction
 ------------
 
-This is a demo project (which means the code of this project can be very bad and silly) which used on a programming hackson about 12 days. This project shows how fast our team can be to deal with an unknown problem.
+This is a project which used on a programming hackson about 12 days. This project shows how fast our team can be to deal with an unknown problem.
+**This project won the first prize on technical.**
 
-这是一个示例的项目（这也就意味着项目的代码会比较烂），这个项目是用在一个为期12天的编程马拉松比赛里面用的。代码展示了我们团队如何在短时间之内处理不明真相的问题。
+这是一个用在一个为期12天的编程马拉松比赛里面编写的项目。代码展示了我们团队如何在短时间之内处理不明真相的问题。
+**这个项目获得了技术比赛的一等奖**
 
 Main features
 -------------
